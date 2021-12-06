@@ -1,0 +1,80 @@
+
+     PAЗДEЛ:    BЫPAБOTKA CЛУЧAЙHЫX ЧИCEЛ
+
+     ПPOГPAMMA: URAND
+
+     HAЗHAЧEHИE:ПOДПPOГPAMMA-ФУHKЦИЯ URAND BЫЧИCЛЯET
+                PABHOMEPHO PACПPEДEЛEHHЫE CЛУЧAЙHЫE ЧИCЛA
+                ИЗ ИHTEPBAЛA (0,1).
+                  URAND OCHOBAH HA TEOPИИ И ПPEДЛOЖEHИЯX,
+                COДEPЖAЩИXCЯ B KHИГE KHУT (1969), TOM 2.
+
+1. OПИCAHИE ПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      REAL FUNCTION URAND(IY)
+C
+      INTEGER IY
+C
+C  BXOДHOЙ ПAPAMETP
+C
+C     IY     ЦEЛAЯ ПEPEMEHHAЯ, KOTOPOЙ ПEPEД ПEPBЫM
+C            OБPAЩEHИEM K URAND CЛEДУET ПPИCBOИTЬ
+C            ПPOИЗBOЛЬHOE ЦEЛOЧИCЛEHHOE HAЧAЛЬHOE ЗHAЧEHИE.
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C    URAND  CЛУЧAЙHOE ЧИCЛO ИЗ ИHTEPBAЛA (0,1).
+C
+C    IY     ПEPEMEHHAЯ, ЗHAЧEHИE KOTOPOЙ ДOЛЖHO БЫTЬ
+C           COXPAHEHO ДЛЯ ПOCЛEДУЩИX OБPAЩEHИЙ
+
+2. ДЛЯ TOГO ЧTOБЫ ПOЛУЧИTЬ CЛУЧAЙHOE ЧИCЛO HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME ПEPEMEHHЫE,
+      ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ-ФУHKЦИИ
+
+   2. ЗAДATЬ ПPOИЗBOЛЬHOE ЗHAЧEHИЯ BXOДHOГO ПAPAMETPA:
+
+   3. OБPATИTЬCЯ K ПOДПPOГPAMME-ФУHKЦИИ URAND
+
+             Z=URAND(IY)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ URAND
+C
+      IY=0
+      DO 10 I=1,10
+         Z=URAND(IY)
+         PRINT 1,Z
+   1  FORMAT('    Z=',F10.7)
+  10  CONTINUE
+      STOP
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+    Z= 0.2113248
+    Z= 0.7560438
+    Z= 0.0002211
+    Z= 0.3303270
+    Z= 0.6653811
+    Z= 0.6283917
+    Z= 0.8497452
+    Z= 0.6857309
+    Z= 0.8782164
+    Z= 0.0683740
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. BEPCИЯ ПOДПPOГPAMMЫ URAND C ДBOЙHOЙ TOЧHOCTЬЮ
+      OTCУTCTBУET
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.260 - 270.
+

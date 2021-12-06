@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/lab4.dir/main.cpp.o CMakeFiles/lab4.dir/polynomial.cpp.o -o lab4 

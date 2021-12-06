@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/task3_1_is_ordered_.dir/main.cpp.o -o task3_1_is_ordered_ 

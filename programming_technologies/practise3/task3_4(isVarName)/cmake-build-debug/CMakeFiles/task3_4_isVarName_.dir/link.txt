@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/task3_4_isVarName_.dir/main.cpp.o -o task3_4_isVarName_ 

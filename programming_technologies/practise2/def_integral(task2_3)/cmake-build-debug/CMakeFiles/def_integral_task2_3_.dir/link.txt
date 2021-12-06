@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/def_integral_task2_3_.dir/main.cpp.o -o def_integral_task2_3_ 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/chess_bishops.dir/main.cpp.o -o chess_bishops 

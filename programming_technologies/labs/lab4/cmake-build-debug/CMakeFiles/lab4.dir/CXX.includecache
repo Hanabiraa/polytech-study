@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/work/projects/polytech/cpp/labs/lab4/polynomial.cpp
+polynomial.h
+/work/projects/polytech/cpp/labs/lab4/polynomial.h
+
+/work/projects/polytech/cpp/labs/lab4/polynomial.h
+iostream
+-
+vector
+-
+string
+-
+cmath
+-
+cctype
+-
+

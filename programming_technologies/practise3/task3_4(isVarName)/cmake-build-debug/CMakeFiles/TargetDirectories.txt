@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/task3_4(isVarName)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/task3_4(isVarName)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/task3_4(isVarName)/cmake-build-debug/CMakeFiles/task3_4_isVarName_.dir

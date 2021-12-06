@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/labs/lab4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/labs/lab4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/labs/lab4/cmake-build-debug/CMakeFiles/lab4.dir

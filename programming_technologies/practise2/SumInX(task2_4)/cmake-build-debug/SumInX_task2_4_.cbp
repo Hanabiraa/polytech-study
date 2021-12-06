@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SumInX_task2_4_"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SumInX_task2_4_">
+				<Option output="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/SumInX_task2_4_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 SumInX_task2_4_"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SumInX_task2_4_/fast">
+				<Option output="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/SumInX_task2_4_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 SumInX_task2_4_/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/work/projects/polytech/cpp/SumInX(task2_4)/main.cpp">
+			<Option target="SumInX_task2_4_"/>
+		</Unit>
+		<Unit filename="/work/projects/polytech/cpp/SumInX(task2_4)/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

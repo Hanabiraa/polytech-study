@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/simple_num_task2_2_.dir/main.cpp.o -o simple_num_task2_2_ 

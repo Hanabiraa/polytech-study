@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/find_num_task2_1_.dir/main.cpp.o -o find_num_task2_1_ 

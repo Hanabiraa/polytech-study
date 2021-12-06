@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/SumInX_task2_4_.dir/main.cpp.o -o SumInX_task2_4_ 

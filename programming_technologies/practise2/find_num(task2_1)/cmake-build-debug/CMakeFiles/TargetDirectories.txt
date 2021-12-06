@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/find_num(task2_1)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/find_num(task2_1)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/find_num(task2_1)/cmake-build-debug/CMakeFiles/find_num_task2_1_.dir

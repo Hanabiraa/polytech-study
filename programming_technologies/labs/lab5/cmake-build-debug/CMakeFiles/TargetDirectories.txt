@@ -1,0 +1,3 @@
+/work/polytech-study/programming_technologies/labs/lab5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/polytech-study/programming_technologies/labs/lab5/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/polytech-study/programming_technologies/labs/lab5/cmake-build-debug/CMakeFiles/lab5.dir

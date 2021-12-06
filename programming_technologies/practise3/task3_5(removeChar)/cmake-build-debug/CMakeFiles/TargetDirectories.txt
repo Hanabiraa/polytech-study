@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/task3/task3_5(removeChar)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/task3/task3_5(removeChar)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/task3/task3_5(removeChar)/cmake-build-debug/CMakeFiles/task3_5_removeChar_.dir

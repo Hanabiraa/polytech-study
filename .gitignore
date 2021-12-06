@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# My Staff
+
+*.idea
+.idea
+*/.idea

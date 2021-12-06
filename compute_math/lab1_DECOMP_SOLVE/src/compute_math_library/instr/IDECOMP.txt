@@ -1,0 +1,127 @@
+
+     PAЗДEЛ:    ЛИHEЙHAЯ AЛГEБPA
+
+     ПPOГPAMMA: DECOMP
+
+     HAЗHAЧEHИE:ПOДПPOГPAMMA BЫЧИCЛЯET PAЗЛOЖEHИE BEЩECTBEH-
+                HOЙ MATPИЦЫ ПOCPEДCTBOM ГAУCCOBA ИCKЛЮЧEHИЯ
+                И OЦEHИBAET OБУCЛOBЛEHHOCTЬ  MATPИЦЫ.
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      SUBROUTINE DECOMP (NDIM,N,A,COND,IPVT,WORK)
+C
+      INTEGER NDIM,N
+      INTEGER IPVT(N)
+      REAL A(NDIM,N),COND,WORK(N)
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     NDIM -ЧИCЛO CTPOK B MACCИBE A, COДEPЖAЩEГO MATPИЦУ A.
+C
+C     N    -ПOPЯДOK MATPИЦЫ.
+C
+C     A    -MATPИЦA, KOTOPУЮ HУЖHO PAЗЛOЖИTЬ.
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C     A     COДEPЖИT BEPXHЮЮ TPEУГOЛЬHУЮ MATPИЦУ U
+C           И УЧИTЫBAЮЩУЮ ПEPECTAHOBKИ BEPCИЮ
+C           HИЖHEЙ TPEУГOЛЬHOЙ MATPИЦЫ I-L,TAKИE,
+C           ЧTO (MATPИЦA  ПEPECTAHOBOK) *A=L*U
+C
+C     COND -COДEPЖИT OЦEHKУ ЧИCЛA OБУCЛOBЛEHHOCTИ MATPИЦЫ A.
+C           ДЛЯ ЛИHEЙHOЙ CИCTEMЫ A*X=B ИЗMEHEHИЯ B A И B
+C           MOГУT BЫЗBATЬ ИЗMEHEHИЯ B X,БOЛЬШИE B COND PAЗ.
+C           ECЛИ COND+1.0.EQ.COND, TO A B ПPEДEЛAX MAШИHHOЙ
+C           TOЧHOCTИ ЯBЛЯETCЯ BЫPOЖДEHHOЙ MATPИЦEЙ.
+C           COND ПOЛAГAETCЯ PABHЫM 1.0E+32,
+C           ECЛИ OБHAPУЖEHA TOЧHAЯ BЫPOЖДEHHOCTЬ.
+C
+C     IPVT -COДEPЖИT ИHФOPMAЦИЮ O ПEPECTAHOBKAX
+C           IPVT(K)=ИHДEKC K-Й BEДУЩEЙ CTPOKИ
+C           IPVT(N)=(-1)**(ЧИCЛO ПEPECTAHOBOK)
+C
+C  PAБOЧИE ПAPAMETPЫ
+C
+C     WORK -PAБOЧИЙ BEKTOP. EГO BЫXOДHOE COДEPЖAHИE
+C           OБЫЧHO HE ДAET BAЖHOЙ ИHФOPMAЦИИ.
+C
+C  BHУTPEHHИE ПOДПPOГPAMMЫ
+C
+C     SOLVE
+C
+
+2. ДЛЯ TOГO ЧTOБЫ HAЙTИ PAЗЛOЖEHИE MATPИЦЫ A
+   И OЦEHИTЬ EE OБУCЛOBЛEHHOCTЬ HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE
+        И MACCИBЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+C     NDIM -ЧИCЛO CTPOK B MACCИBE A, COДEPЖAЩEГO MATPИЦУ A.
+C     N    -ПOPЯДOK MATPИЦЫ.
+C       A    -MATPИЦУ,KOTOPУЮ HУЖHO PAЗЛOЖИTЬ.
+
+   3. BЫЗBATЬ ПOДПPOГPAMMУ DECOMP OПEPATOPOM
+
+        CALL DECOMP(NDIM,N,A,COND,IPVT,WORK)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПOДПPOГPAMMA ДЛЯ DECOMP
+C     B ПPИMEPE ИЩETCЯ PAЗЛOЖEHИE MATPИЦЫ A
+C     И OЦEHИBAETCЯ EE OБУCЛOBЛEHHOCTЬ
+C
+      INTEGER NDIM/3/,N/3/,IPVT(3)
+      REAL A(3,3),WORK(3),COND
+      DATA A/10.,-3., 5.,
+     *       -7., 2.,-1.,
+     *        0., 6., 5./
+C
+      PRINT 101,((A(I,J),J=1,N),I=1,N)
+C
+      CALL DECOMP(NDIM,N,A,COND,IPVT,WORK)
+C
+      PRINT 102,COND
+      CONDP1=COND+1.0
+      IF(CONDP1.EQ.COND) PRINT 103
+      IF(CONDP1.EQ.COND) STOP
+C
+      STOP
+  101 FORMAT(13X,'A',3(/5X,3F5.0))
+  102 FORMAT(5X,'COND=',E12.5)
+  103 FORMAT(5X,'MATPИЦA KЛACCИФИЦИPУETCЯ KAK BЫPOЖДEHHAЯ')
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+             A
+       10.  -7.   0.
+       -3.   2.   6.
+        5.  -1.   5.
+     COND= 0.11207E+02
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. OПPEДEЛИTEЛЬ MATPИЦЫ A MOЖET БЫTЬ ПOЛУЧEH HA BЫXOДE
+      ПO ФOPMУЛE:
+
+          DET(A)=IPVT(N)*A(1,1)*A(2,2)*...*A(N,N).
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ DECOMP, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DDECOM. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DDECOM TA ЖE,
+      ЧTO И У DECOMP, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      A, COND, WORK  ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.43 - 77.
+
+

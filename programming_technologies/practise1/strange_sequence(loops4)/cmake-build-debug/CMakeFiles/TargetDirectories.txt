@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/strange_sequence(loops4)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/strange_sequence(loops4)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/strange_sequence(loops4)/cmake-build-debug/CMakeFiles/strange_sequence_loops4_.dir

@@ -1,0 +1,3 @@
+/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/projects/polytech/cpp/SumInX(task2_4)/cmake-build-debug/CMakeFiles/SumInX_task2_4_.dir
