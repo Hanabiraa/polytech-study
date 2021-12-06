@@ -17,7 +17,7 @@ My training in the direction of SWE at the the Polytechnic University of Peter t
 >
 > Преподаватель: С.П. Воскобойников
 
-3. basics_of_programming -> lang: **С++11/С++14**
+3. programming_technologies -> lang: **С++11/С++14**
 
 > Предмет: Технологии программирования
 >
