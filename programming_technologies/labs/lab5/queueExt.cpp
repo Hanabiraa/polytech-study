@@ -6,6 +6,80 @@ queueExt<T>::queueExt() {
 }
 
 template<class T>
+queueExt<T>::queueExt(const queueExt<T> &other) {
+    if (other.headPtr == nullptr) {
+        headPtr = nullptr;
+        return;
+    }
+    auto newNode = new Node<T>;
+    newNode->data = other.headPtr->data;
+    newNode->priority = other.headPtr->priority;
+    newNode->next = nullptr;
+    headPtr = newNode;
+
+    auto uniqHead = other.headPtr->next;
+    auto copyHead = headPtr;
+    while (uniqHead != nullptr) {
+        copyHead->next = new Node<T>;
+        copyHead = copyHead->next;
+        copyHead->data = uniqHead->data;
+        copyHead->priority = uniqHead->priority;
+
+        uniqHead = uniqHead->next;
+    }
+    copyHead->next = nullptr;
+}
+
+template<class T>
+queueExt<T>::queueExt(queueExt<T> &&other) noexcept {
+    headPtr = other.headPtr;
+    other.headPtr = nullptr;
+}
+
+template<class T>
+queueExt<T> &queueExt<T>::operator=(const queueExt<T> &other) {
+    if (this == &other) {
+        return *this;
+    }
+
+    while (headPtr) {
+        Node<T> *temp = headPtr;
+        headPtr = headPtr->next;
+        delete temp;
+    }
+
+    if (other.headPtr != nullptr) {
+        auto newNode = new Node<T>;
+        newNode->data = other.headPtr->data;
+        newNode->priority = other.headPtr->priority;
+        newNode->next = nullptr;
+        headPtr = newNode;
+
+        auto uniqHead = other.headPtr->next;
+        auto copyHead = headPtr;
+        while (uniqHead != nullptr) {
+            copyHead->next = new Node<T>;
+            copyHead = copyHead->next;
+            copyHead->data = uniqHead->data;
+            copyHead->priority = uniqHead->priority;
+
+            uniqHead = uniqHead->next;
+        }
+        copyHead->next = nullptr;
+    }
+    return *this;
+}
+
+template<class T>
+queueExt<T> &queueExt<T>::operator=(queueExt<T> &&other) noexcept {
+    if (this != &other) {
+        headPtr = other.headPtr;
+        other.headPtr = nullptr;
+    }
+    return *this;
+}
+
+template<class T>
 queueExt<T>::~queueExt() {
     while (headPtr) {
         Node<T> *temp = headPtr;
@@ -17,7 +91,7 @@ queueExt<T>::~queueExt() {
 
 template<class T>
 void queueExt<T>::push(T data, int priority) {
-    Node<T> *newNode = new Node<T>;
+    auto newNode = new Node<T>;
     newNode->data = data;
     newNode->priority = priority;
     newNode->next = nullptr;
@@ -39,8 +113,6 @@ void queueExt<T>::push(T data, int priority) {
             newNode->next = curr;
             headPtr = newNode;
         }
-
-
     }
 }
 
@@ -50,8 +122,28 @@ T queueExt<T>::pop() {
         throw std::logic_error("Stack is empty!");
     }
     T data = headPtr->data;
-    Node<T> *temp = headPtr;
+    auto *temp = headPtr;
     headPtr = headPtr->next;
     delete temp;
     return data;
 }
+
+template<class T>
+std::ostream &operator<<(std::ostream &os, const queueExt<T> &q) {
+    auto ptr = q.headPtr;
+    while (ptr) {
+        os << ptr->data << ' ';
+        ptr = ptr->next;
+    }
+    return os;
+}
+
+template<class T>
+void queueExt<T>::deleteLessOrEqvPrior(int bound) {
+    while (headPtr->priority <= bound && headPtr) {
+        Node<T> *temp = headPtr;
+        headPtr = headPtr->next;
+        delete temp;
+    }
+}
+
