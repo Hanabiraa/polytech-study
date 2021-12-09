@@ -17,8 +17,14 @@ My training in the direction of SWE at the the Polytechnic University of Peter t
 >
 > Преподаватель: С.П. Воскобойников
 
-3. programming_technologies -> lang: **С++11/С++14**
+3. programming_technologies -> lang: **С++11 / С++14**
 
 > Предмет: Технологии программирования
 >
 > Преподаватель: И.А. Шемякин
+
+4. computer_architecture -> lang: **DOS ASM / ASM & C++14**
+
+> Предмет: Архитектура ЭВМ
+>
+> Преподаватель: С.А. Молодяков

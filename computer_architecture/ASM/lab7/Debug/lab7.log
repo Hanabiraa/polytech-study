@@ -1,0 +1,8 @@
+﻿  lab7.cpp
+G:\study\ASM\asmLabs\lab7\lab7.cpp(6,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+G:\study\ASM\asmLabs\lab7\lab7.cpp(7,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+G:\study\ASM\asmLabs\lab7\lab7.cpp(8,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+G:\study\ASM\asmLabs\lab7\lab7.cpp(44,24): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+G:\study\ASM\asmLabs\lab7\lab7.cpp(54,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+G:\study\ASM\asmLabs\lab7\lab7.cpp(55,57): warning C4305: 'initializing': truncation from 'double' to 'float'
+  lab7.vcxproj -> G:\study\ASM\asmLabs\lab7\Debug\lab7.exe
