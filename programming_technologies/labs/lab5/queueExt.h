@@ -43,9 +43,6 @@ private:
     Node<T> *headPtr;
 };
 
-#endif //LAB5_QUEUEEXT_H
-
-
 template<class T>
 queueExt<T>::queueExt() {
     headPtr = nullptr;
@@ -86,21 +83,8 @@ queueExt<T>::queueExt(queueExt<T> &&other) noexcept {
 template<class T>
 queueExt<T> &queueExt<T>::operator=(const queueExt<T> &other) {
     if (this != &other) {
-        while (headPtr) {
-            Node<T> *tmpLocal = headPtr;
-            headPtr = headPtr->next;
-            delete tmpLocal;
-        }
-
         auto tmp = other;
         swap(tmp);
-
-        // При выходе из функции tmp вызовет деструктор
-//        while (tmp.headPtr) {
-//            Node<T> *tmpLocal = tmp.headPtr;
-//            tmp.headPtr = tmp.headPtr->next;
-//            delete tmpLocal;
-//        }
     }
     return *this;
 }
@@ -181,3 +165,5 @@ void queueExt<T>::deleteLessOrEqvPrior(int bound) {
         delete temp;
     }
 }
+
+#endif //LAB5_QUEUEEXT_H
