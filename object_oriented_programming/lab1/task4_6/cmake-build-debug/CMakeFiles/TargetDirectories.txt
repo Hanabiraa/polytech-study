@@ -1,0 +1,3 @@
+/work/polytech-study/object_oriented_programming/lab1/task4_6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/work/polytech-study/object_oriented_programming/lab1/task4_6/cmake-build-debug/CMakeFiles/edit_cache.dir
+/work/polytech-study/object_oriented_programming/lab1/task4_6/cmake-build-debug/CMakeFiles/task4_6.dir

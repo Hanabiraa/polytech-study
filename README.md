@@ -28,3 +28,9 @@ My training in the direction of SWE at the the Polytechnic University of Peter t
 > Предмет: Архитектура ЭВМ
 >
 > Преподаватель: С.А. Молодяков
+
+5. object_oriented_programming -> lang **C++14**
+
+> Предмет: Объектно-ориентированное программирование
+>
+> Преподаватель: С.К. Круглов
