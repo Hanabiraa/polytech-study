@@ -1,0 +1,161 @@
+
+     PAЗДEЛ:    CИHГУЛЯPHOE PAЗЛOЖEHИE
+
+     ПPOГPAMMA: SVD
+
+     HAЗHAЧEHИE:ПOДПPOГPAMMA BЫЧИCЛЯET CИHГУЛЯPHOE PAЗЛOЖEHИE
+                     T
+                A=USV  ДEЙCTBИTEЛЬHOЙ ПPЯMOУГOЛЬHOЙ MATPИЦЫ A
+                C PAЗMEPAMИ M И N. ПPИ ЭTOM ИCПOЛЬЗУЮTCЯ
+                ДBУXДИAГOHAЛИЗAЦИЯ ПOCPEДCTBOM XAУCXOЛДEPOBЫX
+                OTPAЖEHИЙ И BAPИAHT QR-AЛГOPИTMA.
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫE  ПAPAMETPЫ
+
+      SUBROUTINE SVD(NM,M,N,A,W,MATU,U,MATV,V,IERR,RV1)
+C
+      INTEGER I,J,K,L,M,N,II,I1,KK,K1,LL,L1,MN,NM,ITS,IERR
+      REAL    A(NM,N),W(N),U(NM,N),V(NM,N),RV1(N)
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     NM   CЛEДУET ПOЛOЖИTЬ PABHЫM CTPOЧHOЙ PAЗMEPHOCTИ
+C          ДBУXMEPHЫX MACCИBOB ,ЗAЯBЛEHHOЙ B OПEPATOPE PAЗ-
+C          MEPHOCTИ BЫЗЫBAЮЩEЙ ПPOГPAMMЫ. ЗAMETИM, ЧTO NM
+C          ДOЛЖHO БЫTЬ H  MEHЬШE,ЧEM MAKCИMУM ИЗ M И N.
+C
+C     M    ЧИCЛO CTPOK A (И U).
+C
+C     N    ЧИCЛO CTOЛБЦOB A (И U) И ПOPЯДOK V.
+C
+C     A    COДEPЖИT ПPЯMOУГOЛЬHУЮ BXOДHУЮ MATPИЦУ, ДЛЯ
+C          KOTOPOЙ HAXOДИTCЯ  PAЗЛOЖEHИE.
+C
+C     MATU ДOЛЖEH ИMETЬ ЗHAЧEHИE .TRUE., ECЛИ HУЖHO
+C          BЫЧИCЛЯTЬ MATPИЦУ U ИЗ PAЗЛOЖEHИЯ, И ЗHAЧEHИE
+C          .FALSE. B ПPOTИBHOM CЛУЧAE.
+C
+C     MATV ДOЛЖEH ИMETЬ ЗHAЧEHИE .TRUE., ECЛИ HУЖHO
+C          BЫЧИCЛЯTЬ MATPИЦУ V ИЗ PAЗЛOЖEHИЯ, И ЗHAЧEHИE
+C          .FALSE. B ПPOTИBHOM CЛУЧAE.
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C     A    HE ИЗMEHЯETCЯ (ECЛИ HA EE MECTE HE ЗAПИCЫBAЮTCЯ
+C          U ЛИБO V).
+C
+C     W    COДEPЖИT N (HEOTPИЦATEЛЬHЫX) CИHГУЛЯPHЫX ЧИCEЛ
+C          A (ДИAГOHAЛЬHЫX ЭЛEMEHTOB S). OHИ HE УПOPЯДOЧEHЫ.
+C          ECЛИ ПPOИCXOДИT BЫXOД ПO OШИБKE, TO ДЛЯ ЗHAЧEHИЙ
+C          IERR+1, IERR+2,...,N CИHГУ ЛЯPHЫE ЧИCЛA ДOЛЖHЫ
+C          БЫTЬ BEPHЫ.
+C
+C     U    COДEPЖИT MATPИЦУ U (C OPTOГOHAЛЬHЫMИ CTOЛБЦAMИ)
+C          ИЗ PAЗЛOЖEHИЯ, ECЛИ ДЛЯ ПAPAMETPA MATU БЫЛO
+C          ЗAДAHO ЗHAЧEHИE .TRUE. B ПPOTИBHOM CЛУЧAE HA U
+C          ИCПOЛЬЗУETCЯ KAK BPEMEHHЫЙ MACCИB. U TAKЖE MOЖET
+C          COBПAДATЬ C A. ECЛИ ПPOИCXOДИT BЫXOД
+C          ПO OШИБKE, TO CTOЛБЦЫ U, COOTBETCTBУЮЩИE ИHДEKCAM
+C          BEPHЫX CИHГУЛЯPHЫX ЧИCEЛ, ДOЛЖHЫ БЫTЬ TAKЖE BEPHЫ.
+C
+C     V    COДEPЖИT MATPИЦУ V (OPTOГOHAЛЬHУЮ) ИЗ PAЗЛOЖEHИЯ,
+C          ECЛИ ДЛЯ ПAPAMETPA MATV БЫЛO ЗAДAHO ЗHAЧEHИE
+C          .TRUE. B ПPOTИBHOM CЛУЧAE HA V HE ПPOИЗBOДИTCЯ
+C          CCЫЛOK. V TAKЖE MOЖET COBПAДATЬ C  A, ECЛИ U HE
+C          BЫЧИCЛЯETCЯ. ECЛИ ПPOИCXOДИT BЫXOД ПO OШИБKE,
+C          TO CTOЛБЦЫ V, COOTBETCTBУЮЩИE ИHДEKCAM BEPHЫX
+C          CИHГУЛЯPHЫX ЧИCEЛ, ДOЛЖHЫ БЫTЬ TAKЖE BEPHЫ.
+C
+C     IERR PABHO
+C            0,  ECЛИ ПPOИCXOДИT HOPMAЛЬHЫЙ BЫXOД ИЗ ПOДПPOГ-
+C                PAMMЫ,
+C            K,  ECЛИ K-E CИHГУЛЯPHOE ЧИCЛO HE БЫЛO OПPEДE-
+C                ЛEHO ПOCЛE 30 ИTEPAЦИЙ.
+C
+C  PAБOЧИE ПAPAMETPЫ
+C
+C     RV1  ЭTO MACCИB ПPOMEЖУTOЧHOГO XPAHEHИЯ.
+C
+
+2. ДЛЯ TOГO ЧTOБЫ HAЙTИ PAЗЛOЖEHИE MATPИЦЫ A
+   HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE
+      И MACCИBЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+
+   3. BЫЗBATЬ ПOДПPOГPAMMУ SVD OПEPATOPOM
+
+      CALL SVD(NM,M,N,A,W,MATU,U,MATV,V,IERR,RV1)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ SVD
+C
+      REAL A(5,3),U(5,3),V(5,3),SIGMA(5),WORK(5)
+      INTEGER I,IERR,J,M,N,NM
+      NM=5
+      M=5
+      N=3
+      DO 1 I=1,M
+      DO 1 J=1,N
+        A(I,J)=I+(J-1)*M
+   1  CONTINUE
+C
+      CALL SVD(NM,M,N,A,SIGMA,.TRUE.,U,.TRUE.,V,IERR,WORK)
+C
+      IF(IERR.NE.0) WRITE (6,2) IERR
+   2  FORMAT(' TROUBLE IERR=',I4)
+      DO 3 J=1,N
+         WRITE (6,6) SIGMA(J)
+   3  CONTINUE
+      WRITE (6,7)
+      DO 4 I=1,M
+        WRITE (6,6) (U(I,J),J=1,N)
+   4  CONTINUE
+      WRITE (6,7)
+      DO 5 I=1,N
+        WRITE (6,6) (V(I,J),J=1,N)
+   5  CONTINUE
+   6  FORMAT(3F10.6)
+   7  FORMAT(1H )
+      STOP
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+       35.127121
+        2.465384
+        0.000006
+
+       -0.354556 -0.688685  0.607387
+       -0.398696 -0.375556 -0.731421
+       -0.442836 -0.062423 -0.204670
+       -0.486975  0.250709  0.174067
+       -0.531115  0.563842  0.154638
+
+       -0.201665  0.890317 -0.408248
+       -0.516829  0.257331  0.816495
+       -0.831995 -0.375654 -0.408248
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. HA HEKOTOPЫX MAШИHAX ЗHAKИ CTOЛБЦOB MATPИЦ U И V
+      MOГУT БЫTЬ ДPУГИE
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ SVD, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DSVD. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DSVD TA ЖE,
+      ЧTO И У SVD, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      A,W,U,V,RV1 ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.210 - 259.
+
