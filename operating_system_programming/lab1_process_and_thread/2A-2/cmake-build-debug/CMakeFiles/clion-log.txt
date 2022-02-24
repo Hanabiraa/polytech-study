@@ -1,0 +1,1 @@
+CMakeLists.txt not found in /work/polytech-study/operating_system_programming/lab1_process_and_thread/2A-2 Select CMakeLists.txt

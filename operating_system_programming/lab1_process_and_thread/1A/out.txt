@@ -1,0 +1,7 @@
+father:
+parent pid: 34054
+my pid: 34065
+
+son:
+parent pid: 34065
+my pid: 34066
