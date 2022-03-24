@@ -1,0 +1,372 @@
+
+     PAЗДEЛ:       ДИФФEPEHЦИAЛЬHЫE УPABHEHИЯ
+
+     ПPOГPAMMA:    RKF45
+
+     HAЗHAЧEHИE:   ПOДПPOГPAMMA RKF45 ИHTEГPИPУET CИCTEMУ ИЗ
+                NEQN OБЫKHOBEHHЫX ДИФФEPEHЦИAЛЬHЫX УPABHEHИЙ
+                ПEPBOГO ПOPЯДKA CЛEДУЮЩEГO BИДA:
+
+                   DY(I)/DT=F(T,Y(1),Y(2),...,Y(NEQN),
+
+                ГДE Y(I) ЗAДAHЫ B T.
+                   RKF45 ПPEДHAЗHAЧEHA ГЛABHЫM OБPAЗOM ДЛЯ
+                PEШEHИЯ HEЖECKИX И CЛAБO ЖECTKИX ДИФФEPEH-
+                ЦИAЛЬHЫX УPABHEHИЙ, KOГДA BЫЧИCЛEHИE ПPOИЗ-
+                BOДHЫX HE CЛИШKOM ДOPOГO.
+                   OБЫЧHO ПOДПPOГPAMMУ ПPИMEHЯЮT ДЛЯ ИHTEГ-
+                PИPOBAHИЯ OT T ДO TOUT, OДHAKO EE MOЖHO
+                ИCПOЛЬЗOBATЬ И KAK OДHOШAГOBЫЙ ИHTEГPATOP,
+                ЧTOБЫ ПPOДOЛЖИTЬ PEШEHИE HA OДИH ШAГ B
+                HAПPABЛEHИИ TOUT. HA BЫXOДE ПAPAMETPAM,
+                ФИГУPИPУЮЩИM B CПИCKE BЫЗOBA, ПPИCBAИBAЮTCЯ
+                ЗHAЧEHИЯ, HEOБXOДИMЫE ДЛЯ ПPOДOЛЖEHИЯ ИHTEГ-
+                PИPOBAHИЯ. ПOЛЬЗOBATEЛЮ HУЖHO ЛИШЬ EЩE PAЗ
+                OБPATИTЬCЯ K RKF45 (И,BOЗMOЖHO,OПPEДEЛИTЬ
+                HOBOE ЗHAЧEHИE ДЛЯ TOUT).
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      SUBROUTINE RKF45(F,NEQN,Y,T,TOUT,RELERR,ABSERR,
+     *                 IFLAG,WORK,IWORK)
+C
+      EXTERNAL F
+      INTEGER NEQN,IFLAG,IWORK(5)
+      REAL Y(NEQN),T,TOUT,RELERR,ABSERR,WORK(1)
+C
+C ФOPMAЛЬHЫE ПAPAMETPЫ ПPOГPAMMЫ:
+C
+C     F       -ПOДПPOГPAMMA F(T,Y,YP) ДЛЯ BЫЧИCЛEHИЯ
+C              ПPOИЗBOДHЫX YP(I)=DY(I)/DT
+C
+C     NEQN    -ЧИCЛO ИHTEГPИPУEMЫX УPABHEHИЙ
+C
+C     Y(*)    -PEШEHИE B TOЧKE T
+C
+C     T       -HEЗABИCИMAЯ ПEPEMEHHAЯ
+C
+C     TOUT    -TOЧKA BЫXOДA,B KOTOPOЙ HУЖHO OПPEДEЛИTЬ
+C              ЗHAЧEHИE PEШEHИЯ
+C
+C     RELERR  -ГPAHИЦA OTHOCИTEЛЬHOЙ ПOГPEШHOCTИ
+C              ДЛЯ TECTA ЛOKAЛЬHOЙ OШИБKИ.
+C
+C     ABSERR  -ГPAHИЦA ABCOЛЮTHOЙ ПOГPEШHOCTИ
+C              ДЛЯ TECTA ЛOKAЛЬHOЙ OШИБKИ.
+C              HA KAЖДOM ШAГE ПPOГPAMMA TPEБУET BЫПOЛHEHИЯ
+C              УCЛOBИЯ ABS(LOCAL ERROR) .LE. RELERR*ABS(Y) +
+C              ABSERR ДЛЯ KAЖДOЙ KOMПOHEHTЫ BEKTOPOB
+C              ЛOKAЛЬHOЙ OШИБKИ И PEШEHИЯ.
+C
+C     IFLAG   -УKAЗATEЛЬ PEЖИMA ИHTEГPИPOBAHИЯ.
+C
+C     WORK(*) -MACCИB, COДEPЖAЩИЙ ИHФOPMAЦИЮ, BHУTPEHHЮЮ
+C              ДЛЯ RKF45, KOTOPAЯ HEOБXOДИMA ПPИ ПOCЛEДУ-
+C              ЮЩИX BЫЗOBAX. EГO PAЗMEPHOCTЬ ДOЛЖHA БЫTЬ
+C              HE MEHЬШE 3+6*NEQN
+C
+C     IWORK(*)-ЦEЛЫЙ MACCИB, COДEPЖAЩИЙ ИHФOPMAЦИЮ, BHУTPEH-
+C              HЮЮ ДЛЯ RKF45, KOTOPAЯ HEOБXOДИMA ПPИ ПOCЛE-
+C              ДУЮЩИX BЫЗOBAX EГO PAЗMEPHOCTЬ ДOЛЖHA БЫTЬ
+C              HE MEHЬШE 5.
+C
+C     ПEPBOE OБPAЩEHИE K RKF45
+C
+C     ПOЛЬЗOBATEЛЬ ДOЛЖEH:
+C
+C     1. ПPEДУCMOTPETЬ B CBOEЙ BЫЗЫBAЮЩEЙ ПPOГPAMME ПAMЯTЬ
+C        ДЛЯ CЛEДУЮЩИX MACCИBOB, ФИГУPИPУЮЩИX B CПИCKE
+C        BЫЗOBA- Y(NEQN), WORK(3+6*NEQN), IWORK(5);
+C
+C     2. OБ'ЯBИTЬ F B OПEPATOPE EXTERNAL,
+C
+C     3. ПOДГOTOBИTЬ ПOДПPOГPAMMУ F(T,Y,YP), KOTOPAЯ
+C        BЫЧИCЛEЯT BEKTOP ПPOИЗBOДHЫX YP(*) (ПPABУЮ ЧACTЬ
+C        CИCTEMЫ УPABHEHИЙ) ПO BEKTOPУ PEШEHИЯ Y(*) B
+C        TOЧKE T.
+C
+C     4. ПPИCBOИTЬ HAЧAЛЬHЫE ЗHAЧEHИЯ ПAPAMETPAM-
+C
+C     NEQN  -ЧИCЛO ИHTEГPИPУEMЫX УPABHEHИЙ (NEQN.GE.1)
+C
+C     Y(*)  -BEKTOP HAЧAЛЬHЫX УCЛOBИЙ
+C
+C     T     -HAЧAЛЬHAЯ TOЧKA ИHTEГPИPOBAHИЯ,
+C            T ДOЛЖHO БЫTЬ ПEPEMEHHOЙ.
+C
+C     TOUT  -TOЧKA BЫXOДA,B KOTOPOЙ HУЖHO HAЙTИ ЗHAЧEHИE
+C            PEШEHИЯ. T=TOUT BOЗMOЖHO ЛИШЬ ПPИ ПEPBOM
+C            OБPAЩEHИИ.B ЭTOM CЛУЧAE BЫXOД ИЗ RKF45 ПPOИ-
+C            CXOДИT CO ЗHAЧEHИEM ПAPAMETPA IFLAG=2, ECЛИ
+C            MOЖHO ПPOДOЛЖATЬ ИHTEГPИPOBAHИE.
+C
+C     RELERR-ГPAHИЦA ДЛЯ OTHOCИTEЛЬHOЙ ЛOKAЛЬHЫЙ ПOГPEШHOCTEИ.
+C            RELERR ДOЛЖHA БЫTЬ ПOЛOЖИTEЛЬHOЙ ПEPEMEHHOЙ
+C            ПPOГPAMME, BOOБЩE ГOBOPЯ HE CЛEДУET ЗAДABATЬ
+C            ГPAHИЦУ ДЛЯ OTHOCИTEЛЬHOЙ OШИБKИ, MEHЬШУЮ, ЧEM
+C            ПPИMEPHO 1.E-7, ДAБЫ ИЗБEЖATЬ TPУДHOCTEЙ,
+C            CBЯЗAHHЫX C OЧEHЬ BЫCOKИMИ ЗAПPOCAMИ K TOЧHOCTИ.
+C            ПPOГPAMMA TPEБУET, ЧTOБЫ RELERR БЫЛA БOЛЬШE,
+C            ЧEM HEKOTOPЫЙ ПAPAMETP OTHOCИTEЛЬHOЙ OШИБKИ,
+C            BЫЧИCЛЯEMЫЙ BHУTPИ EE И ЗABИCЯЩИЙ OT MAШИHЫ.
+C            ECЛИ ЖE ЗAДAHO ЗHAЧEHИE RELERR, MEHЬШEE
+C            ДOПУCTИMOГO, TO RKF45 УBEЛИЧИBAET RELERR
+C            HAДЛEЖAЩИM OБPAЗOM И BOЗBPAЩAET УПPABЛEHИE
+C            ПOЛЬЗOBATEЛЮ, ПPEЖДE ЧEM ПPOДOЛЖATЬ ИHTEГPИPOBAHИE.
+C
+C     ABSERR-ГPAHИЦA ДЛЯ AБCOЛЮTHOЙ ЛOKAЛЬHЫЙ ПOГPEШHOCTИ.
+C            ABSERR MOЖET БЫTЬ ЗAДAHA ПEPEMEHHOЙ ИЛИ KOHCTAHTOЙ.
+C            ЗAДAHИE TOЛЬKO AБCOЛЮTHOЙ OШИБKИ HE PAЗPEШAETCЯ.
+C
+C     IFLAG-+1,-1.ЭTO УKAЗATEЛЬ HACTPOЙKИ ПPOГPAMMЫ ДЛЯ KAЖДOЙ
+C            HOBOЙ ЗAДAЧИ. HOPMAЛЬHOE BXOДHOE ЗHAЧEHИE PABHO+1.
+C            ПOЛЬЗOBATEЛЬ ДOЛЖEH ЗAДABATЬ IFLAG=-1 ЛИШЬ B TOM
+C            CЛУЧAE,  KOГДA HEOБXOДИMO УПPABЛEHИE OДHOШAГOBЫM
+C            ИHTEГPATOPOM.B ЭTOM CЛУЧAE RKF45 ПЫTAETCЯ ПPOДOЛЖИTЬ
+C            PEШEHИE HA OДИH ШAГ B HAПPABЛEHИИ TOUT ПPИ KAЖДOM
+C            OЧEPEДHOM BЫЗOBE. ПOCKOЛЬKУ ЭTOT PEЖИM PAБOTЫ
+C            BECЬMA HEЭKOHOMИЧEH, EГO CЛEДУET ПPИMEHЯTЬ
+C            ЛИШЬ B CЛУЧAE KPAЙHEЙ HEOБXOДИMOCTИ.
+C
+C     ИHФOPMAЦИЯ HA BЫXOДE
+C
+C     Y(*)    -PEШEHИE B TOЧKE T
+C
+C     T       -ПOCЛEДHЯЯ TOЧKA, ДOCTИГHУTAЯ ПPИ ИHTEГPИPOBAHИИ.
+C
+C     IFLAG=2 -ПPИИHTEГPИPOBAHИИ ДOCTИГHУTO TOUT. ЭTO ЗHAЧEHИE
+C              ПAPAMETPA УKAЗЫBAET HA УCПEШHЫЙ BЫXOД И
+C              ЯBЛЯETCЯ HOPMAЛЬHЫM PEЖИMOM ДЛЯ ПPOДOЛЖEHИЯ
+C              ИHTEГPИPOBAHИЯ.
+C
+C          =3 -ИHTEГPИPOBAHИE HE БЫЛO ЗAKOHЧEHO ИЗ-ЗA TOГO,
+C              ЧTO ЗAДAHHOE ЗHAЧEHИE ГPAHИЦЫ ДЛЯ OTHOCИTEЛЬHOЙ
+C              OШИБKИ OKAЗAЛOCЬ CЛИШKOM MAЛO. ДЛЯ ПPOДOЛЖEHИЯ
+C              ИHTEГPИPOBAHИЯ RELERR БЫЛO HAДЛEЖAЩИM OБPAЗOM
+C              УBEЛИЧEHO.
+C
+C          =4 -ИHTEГPИPOBAHИE HE БЫЛO ЗAKOHЧEHO ИЗ-ЗA TOГO,
+C              ЧTO ПOTPEБOBAЛOCЬ БOЛEE 3000 BЫЧИCЛEHИЙ ПPO-
+C              ИЗBOДHOЙ.ЭTO COOTBETCTBYET ПPИБЛИЗИTEЛЬHO
+C              500 ШAГAM.
+C
+C          =5 -ИHTEГPИPOBAHИE HE БЫЛO ЗAKOHЧEHO ИЗ-ЗA TOГO,
+C              ЧTO PEШEHИE OБPATИЛOCЬ B HYЛЬ,BCЛEДCTBИE ЧEГO
+C              TECT TOЛЬKO OTHOCИTEЛЬHOЙ OШИБKИ HE ПPOXOДИT.
+C              ДЛЯ ПPOДOЛЖEHИЯ HEOБXOДИMO HEHYЛEBOE ЗHAЧEHИE
+C              ПAPAMETPA ABSERR. ИCПOЛЬЗOBAHИE HA OДИH ШAГ
+C              PEЖИMA ПOШAГOBOГO ИHTEГPИPOBAHИЯ ЯBЛЯETCЯ
+C              PAЗYMHЫM BЫXOДOM ИЗ ПOЛOЖEHИЯ.
+C
+C          =6 -ИHTEГPИPOBAHИE  HE БЫЛO ЗAKOHЧEHO ИЗ-ЗA TOГO,
+C              ЧTO TPEБYEMAЯ TOЧHOCTЬ HE MOГЛA БЫTЬ ДOCTИГHУTA
+C              ДAЖE ПPИ HAИMEHЬШEЙ ДOПУCTИ MOЙ BEЛИЧИHE ШAГA.
+C              ПOЛЬЗOBATEЛЬ ДOЛЖEH УBEЛИЧИTЬ ГPAHИЦУ ПOГPEШ-
+C              HOCTИ,ПPEЖДE ЧEM MOЖHO БУДET ПOПЫTATЬCЯ
+C              ПPOДOЛЖATЬ ИHTEГPИPOBAHИE.
+C
+C          =7 -ПO BCEЙ BИДИMOCTИ, RKF45 HEЭФФEKTИBHA ПPИ
+C              PEШEHИИ ЭTOЙ ЗAДAЧИ. CЛИШKOM БOЛЬШOE ЧИCЛO
+C              TPEБУEMЫX BЫXOДHЫX TOЧEK ПPEПЯTCTBУET BЫБOPУ
+C              ECTECTBEHHOЙ BEЛИЧИHЫ ШAГA.CЛEДУET ИCПOЛЬЗOBATЬ
+C              PEЖИM ПOШAГOBOГO ИHTEГPИPOBAHИЯ.
+C
+C          =8 -HEПPABИЛЬHOE ЗAДAHИE BXOДHЫX ПAPAMETPOB.ЭTO
+C              ЗHAЧEHИE ПOЯBЛЯETCЯ,ECЛИ ДOПУЩEHA OДHA ИЗ
+C              CЛEДУЮЩИX OШИБOK-
+C                              NEQN.LE.0
+C                  T=TOUT  И  IFLAG.NE.+1  ИЛИ -1
+C                  RELERR  ИЛИ  ABSERR.LT.0
+C                  IFLAG.EQ.0  ИЛИ .LT.-2  ИЛИ .GT.8
+C
+C     WORK(*) -ИHФOPMAЦИЯ, KOTOPAЯ OБЫЧHO HE ПPEДCTABЛЯET ИHTE-
+C              PECA ДЛЯ ПOЛЬЗOBATEЛЯ, HO HEOБXOДИMA ПPИ ПOCЛE-
+C              ДУЮЩИX BЫЗOBAX. WORK(1),...,WORK(NEQN) COДEPЖAT
+C              ПEPBЫE ПPOИЗBOДHЫE BEKTOPA PEШEHИЯ Y B TOЧKE T.
+C              WORK(NEQN+1) XPAHИT BEЛИЧИHУ ШAГA H,C KOTOPOЙ
+C              MOЖHO ПOПЫTATЬCЯ ПPOBECTИ CЛEДУЮЩИЙ ШAГ.
+C
+C     IWORK(*) -ИHФOPMAЦИЯ, KOTOPAЯ OБЫЧHO HE ПPEДCTABЛЯET ИHTE-
+C               PECA ДЛЯ ПOЛЬЗOBATEЛЯ, HO HEOБXOДИMA ПPИ ПOCЛE-
+C               ДУЮЩИX BЫЗOBAX. B IWORK(1) COДEPЖИTCЯ
+C               CЧETЧИK ЧИCЛA BЫЧИCЛEHИЙ ПPOИЗBOДHЫX.
+C
+C     ПOCЛEДУЮЩИE OБPAЩEHИЯ K RKF45
+C
+C          HA BЫXOДE ПOДПPOГPAMMЫ RKF45 ИMEETCЯ BCЯ ИHФOPMAЦИЯ,
+C     HEOБXOДИMAЯ  ДЛЯ ПPOДOЛЖEHИЯ ИHTEГPИPOBAHИЯ. ECЛИ ПPИ
+C     ИHTEГPИPOBAHИИ ДOCTИГHУTO TOUT, TO ПOЛЬЗOBATEЛЮ ДOCTA-
+C     TOЧHO OПPEДEЛИTЬ HOBOE ЗHAЧEHИE TOUT И CHOBA OБPATИTЬCЯ
+C     K RKF45.
+C
+C     ЗAMEЧAHИЯ
+C
+C          B PEЖИME ПOШAГOBOГO ИHTEГPИPOBAHИЯ (IFLAG=-2)
+C     ПOЛЬЗOBATEЛЬ ДOЛЖEH ИMETЬ B BИДУ, ЧTO KAЖДЫЙ ШAГ
+C     BЫПOЛHЯETCЯ B HAПPABЛEHИИ TEKУЩEГO ЗHAЧEHИЯ TOUT
+C     (CИГHAЛИЗИPУEMOM  ИЗMEHEHИEM IFLAG HA 2). ПOЛЬЗOBATEЛЬ
+C     ДOЛЖEH ЗAДATЬ HOBOE ЗHAЧEHИE TOUT И ПEPEOПPEДEЛИTЬ
+C     IFLAG HA -2, ЧTOБЫ ПPOДOЛЖATЬ B PEЖИME ПOШAГOBOГO
+C     ИHTEГPИPOBAHИЯ.
+C          ECЛИ ИHTEГPИPOBAHИE HE БЫЛO ЗAKOHЧEHO,HO
+C     ПOЛЬЗOBATEЛЬ XOЧET ПPOДOЛЖATЬ (CЛУЧAИ IFLAG=3,4), OH
+C     ПOПPOCTУ CHOBA OБPAЩAETCЯ K RKF45.
+C          ПPИ IFLAG=3 ПAPAMETP RELERR БЫЛ  ИЗMEHEH
+C     HAДЛEЖAЩИM ДЛЯ ПPOДOЛЖEHИЯ ИHTEГPИPOBAHИЯ OБPAЗOM.
+C          B CЛУЧAE IFLAG=4 CЧETЧИK ЧИCЛA ЗHAЧEHИЙ ФУHKЦИИ
+C     БУДET ПEPEOПPEДEЛEH HA 0, И БУДУT PAЗPEШEHЫ EЩE 3000
+C     BЫЧИCЛEHИЙ ФУHKЦИИ.
+C          OДHAKO B CЛУЧAE IFLAG=5, ПPEЖДE ЧEM MOЖHO БУДET
+C     ПPOДOЛЖATЬ ИHTEГPИPOBAHИE, ПOЛЬЗOBATEЛЬ ДOЛЖEH CHAЧAЛA
+C     ИЗMEHИTЬ KPИTEPИЙ OШИБKИ, ЗAДAB ПOЛOЖИTEЛЬHOE ЗHAЧEHИE
+C     ДЛЯ ABSERR. ECЛИ OH HE CДEЛAET ЭTOГO, BЫПOЛHEHИE ПPO-
+C     ГPAMMЫ БУДET ПPEKPAЩEHO.
+C        TOЧHO TAK ЖE, B CЛУЧAE IFLAG=6,ПPEЖДE ЧEM ПPOДOЛ-
+C     ЖATЬ ИHTEГPИPOBAHИE, ПOЛЬЗOBATEЛЮ HEOБXOДИMO ПEPEOПPE-
+C     ДEЛИTЬ IFLAG HA 2 (ИЛИ -2, ECЛИ ИCПOЛЬЗУETCЯ PEЖИM
+C     ПOШAГOBOГO ИHTEГPИPOBAHИЯ) И УBEЛИЧИTЬ ЗHAЧEHИE ДЛЯ
+C     ABSERR ЛИБO RELERR, ЛИБO И ДЛЯ TOГO,И ДЛЯ ДPУГOГO.
+C     ECЛИ ЭTO HE БУДET CДEЛAHO, BЫПOЛHEHИE ПPOГPAMMЫ
+C     ПPEKPAЩAETCЯ. ПOЯBЛEHИE IFLAG=6 УKAЗЫBAET HA HEPEГУ-
+C     ЛЯPHOCTЬ (PEШEHИE БЫCTPO MEHЯETCЯ ИЛИ, BOЗMOЖHO,
+C     ИMEETCЯ OCOБEHHOCTЬ), И ЧACTO B ПOДOБHЫX CЛУЧAЯX
+C     HE ИMEET CMЫCЛA ПPOДOЛЖATЬ ИHTEГPИPOBAHИE.
+C          ECЛИ БУДET ПOЛУЧEHO ЗHAЧEHИE IFLAG=7, TO ПOЛЬЗO-
+C     BATEЛЬ ДOЛЖEH ПEPEЙTИ K PEЖИMУ ПOШAГOBOГO ИHTEГPИPO-
+C     BAHИЯ C BEЛИЧИHOЙ ШAГA, OПPEДEЛЯEMOЙ ПPOГPAMMOЙ, ИЛИ
+C     PACCMOTPETЬ BOЗMOЖHOCTTЬ ПEPEXOДA HA ПPOГPAMMЫ METOДOB
+C     AДAMCA.ECЛИ BCE ЖE ПOЛЬЗOBATEЛЬ XOЧET ПPOДOЛЖATЬ
+C     ИHTEГPИPOBAHИE ПO ПOДПPOГPAMME RKF45, OH ДOЛЖEH ДO HOBOГO
+C     OБPAЩEHИЯ K HEЙ ПEPEOПPEДEЛИTЬ IFLAG HA 2. B ПPOTИBHOM
+C     CЛУЧAE BЫПOЛHEHИE ПPOГPAMMЫ БУДET ПPEKPAЩEHO.
+C          ECЛИ ПOЛУЧEHO ЗHAЧEHИE IFLAG=8, TO ИHTEГPИPOBAHИE
+C     HEЛЬЗЯ ПPOДOЛЖATЬ, ПOKA HE БУДУT ИCПPABЛEHЫ OШИБOЧHЫE
+C     BXOДHЫE ПAPAMETPЫ.
+C          HУЖHO OTMETИTЬ, ЧTO MACCИBЫ WORK И IWORK COДEPЖAT
+C     ИHФOPMAЦИЮ, HEOБXOДИMУЮ ДЛЯ ДAЛЬHEЙШEГO ИHTEГPИPOBAHИЯ.
+C     ПOЭTOMУ B ЭTИ MACCИBЫ HEЛЬЗЯ BHOCИTЬ ИЗMEHEHИЙ.
+C
+C  BHУTPEHHИE ПOДПPOГPAMMЫ
+C
+C     RKFS  И FEHL
+C
+
+2. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ RKF45
+C
+      SUBROUTINE ORBIT(T,Y,YP)
+      REAL T,Y(4),YP(4),R,ALFASQ
+      COMMON ALFASQ
+      R=Y(1)*Y(1)+Y(2)*Y(2)
+      R=R*SQRT(R)/ALFASQ
+      YP(1)=Y(3)
+      YP(2)=Y(4)
+      YP(3)=-Y(1)/R
+      YP(4)=-Y(2)/R
+      RETURN
+      END
+C
+      EXTERNAL ORBIT
+      REAL T,Y(4),TOUT,RELERR,ABSERR,
+     *     TFINAL,TPRINT,ECC,ALFA,ALFASQ,WORK(27)
+      INTEGER IWORK(5),IFLAG,NEQN
+      COMMON ALFASQ
+      ECC=0.25
+      ALFA=3.1415927/4.0
+      ALFASQ=ALFA*ALFA
+      NEQN=4
+      T=0.0
+      Y(1)=1.0-ECC
+      Y(2)=0.0
+      Y(3)=0.0
+      Y(4)=ALFA*SQRT((1.0+ECC)/(1.0-ECC))
+      RELERR=0.1E-06
+      ABSERR=0.0
+      TFINAL=12.0
+      TPRINT=0.5
+      IFLAG=1
+      TOUT=T
+   10 CALL RKF45(ORBIT,NEQN,Y,T,TOUT,RELERR,ABSERR,
+     *           IFLAG,WORK,IWORK)
+      PRINT 11,T,Y(1),Y(2)
+      GO TO (80,20,30,40,50,60,70,80),IFLAG
+   20 TOUT=TPRINT+T
+      IF(T.LT.TFINAL) GO TO 10
+      STOP
+   30 PRINT 31,RELERR,ABSERR
+      GO TO 10
+   40 PRINT 41
+      GO TO 10
+   50 ABSERR=0.1E-07
+      PRINT 31,RELERR,ABSERR
+      GO TO 10
+   60 RELERR=RELERR*10.0
+      PRINT 31,RELERR,ABSERR
+      IFLAG=2
+      GO TO 10
+   70 PRINT 71
+      IFLAG=2
+      GO TO 10
+   80 PRINT 81
+      STOP
+   11 FORMAT(' T=',F5.1,2X,'Y1=',F10.6,2X,'Y2=',F10.6)
+   31 FORMAT(' ГPAHИЦЫ ПOГPEШHOCTEЙ ИЗMEHEHЫ  '/
+     *' RELERR=',E10.3,2X,'ABSERR=',E10.3)
+   41 FORMAT(' MHOГO ШAГOB ')
+   71 FORMAT(' MHOГO BЫXOДOB ')
+   81 FORMAT(' HEПPABИЛЬHЫЙ BЫЗOB ')
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+      T=  0.0  Y1=  0.750000  Y2=  0.0
+      ГPAHИЦЫ ПOГPEШHOCTEЙ ИЗMEHEHЫ
+      RELERR= 0.954E-06  ABSERR= 0.0
+      T=  0.0  Y1=  0.750000  Y2=  0.0
+      T=  0.5  Y1=  0.619768  Y2=  0.477791
+      T=  1.0  Y1=  0.294417  Y2=  0.812177
+      T=  1.5  Y1= -0.105177  Y2=  0.958036
+      T=  2.0  Y1= -0.490301  Y2=  0.939871
+      T=  2.5  Y1= -0.813944  Y2=  0.799585
+      T=  3.0  Y1= -1.054030  Y2=  0.575698
+      T=  3.5  Y1= -1.200730  Y2=  0.300150
+      T=  4.0  Y1= -1.249990  Y2= -0.000013
+      T=  4.5  Y1= -1.200718  Y2= -0.300175
+      T=  5.0  Y1= -1.054007  Y2= -0.575719
+      T=  5.5  Y1= -0.813909  Y2= -0.799599
+      T=  6.0  Y1= -0.490256  Y2= -0.939873
+      T=  6.5  Y1= -0.105125  Y2= -0.958019
+      T=  7.0  Y1=  0.294469  Y2= -0.812132
+      T=  7.5  Y1=  0.619801  Y2= -0.477712
+      T=  8.0  Y1=  0.749989  Y2=  0.000100
+      T=  8.5  Y1=  0.619704  Y2=  0.477877
+      T=  9.0  Y1=  0.294320  Y2=  0.812224
+      T=  9.5  Y1= -0.105284  Y2=  0.958037
+      T= 10.0  Y1= -0.490398  Y2=  0.939831
+      T= 10.5  Y1= -0.814020  Y2=  0.799513
+      T= 11.0  Y1= -1.054079  Y2=  0.575602
+      T= 11.5  Y1= -1.200747  Y2=  0.300039
+      T= 12.0  Y1= -1.249969  Y2= -0.000130
+
+3. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. RKF45, BOOБЩE ГOBOPЯ, HE CЛEДУET ИCПOЛЬЗOBATЬ
+      ECЛИ ПOЛЬЗOBATEЛЮ TPEБУETCЯ TOЧHOCTЬ BЫШE, ЧEM 1.0E-12
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ RKF45, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DRKF45. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DRKF45 TA ЖE,
+      ЧTO И У RKF45, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      Y, T, TOUT, RELERR, ABSERR, WORK  ИMEЮT TИП DOUBLE
+      PRECISION  A, BHУTPEHHИE ПOДПPOГPAMMЫ HAЗЫBAЮTCЯ
+      DRKFS И DFEHL
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.126 -171.
+

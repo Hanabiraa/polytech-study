@@ -1,0 +1,122 @@
+
+     PAЗДEЛ:     ИHTEPПOЛЯЦИЯ
+
+     ПPOГPAMMA:  SPLINE
+
+     HAЗHAЧEHИE: ПOДПPOГPAMMA BЫЧИCЛЯET KOЭФФИЦИEHTЫ B(I),
+                 C(I) И D(I),I=1,2,...,N ДЛЯ KУБИЧECKOГO
+                 ИHTEPПOЛЯЦИOHHOГO CПЛAЙHA BИДA
+
+                  S(X)=Y(I)+B(I)*(X-X(I))+C(I)*(X-X(I))**2+
+                      +D(I)*(X-X(I))**3
+
+                  ДЛЯ X(I).LE.X.LE.X(I+1).
+                   ДЛЯ OДHOЗHAЧHOГO OПPEДEЛEHИЯ CПЛAЙHA S(X)
+                ЗAДAЮTCЯ ДBA ГPAHИЧHЫX УCЛOBИЯ B TOЧKAX X(1)
+                И X(N), KOTOPЫE CBЯЗЫBAЮT TPETЬИ ПPOИЗBOДHЫE
+                ФУHKЦИИ S(X) C TPETЬИMИ ПPOИЗBOДHЫMИ KУБИ-
+                ЧECKИX ПOЛИHOMOB C1(X) И CN(X), ПPOBEДEHHЫX
+                ЧEPEЗ ЧETЫPE ПEPBЫE И ЧETЫPE ПOCЛEДHИE TOЧKИ,
+                ИMEHHO
+                            S'''(X(1)) = C1'''(X(1))
+                            S'''(X(N)) = CN'''(X(N)).
+
+                TPETЬИ ПPOИЗBOДHЫE B TOЧKAX X(1) И X(N)
+                BЫЧИCЛЯЮTCЯ C ПOMOЩЬЮ PAЗДEЛEHHЫX PAЗHOCTEЙ.
+
+
+1. OПИCAHИE ПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+        SUBROUTINE SPLINE(N,X,Y,B,C,D)
+        INTEGER N
+        REAL X(N),Y(N),B(N),C(N),D(N)
+
+C  BXOДHЫE ПAPAMETPЫ
+C
+C       N     -ЧИCЛO ЗAДAHHЫX TOЧEK ИЛИ УЗЛOB (N.GE.2)
+C
+C       X     -AБCЦИCCЫ УЗЛOB B CTPOГO BOЗPACTAЮЩEM ПOPЯДKE
+C
+C       Y     -OPДИHATЫ УЗЛOB
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C       B,C,D -MACCИBЫ KOЭФФИЦИEHTOB CПЛAЙHA. ECЛИ OБOЗHA-
+C              ЧИTЬ ЧEPEЗ P CИMBOЛ ДИФФEPEHЦИP0BAHИЯ, TO
+C
+C              Y(I)=S(X(I))
+C              B(I)=SP(X(I))
+C              C(I)=SPP(X(I))/2
+C              D(I)=SPPP(X(I))/6 (ПPABOCTOPOHЯЯ ПPOИЗBOДHAЯ)
+C
+
+2. ДЛЯ TOГO ЧTOБЫ BЫЧИCЛИTЬ KOЭФФИЦИEHTЫ KУБИЧECKOГO CПЛAЙHA
+   HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE
+      И MACCИBЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+C       N     -ЧИCЛO ЗAДAHHЫX TOЧEK ИЛИ УЗЛOB (N.GE.2)
+C       X     -AБCЦИCCЫ УЗЛOB B CTPOГO BOЗPACTAЮЩEM ПOPЯДKE
+C       Y     -OPДИHATЫ УЗЛOB
+
+   3. BЫЗBATЬ ПOДПPOГPAMMУ SPLINE OПEPATOPOM
+
+               CALL SPLINE(N,X,Y,B,C,D)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ SPLINE
+C
+      INTEGER N,I
+      REAL X(10),Y(10),B(10),C(10),D(10)
+      N=10
+      DO 10 I=1,N
+        X(I)=I
+        Y(I)=X(I)**3
+   10 CONTINUE
+C
+      CALL SPLINE (N,X,Y,B,C,D)
+C
+      PRINT 100
+      PRINT 101,(B(I),C(I),D(I),I=1,N)
+      STOP
+  100 FORMAT(14X,'B',15X,'C',15X,'D')
+  101 FORMAT(5X,3E16.7)
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+              B               C               D
+        0.3000003E+01   0.2999997E+01   0.1000000E+01
+        0.1200000E+02   0.5999997E+01   0.1000002E+01
+        0.2700000E+02   0.9000003E+01   0.9999962E+00
+        0.4800000E+02   0.1199999E+02   0.1000003E+01
+        0.7500000E+02   0.1500000E+02   0.9999971E+00
+        0.1080000E+03   0.1799998E+02   0.1000001E+01
+        0.1470000E+03   0.2099998E+02   0.9999952E+00
+        0.1920000E+03   0.2399997E+02   0.1000008E+01
+        0.2430000E+03   0.2700000E+02   0.9999990E+00
+        0.3000000E+03   0.3000000E+02   0.9999990E+00
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. AHAЛOГ ПOДПPOГPAMMЫ SPLINE, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DSPLIN. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DSPLIN TA ЖE,
+      ЧTO И У SPLINE, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      X, Y, B, C, D  ИMEЮT TИП DOUBLE PRECISION
+
+   3. ЗHAЧEHИЯ CПЛAЙHA MOЖHO BЫЧИCЛЯTЬ C ПOMOЩЬЮ ПOДПPOГPAM-
+      ФУHKЦИИ SEVAL
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.79 - 98.
+
