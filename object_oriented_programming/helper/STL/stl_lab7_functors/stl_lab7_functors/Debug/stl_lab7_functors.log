@@ -1,3 +1,0 @@
-﻿  Source.cpp
-C:\Users\Alla\source\repos\stl_lab7_functors\stl_lab7_functors\Source.cpp(83,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  stl_lab7_functors.vcxproj -> C:\Users\Alla\source\repos\stl_lab7_functors\Debug\stl_lab7_functors.exe

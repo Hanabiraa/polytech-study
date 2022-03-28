@@ -1,6 +1,0 @@
-﻿  Source.cpp
-C:\Users\Alla\source\repos\stl_lab1_5\stl_lab1_5\Source.cpp(43,8): warning C4834: discarding return value of function with 'nodiscard' attribute
-C:\Users\Alla\source\repos\stl_lab1_5\stl_lab1_5\Source.cpp(46,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Alla\source\repos\stl_lab1_5\stl_lab1_5\Source.cpp(15,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Alla\source\repos\stl_lab1_5\stl_lab1_5\Source.cpp(61): message : see reference to function template instantiation 'void printVector<int>(std::vector<int,std::allocator<int>>)' being compiled
-  stl_lab1_5.vcxproj -> C:\Users\Alla\source\repos\stl_lab1_5\Debug\stl_lab1_5.exe
