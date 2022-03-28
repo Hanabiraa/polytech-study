@@ -1,0 +1,6 @@
+﻿  Source.cpp
+C:\Users\Alla\source\repos\stl_lab3_1\stl_lab3_1\Source.cpp(44,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab3_1\stl_lab3_1\Source.cpp(52,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab3_1\stl_lab3_1\Source.cpp(60,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab3_1\stl_lab3_1\Source.cpp(121): warning C4715: 'QueueWithPriority::GetElementFromQueue': not all control paths return a value
+  stl_lab3_1.vcxproj -> C:\Users\Alla\source\repos\stl_lab3_1\Debug\stl_lab3_1.exe

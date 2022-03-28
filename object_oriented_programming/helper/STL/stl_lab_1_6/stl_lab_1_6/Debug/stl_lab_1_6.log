@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\Alla\source\repos\stl_lab_1_6\stl_lab_1_6\Source.cpp(15,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab_1_6\stl_lab_1_6\Source.cpp(62): message : see reference to function template instantiation 'void printVector<double>(std::vector<double,std::allocator<double>>)' being compiled
+  stl_lab_1_6.vcxproj -> C:\Users\Alla\source\repos\stl_lab_1_6\Debug\stl_lab_1_6.exe

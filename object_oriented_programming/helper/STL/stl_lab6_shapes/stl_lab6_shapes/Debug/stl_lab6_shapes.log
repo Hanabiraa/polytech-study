@@ -1,0 +1,7 @@
+﻿  Source.cpp
+C:\Users\Alla\source\repos\stl_lab6_shapes\stl_lab6_shapes\Source.cpp(40,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab6_shapes\stl_lab6_shapes\Source.cpp(77,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab6_shapes\stl_lab6_shapes\Source.cpp(124,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab6_shapes\stl_lab6_shapes\Source.cpp(145,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Alla\source\repos\stl_lab6_shapes\stl_lab6_shapes\Source.cpp(209,31): warning C4018: '<': signed/unsigned mismatch
+  stl_lab6_shapes.vcxproj -> C:\Users\Alla\source\repos\stl_lab6_shapes\Debug\stl_lab6_shapes.exe

@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\Alla\source\repos\stl_lab3_2\stl_lab3_2\Source.cpp(42,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alla\source\repos\stl_lab3_2\stl_lab3_2\Source.cpp(50,22): warning C4018: '<': signed/unsigned mismatch
+  stl_lab3_2.vcxproj -> C:\Users\Alla\source\repos\stl_lab3_2\Debug\stl_lab3_2.exe
