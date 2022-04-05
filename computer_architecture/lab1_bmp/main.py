@@ -17,5 +17,5 @@ print(bmpHeader, end='\n\n\n')
 print(bmpInfo)
 
 # convert
-image.covert_to_32(alpha=255)
+image.covert_to_32(alpha=50)
 image.write()

@@ -3,8 +3,8 @@
 #FLAGS=-o
 
 run:
-	gcc -o server server.cpp
-	gcc -o client client.cpp
+	g++ -std=c++11 server.cpp -o server
+	./server
 
 clear:
-	rm server client
+	rm server
