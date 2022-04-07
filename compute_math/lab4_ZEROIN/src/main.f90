@@ -1,4 +1,4 @@
-program lab3_RKF
+program lab4_ZEROIN
 
     use Environment
     use Group_Process
@@ -54,4 +54,4 @@ contains
         COUNTER = COUNTER + 1
         f = SIN(x + PI/3) - x / 2
     end function f
-end program lab3_RKF
+end program lab4_ZEROIN
