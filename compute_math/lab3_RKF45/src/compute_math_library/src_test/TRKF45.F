@@ -20,7 +20,7 @@ C
       ECC=0.25
       ALFA=3.1415927/4.0
       ALFASQ=ALFA*ALFA
-      NEQN=4
+      NEQN =4
       T=0.0
       Y(1)=1.0-ECC
       Y(2)=0.0
