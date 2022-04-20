@@ -1,5 +1,5 @@
 
-// MFClab8.h : main header file for the PROJECT_NAME application
+// mfc8.h : main header file for the PROJECT_NAME application
 //
 
 #pragma once
@@ -11,14 +11,14 @@
 #include "resource.h"		// main symbols
 
 
-// CMFClab8App:
-// See MFClab8.cpp for the implementation of this class
+// CPaintORamaApp:
+// See mfc8.cpp for the implementation of this class
 //
 
-class CMFClab8App : public CWinApp
+class CPaintORamaApp : public CWinApp
 {
 public:
-	CMFClab8App();
+	CPaintORamaApp();
 
 // Overrides
 public:
@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CMFClab8App theApp;
+extern CPaintORamaApp theApp;

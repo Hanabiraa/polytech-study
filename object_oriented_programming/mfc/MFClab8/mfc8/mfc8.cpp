@@ -1,27 +1,27 @@
 
-// MFClab8.cpp : Defines the class behaviors for the application.
+// mfc8.cpp : Defines the class behaviors for the application.
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "MFClab8.h"
-#include "MFClab8Dlg.h"
+#include "mfc8.h"
+#include "mfc8Dlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
-// CMFClab8App
+// CPaintORamaApp
 
-BEGIN_MESSAGE_MAP(CMFClab8App, CWinApp)
+BEGIN_MESSAGE_MAP(CPaintORamaApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CMFClab8App construction
+// CPaintORamaApp construction
 
-CMFClab8App::CMFClab8App()
+CPaintORamaApp::CPaintORamaApp()
 {
 	// support Restart Manager
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
@@ -31,14 +31,14 @@ CMFClab8App::CMFClab8App()
 }
 
 
-// The one and only CMFClab8App object
+// The one and only CPaintORamaApp object
 
-CMFClab8App theApp;
+CPaintORamaApp theApp;
 
 
-// CMFClab8App initialization
+// CPaintORamaApp initialization
 
-BOOL CMFClab8App::InitInstance()
+BOOL CPaintORamaApp::InitInstance()
 {
 	// InitCommonControlsEx() is required on Windows XP if an application
 	// manifest specifies use of ComCtl32.dll version 6 or later to enable
@@ -71,7 +71,7 @@ BOOL CMFClab8App::InitInstance()
 	// such as the name of your company or organization
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
-	CMFClab8Dlg dlg;
+	Cmfc8Dlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

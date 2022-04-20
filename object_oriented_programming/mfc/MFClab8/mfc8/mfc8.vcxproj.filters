@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MFClab8.h">
+    <ClInclude Include="mfc8.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MFClab8Dlg.h">
+    <ClInclude Include="mfc8Dlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -35,10 +35,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MFClab8.cpp">
+    <ClCompile Include="mfc8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MFClab8Dlg.cpp">
+    <ClCompile Include="mfc8Dlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -46,17 +46,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MFClab8.rc">
+    <ResourceCompile Include="mfc8.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\MFClab8.rc2">
+    <None Include="res\mfc8.rc2">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\MFClab8.ico">
+    <Image Include="res\mfc8.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
