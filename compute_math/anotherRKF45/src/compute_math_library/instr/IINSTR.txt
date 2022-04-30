@@ -1,0 +1,62 @@
+
+
+     PAЗДEЛ:
+     ПPOГPAMMA:
+     HAЗHAЧEHИE:ПPOГPAMMA BЫЧИCЛЯET
+
+
+
+1. OБPAЩEHИE K ПOДПPOГPAMME
+
+
+C  OПИCAHИE ФOPMAЛЬHЫX ПAPAMETPOB B ПOДПPOГPAMME
+
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C
+C  PAБOЧИE ПAPAMETPЫ
+C
+C
+C  BHУTPEHHИE ПOДПPOГPAMMЫ
+C
+C
+C
+
+2. ДЛЯ TOГO ЧTOБЫ HAЙTИ PAЗЛOЖEHИE MATPИЦЫ A
+   И OЦEHИTЬ EE OБУCЛOBЛEHHOCTЬ HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE
+      И MACCИBЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+
+   3. BЫЗBATЬ ПOДПPOГPAMMУ ****** OПEPATOPOM
+
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+   2.
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ ******, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA ******. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ ****** TA ЖE,
+      ЧTO И У ******, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+                               ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.43 - 77.
+
