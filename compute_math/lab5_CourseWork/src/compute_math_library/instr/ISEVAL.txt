@@ -1,0 +1,98 @@
+
+    PAЗДEЛ:    ИHTEPПOЛЯЦИЯ
+
+    ПPOГPAMMA: SEVAL
+
+    HAЗHAЧEHИE:ПOДПPOГPAMMA-ФУHKЦИЯ SEVAL BЫЧИCЛЯET ЗHAЧEHИE
+               KУБИЧECKOГO CПЛAЙHA, KOЭФФИЦИEHTЫ KOTOPOГO
+               ПPEДBAPИTEЛЬHO BЫЧИCЛEHЫ ПPOГPAMMOЙ SPLINE,
+
+                SEVAL=Y(I)+B(I)*(U-X(I))+C(I)*(U-X(I))**2+
+                                        +D(I)*(U-X(I))**3
+
+               ГДE X(I).LT.U.LT.X(I+1).
+
+               ECЛИ U.LT.X(1), TO БEPETCЯ ЗHAЧEHИE I=1.
+               ECЛИ U.GE.X(N), TO БEPETCЯ ЗHAЧEHИE I=N.
+
+
+1. OПИCAHИE ПOДПPOГPAMMA И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      REAL FUNCTION SEVAL(N,U,X,Y,B,C,D)
+      INTEGER N
+      REAL U,X(N),Y(N),B(N),C(N),D(N)
+
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     N     -ЧИCЛO ЗAДAHHЫX TOЧEK
+C
+C     U     -AБCЦИCCA, ДЛЯ KOTOPOЙ BЫЧИCЛЯETCЯ ЗHAЧEHИE
+C            CПЛAЙHA
+C
+C     X,Y   -MACCИBЫ ЗAДAHHЫX AБCЦИCC И OPДИHAT
+C
+C     B,C,D -MACCИBЫ KOЭФФИЦИEHTOB CПЛAЙHA, BЫЧИCЛEHHЫE
+C
+C            ПOДПPOГPAMMOЙ SPLINE
+C
+C  BЫXOДHOЙ ПAPAMETP
+C
+C     SEVAL -ЗHAЧEHИE KУБИЧECKOГO CПЛAЙHA
+
+2. ДЛЯ TOГO ЧTOБЫ BЫЧИCЛИTЬ ЗHAЧEHИE KУБИЧECKOГO CПЛAЙHA
+   HEOБXOДИMO:
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE
+      И MACCИBЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+   3. OБPATИTЬCЯ K ПOДПPOГPAMME-ФУHKЦИИ SEVAL
+
+          S=SEVAL(N,U,X,Y,B,C,D)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ SEVAL
+C
+      INTEGER N,I
+      REAL X(10),Y(10),B(10),C(10),D(10)
+      N=10
+      DO 10 I=1,N
+        X(I)=I
+        Y(I)=X(I)**3
+   10 CONTINUE
+C
+      CALL SPLINE (N,X,Y,B,C,D)
+C
+      U=2.5
+      S=SEVAL(N,U,X,Y,B,C,D)
+C
+      PRINT 102,U,S
+      STOP
+  102 FORMAT(14X,'U=',F3.1,5X,'S=',F10.7)
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+              U=2.5     S=15.6250000
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. ДЛЯ BЫЧИCЛEHЯ ЗHAЧEHИЯ KУБИЧECKOГO ПOЛИHOMA ИCПOЛЬ-
+      ЗУETCЯ CXEMA ГOPHEPA.
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ SEVAL, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DSEVAL. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DSEVAL TA ЖE,
+      ЧTO И У SEVAL, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      U, X, Y, B, C, D ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.78 - 98.
+

@@ -1,0 +1,113 @@
+
+     PAЗДEЛ:    ЛИHEЙHAЯ AЛГEБPA
+
+     ПPOГPAMMA: SOLVE
+
+     HAЗHAЧEHИE:ПOДПPOГPAMMA BЫЧИCЛЯET PEШEHИE ЛИHEЙHOЙ
+                CИCTEMЫ A*X=B C KBAДPATHOЙ MATPИЦEЙ.
+                ПOДПPOГPAMMA ИCПOЛЬЗУET PEЗУЛЬTATЫ
+                PAБOTЫ ПOДПPOГPAMMЫ DECOMP И БEЗ HEE
+                HE ИCПOЛЬЗУETCЯ.
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      SUBROUTINE SOLVE(NDIM,N,A,B,IPVT)
+C
+      INTEGER NDIM,N,IPVT(N)
+      REAL A(NDIM,N),B(N)
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     NDIM -ЗAЯBЛEHHAЯ CTPOЧHAЯ PAЗMEPHOCTЬ
+C           MACCИBA, COДEPЖAЩEГO A.
+C
+C     N    -ПOPЯДOK CИCTEMЫ.
+C
+C     A    -ФAKTOPИЗOBAHHAЯ MATPИЦA,ПOЛYЧEHHAЯ ИЗ DECOMP
+C
+C     B    -BEKTOP ПPABЫX ЧACTEЙ.
+C
+C     IPVT -BEKTOP BEДYЩИX ЭЛEMEHTOB, ПOЛYЧEHHЫЙ ИЗ DECOMP
+C
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C     B    -BEKTOP PEШEHИЯ X.
+C
+
+2. ДЛЯ TOГO ЧTOБЫ PEШИTЬ CИCTEMУ ЛИHEЙHЫX AЛГEБPAИЧECKИX
+   УPABHEHИЙ И OЦEHИTЬ EE OБУCЛOBЛEHHOCTЬ HEOБXOДИMO
+   ИCПOЛЬЗOBATЬ ПOДПPOГPAMMУ DECOMP ( CMOTPИ ИHCTPУKЦИЮ K
+   ПOДПPOГPAMME DECOMP ) И
+
+   1. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE И MACCИ-
+      BЫ, ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMM DECOMP И SOLVE
+
+   2. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB B DECOMP И SOLVE
+
+   3. BЫЗBATЬ ПOДПPOГPAMMЫ DECOMP И SOLVE
+
+      CALL DECOMP(NDIM,N,A,COND,IPVT,WORK)
+      CALL SOLVE(NDIM,N,A,B,IPVT)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C  ПPOГPAMMA PEШAET CИCTEMУ ИЗ TPEX ЛИHEЙHЫX
+C  УPABHEHИЙ, ИCПOЛЬЗУЯ DECOMP И SOLVE
+C
+      REAL A(3,3),B(3),WORK(3),COND
+      INTEGER NDIM/3/,N/3/,IPVT(3)
+      DATA A/10.,-3., 5.,
+     *       -7., 2.,-1.,
+     *        0., 6., 5./
+      DATA B/7.,4.,6./
+      PRINT 101,((A(I,J),J=1,N),B(I),I=1,N)
+C
+      CALL DECOMP(NDIM,N,A,COND,IPVT,WORK)
+C
+      PRINT 102,COND
+      CONDP1=COND+1.0
+      IF(CONDP1.EQ.COND) PRINT 103
+      IF(CONDP1.EQ.COND) STOP
+C
+      CALL SOLVE(NDIM,N,A,B,IPVT)
+C
+      PRINT 104,(B(I),I=1,N)
+      STOP
+  101 FORMAT(13X,'A',14X,'B',3(/5X,3F5.0,5X,F5.0))
+  102 FORMAT(5X,'COND=',E12.5)
+  103 FORMAT(5X,'MATPИЦA KЛACCИФИЦИPУETCЯ KAK BЫPOЖДEHHAЯ')
+  104 FORMAT(5X,'BEKTOP PEШEHИЯ X',3(/12X,F10.7))
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+             A              B
+       10.  -7.   0.        7.
+       -3.   2.   6.        4.
+        5.  -1.   5.        6.
+     COND= 0.11207E+02
+     BEKTOP PEШEHИЯ X
+             0.0
+            -1.0000000
+             1.0000000
+
+4. ЗAMEЧAHИЯ
+
+   1. ПOДПPOГPAMMУ SOLVE HE CTOИT ИCПOЛЬЗOBATЬ,
+      ECЛИ DECOMP OБHAPУЖИЛA BЫPOЖДEHHOCTЬ
+
+   2. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   3. AHAЛOГ ПOДПPOГPAMMЫ SOLVE, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DSOLVE. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DSOLVE TA ЖE,
+      ЧTO И У SOLVE, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      A, B  ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.43 - 77.
+
