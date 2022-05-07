@@ -2,6 +2,31 @@ module Group_Process
     use Environment
 
 contains
+    ! функция для ZEROIN
+    real(R_) function f(lambda)
+        ! Входные переменные
+        real(R_)    :: lambda
+
+        ! Локальные переменные
+        ! Для RKF45
+        real(R_)                    :: RELERR = 1.E-6, ABSERR = 1.E-6
+        real(R_)                    ::  WORK(15), z(2), dz(2)
+        integer(I_)                 ::  NEQN = 2, IFLAG = +1
+        integer(I_)                 ::  IWORK(5)
+        real(R_)                    ::  T, TOUT
+
+        ! Границы интегрирования
+        T = 0
+        TOUT = 1
+
+        ! Начальные значения
+        z(1) = lambda
+        z(2) = 0
+        call RKF45(system, NEQN, z, T, TOUT, RELERR, ABSERR, IFLAG, WORK, IWORK)
+
+        f = z(2) - 1
+    end function f
+
     ! система дифф. уравнений
     real(R_) function find_dz1(z2)
         real(R_)    :: z2
