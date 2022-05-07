@@ -9,7 +9,7 @@ contains
 
         ! Локальные переменные
         ! Для RKF45
-        real(R_)                    :: RELERR = 1.E-6, ABSERR = 1.E-6
+        real(R_)                    ::  RELERR = 1.E-6, ABSERR = 1.E-6
         real(R_)                    ::  WORK(15), z(2), dz(2)
         integer(I_)                 ::  NEQN = 2, IFLAG = +1
         integer(I_)                 ::  IWORK(5)
