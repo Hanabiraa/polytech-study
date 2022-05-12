@@ -60,7 +60,7 @@ void Server::run()
 
 				FD_SET(client, &this->master);
 
-				string welcomeMsg = "Welcome to the Awesome Chat Server!\r\n";
+				string welcomeMsg = "SERVER: Hello!\r\n";
 				send(client, welcomeMsg.c_str(), welcomeMsg.size() + 1, 0);
 			}
 			else
@@ -89,14 +89,19 @@ void Server::run()
 					for (int i = 0; i < this->master.fd_count; i++)
 					{
 						SOCKET outSock = this->master.fd_array[i];
-						if (outSock != this->listening && outSock != sock)
-						{
-							ostringstream ss;
-							ss << "SOCKET #" << sock << ": " << buf << "\r\n";
-							string strOut = ss.str();
-
-							send(outSock, strOut.c_str(), strOut.size() + 1, 0);
+						if (outSock == this->listening) {
+							continue;
 						}
+						ostringstream ss;
+						if (outSock != sock)
+						{
+							ss << "SOCKET #" << sock << ": ";
+						} else {
+							ss << "Me: ";
+						}
+						ss << buf << "\r\n";
+						string strOut = ss.str();
+						send(outSock, strOut.c_str(), strOut.size() + 1, 0);
 					}
 				}
 			}
@@ -132,8 +137,8 @@ void Server::createDescriptor()
 void Server::bindSocket()
 {
 	this->hint.sin_family = AF_INET;
-	this->hint.sin_port = htons(54000);
-	this->hint.sin_addr.S_un.S_addr = INADDR_ANY; //
+	this->hint.sin_port = htons(27015);
+	this->hint.sin_addr.S_un.S_addr = INADDR_ANY;
 	
 	int status = bind(this->listening, (sockaddr*)&this->hint, sizeof(hint));
 	if (status == SOCKET_ERROR) {
