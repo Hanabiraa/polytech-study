@@ -68,9 +68,8 @@ bool Client::connectToServer(string ip_addr, int port_num)
 	return true;
 }
 
-
 std::string Client::getMsg()
-{
+{ 
 	recv(this->connectSocket, buffer, BUFF_SIZE, 0);
 	string msg = string(buffer);
 	memset(this->buffer, ' ', BUFF_SIZE);;
