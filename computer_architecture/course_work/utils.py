@@ -55,3 +55,43 @@ def img_table(imgs: np.ndarray, path=None):
     if path:
         plt.imsave(arr=table, fname=path)
     return table
+
+def img_mean_pxls(imgs: np.ndarray, axis: int) -> np.ndarray:
+    """
+    Генерирует изображение, где каждый пиксель является усредненным значением
+    всех пикселей переданной выборки в каждой из позиций
+    
+    imgs: выборка изображений
+    axis: по какой размерности усреднять
+    """
+    return np.mean(imgs, axis=axis)
+
+def img_std_pxls(imgs: np.ndarray, axis: int) -> np.ndarray:
+    """
+    Генерирует изображение, где каждый пиксель является стандартным отклоенением
+    всех пикселей переданной выборки в каждой из позиций
+    
+    imgs: выборка изображений
+    axis: по какой размерности усреднять
+    """
+    return np.std(imgs, axis=axis)
+
+def preprocess(img, imgs) -> np.ndarray:
+    """
+    Перевод значения цветов пикселя от формата 0-255 к формату 0-1
+    
+    img: изображение, значения пикселей которых нужно перевести к формату 0-1
+    imgs: выборка всех изображений
+    """
+    norm_img = (img - img_mean_pxls(imgs, 0)) / img_std_pxls(imgs, 0)
+    return norm_img
+
+def deprocess(norm_img, imgs)-> np.ndarray:
+    """
+    Перевод значения цветов пикселя от формата 0-1 к формату 0-255
+    
+    norm_img: изображение, значения пикселей которых нужно перевести к формату 0-255
+    imgs: выборка всех изображений
+    """
+    img = norm_img * img_std_pxls(imgs, 0) + img_mean_pxls(imgs, 0)
+    return img.astype(np.uint8)
