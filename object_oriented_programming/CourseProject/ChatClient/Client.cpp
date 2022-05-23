@@ -34,7 +34,7 @@ bool Client::connectToServer(string ip_addr, int port_num)
 		return false;
 	}
 
-	int status = getaddrinfo("localhost", std::to_string(this->port).c_str(), &hints, &result);
+	int status = getaddrinfo(this->ip.c_str(), std::to_string(this->port).c_str(), &hints, &result);
 	if (status != 0) {
 		std::cout << "getaddrinfo failed with error: " << status << '\n';
 		return false;

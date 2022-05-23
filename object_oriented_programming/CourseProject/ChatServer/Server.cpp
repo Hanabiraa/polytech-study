@@ -10,11 +10,25 @@ Server::Server()
 	this->ver = MAKEWORD(2, 2);
 }
 
+void Server::initializeWinSock()
+{
+	/*
+	* init WinSock library
+	*/
+	int status = WSAStartup(this->ver, &this->wsData);
+	if (status != 0)
+	{
+		cout << "initializeWinSock: ERROR\n";
+		exit(1);
+	}
+	cout << "initializeWinSock: SUCCESS\n";
+}
+
 void Server::createSocket()
 {
 	/*
 	* AF_INET is used to specify the IPv4 address family.
-    * SOCK_STREAM is used to specify a stream socket.
+	* SOCK_STREAM is used to specify a stream socket.
 	*/
 	this->listening = socket(AF_INET, SOCK_STREAM, 0);
 	if (this->listening == INVALID_SOCKET)
@@ -24,6 +38,21 @@ void Server::createSocket()
 	}
 	cout << "createSocket: SUCCESS\n";
 }
+
+void Server::bindSocket()
+{
+	this->hint.sin_family = AF_INET;
+	this->hint.sin_port = htons(27015);
+	this->hint.sin_addr.S_un.S_addr = INADDR_ANY;
+
+	int status = bind(this->listening, (sockaddr*)&this->hint, sizeof(hint));
+	if (status == SOCKET_ERROR) {
+		cout << "bindSocket: ERROR\n";
+		exit(1);
+	}
+	cout << "bindSocket: SUCCESS\n";
+}
+
 
 void Server::listenSocket()
 {
@@ -35,8 +64,18 @@ void Server::listenSocket()
 	cout << "listenSocket: SUCCESS\n";
 }
 
+void Server::createDescriptor()
+{
+	/*
+	* create main server socket descriptor for listening clients
+	*/
+	this->master;
+	FD_ZERO(&this->master);
+	FD_SET(this->listening, &this->master);
+}
+
 void Server::run()
-{	
+{
 	cout << "\n\n--- Server running... ---\n";
 	char ip[INET_ADDRSTRLEN];
 	inet_ntop(AF_INET, &(this->hint.sin_addr), ip, INET_ADDRSTRLEN);
@@ -96,7 +135,8 @@ void Server::run()
 						if (outSock != sock)
 						{
 							ss << "SOCKET #" << sock << ": ";
-						} else {
+						}
+						else {
 							ss << "Me: ";
 						}
 						ss << buf << "\r\n";
@@ -122,42 +162,4 @@ void Server::run()
 	}
 
 	WSACleanup();
-}
-
-void Server::createDescriptor()
-{
-	/*
-	* create main server socket descriptor for listening clients
-	*/
-	this->master;
-	FD_ZERO(&this->master);
-	FD_SET(this->listening, &this->master);
-}
-
-void Server::bindSocket()
-{
-	this->hint.sin_family = AF_INET;
-	this->hint.sin_port = htons(27015);
-	this->hint.sin_addr.S_un.S_addr = INADDR_ANY;
-	
-	int status = bind(this->listening, (sockaddr*)&this->hint, sizeof(hint));
-	if (status == SOCKET_ERROR) {
-		cout << "bindSocket: ERROR\n";
-		exit(1);
-	}
-	cout << "bindSocket: SUCCESS\n";
-}
-
-void Server::initializeWinSock()
-{
-	/*
-	* init WinSock library
-	*/
-	int status = WSAStartup(this->ver, &this->wsData);
-	if (status != 0)
-	{
-		cout << "initializeWinSock: ERROR\n";
-		exit(1);
-	}
-	cout << "initializeWinSock: SUCCESS\n";
 }

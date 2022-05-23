@@ -109,7 +109,7 @@ BOOL CChatClientDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
+	
 	// add timer
 	int iInstallResult;
 	iInstallResult = SetTimer(1, 500, NULL);
@@ -119,12 +119,27 @@ BOOL CChatClientDlg::OnInitDialog()
 			MB_OK + MB_ICONERROR);
 	}
 
+
 	// connect client to server
-	bool status = client.connectToServer("127.0.0.1", 27015);
-	if (!(status)) {
-		MessageBox(L"Cannot connect to server!", L"Error message",
-			MB_OK + MB_ICONERROR);
+	successConnect = false;
+
+	for (int i = 0; i < 4 && !successConnect; ++i) {
+		connect_modal_frame.DoModal();
+
+		bool status = client.connectToServer(
+			std::string((CT2CA)connect_modal_frame.m_ipv4_input),
+			int(connect_modal_frame.m_port_input)
+		);
+		if (!(status)) {
+			MessageBox(L"Cannot connect to server!", L"Error message",
+				MB_OK + MB_ICONERROR);
+
+		}
+		else {
+			successConnect = true;
+		}
 	}
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -190,11 +205,12 @@ void CChatClientDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	AfxBeginThread(
-		StaticThreadFunc,
-		this);
-	UpdateData(TRUE);
-
+	if (successConnect) {
+		AfxBeginThread(
+			StaticThreadFunc,
+			this);
+		UpdateData(TRUE);
+	}
 	CDialogEx::OnTimer(nIDEvent);
 }
 

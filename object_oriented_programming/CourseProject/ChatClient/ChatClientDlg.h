@@ -3,6 +3,7 @@
 //
 #pragma once
 #include "Client.h"
+#include "ConnectDlg.h"
 
 // CChatClientDlg dialog
 class CChatClientDlg : public CDialogEx
@@ -11,6 +12,8 @@ class CChatClientDlg : public CDialogEx
 public:
 	CChatClientDlg(CWnd* pParent = nullptr);	// standard constructor
 	Client client;
+	bool successConnect; // connect to server via ip and port number
+	ConnectDlg connect_modal_frame;
 
 	static UINT __cdecl StaticThreadFunc(LPVOID pParam);
 	UINT ThreadFunc();
