@@ -1,0 +1,42 @@
+\hypertarget{_client_8h_source}{}\doxysection{Client.\+h}
+\label{_client_8h_source}\index{ChatClient/Client.h@{ChatClient/Client.h}}
+\mbox{\hyperlink{_client_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <winsock2.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ws2tcpip.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma comment (lib, "{}Ws2\_32.lib"{}})}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma comment (lib, "{}Mswsock.lib"{}})}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#pragma comment (lib, "{}AdvApi32.lib"{}})}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{_client_8h_a4d94d53e2ff2542e8c3f19a24c0f4cd8}{BUFF\_SIZE}} = 1024;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{class_client}{Client}} \{}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_client_ae51af7aa6b8f591496a8f6a4a87a14bf}{Client}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_client_a8b408953b673e22a480652faee5ad1bd}{connectToServer}}(std::string, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{24     std::string \mbox{\hyperlink{class_client_a93162d7d919e9f5b89b83fc386815bb5}{getMsg}}();}
+\DoxyCodeLine{25     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_client_ab2f4fcf16891885499d092d2e89c4468}{sendMsg}}(std::string);}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_client_a01573c25ce1f72687e18e77e63070915}{closeClient}}();}
+\DoxyCodeLine{27 \textcolor{keyword}{private}:}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} initWinSoc();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     SOCKET connectSocket;}
+\DoxyCodeLine{31     \textcolor{keyword}{struct }addrinfo* result = NULL,}
+\DoxyCodeLine{32         * ptr = NULL,}
+\DoxyCodeLine{33         hints;}
+\DoxyCodeLine{34     std::string ip;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{int} port;}
+\DoxyCodeLine{36     \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{_client_8h_a4d94d53e2ff2542e8c3f19a24c0f4cd8}{BUFF\_SIZE}}];}
+\DoxyCodeLine{37     \textcolor{keywordtype}{bool} isExit = \textcolor{keyword}{false};}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+
+\end{DoxyCode}

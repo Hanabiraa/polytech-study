@@ -1,0 +1,55 @@
+\hypertarget{_chat_client_dlg_8h_source}{}\doxysection{Chat\+Client\+Dlg.\+h}
+\label{_chat_client_dlg_8h_source}\index{ChatClient/ChatClientDlg.h@{ChatClient/ChatClientDlg.h}}
+\mbox{\hyperlink{_chat_client_dlg_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{// ChatClientDlg.h : header file}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_client_8h}{Client.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_connect_dlg_8h}{ConnectDlg.h}}"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{// CChatClientDlg dialog}}
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_chat_client_dlg}{CChatClientDlg}} : \textcolor{keyword}{public} CDialogEx}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \mbox{\hyperlink{class_c_chat_client_dlg_ae4a06e6c9acdcefb7b881c7d226cac4b}{CChatClientDlg}}(CWnd* pParent = \textcolor{keyword}{nullptr});  \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{14     \mbox{\hyperlink{class_client}{Client}} \mbox{\hyperlink{class_c_chat_client_dlg_a488b4b45547ca6d3807c24bdf59a1944}{client}};}
+\DoxyCodeLine{15     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_c_chat_client_dlg_a9932cd09d0ec0b8a4706e9eea4bc0c59}{successConnect}}; \textcolor{comment}{// connect to server via ip and port number}}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_connect_dlg}{ConnectDlg}} \mbox{\hyperlink{class_c_chat_client_dlg_ad8f557eca250fb3427958bf7e5b8588e}{connect\_modal\_frame}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{static} UINT \_\_cdecl \mbox{\hyperlink{class_c_chat_client_dlg_ab81182b424388137dd7d9c55d70cc36a}{StaticThreadFunc}}(LPVOID pParam);}
+\DoxyCodeLine{19     UINT \mbox{\hyperlink{class_c_chat_client_dlg_ad0d2d78bb11db4b1b57a54e94ab47d3b}{ThreadFunc}}();}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifdef AFX\_DESIGN\_TIME}}
+\DoxyCodeLine{23     \textcolor{keyword}{enum} \{ IDD = \mbox{\hyperlink{resource_8h_a47548f39b1f1d2cd823fc738cfac4c7b}{IDD\_CHATCLIENT\_DIALOG}} \};}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{27     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_ace229869326aabc158ea1ab7166c790c}{DoDataExchange}}(CDataExchange* pDX);  \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{31 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{32     HICON \mbox{\hyperlink{class_c_chat_client_dlg_a02449bd9d2d97ad73138ee238c784c65}{m\_hIcon}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{35     \textcolor{keyword}{virtual} BOOL \mbox{\hyperlink{class_c_chat_client_dlg_a12a8b977d2fcb34ebdbd51807c54d220}{OnInitDialog}}();}
+\DoxyCodeLine{36     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_a19053670611219616371466b7ece935e}{OnSysCommand}}(UINT nID, LPARAM lParam);}
+\DoxyCodeLine{37     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_a706ac8372963f2a5cd7dbbd1b8bfdf00}{OnPaint}}();}
+\DoxyCodeLine{38     afx\_msg HCURSOR \mbox{\hyperlink{class_c_chat_client_dlg_ae055cf8cac63aae12f77e0eab596f052}{OnQueryDragIcon}}();}
+\DoxyCodeLine{39     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{40 public:}
+\DoxyCodeLine{41     \textcolor{comment}{// Client message, which need to be send to server}}
+\DoxyCodeLine{42 \textcolor{comment}{//  CString clientMsg;}}
+\DoxyCodeLine{43     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_acb8e8373732f477cf966534d0d9afb14}{OnDestroy}}();}
+\DoxyCodeLine{44     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_a2248bbe50585efefa070cddedff4c5c1}{OnTimer}}(UINT\_PTR nIDEvent);}
+\DoxyCodeLine{45     \textcolor{comment}{// for messages from server}}
+\DoxyCodeLine{46     CListBox \mbox{\hyperlink{class_c_chat_client_dlg_ada15df76e379b24604d9d26ce334b492}{m\_Chat}};}
+\DoxyCodeLine{47     CString \mbox{\hyperlink{class_c_chat_client_dlg_ac528926fbc125f077c242b4fc480479c}{m\_Msg}};}
+\DoxyCodeLine{48     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_chat_client_dlg_aac23a48edada6cddacfa60dfe0f69c1b}{OnBnClickedSendbtn}}();}
+\DoxyCodeLine{49 \};}
+
+\end{DoxyCode}

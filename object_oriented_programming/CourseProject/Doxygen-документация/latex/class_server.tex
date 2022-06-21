@@ -1,0 +1,109 @@
+\hypertarget{class_server}{}\doxysection{Класс Server}
+\label{class_server}\index{Server@{Server}}
+
+
+Главный класс сервера. Содержит методы, каждый из которых характеризует этап инициализации сервера  
+
+
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_server_ad5ec9462b520e59f7ea831e157ee5e59}{Server}} ()
+\item 
+void \mbox{\hyperlink{class_server_a35b6466176520e4d7e90ce1ba43e9562}{initialize\+Win\+Sock}} ()
+\begin{DoxyCompactList}\small\item\em Инициализирует библиотеку WINSOC \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_afa110e18047a3345bca72ed32ca3ce95}{create\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em Метод, инициализирующий сокет и проверяющий его работоспособность \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_a8d86edf1df9f12df07dc6e949d70f77f}{bind\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em Метод, привязывающий сокет с ipv4 адрессу и порту \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_a294b0b73c0796d4be5ee4f62d7d2bb9b}{listen\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em Метод, запускающий сокет на прослушивание, т.\+е. переводящий его в рабочее состояние \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_ad291092d15d89eefefff2d7c1dc26a69}{create\+Descriptor}} ()
+\begin{DoxyCompactList}\small\item\em Метод, создающий файловый дескриптор для асинхронного подклчения к серверу клиентов в неограниченном количестве \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_abb27d30b40a94326e3fd629d3b30b7d5}{run}} ()
+\begin{DoxyCompactList}\small\item\em Основной метод сервера, в котором происходит подключение новых клиентов, чтение и рассылка сообщений между всеми клиентами \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Главный класс сервера. Содержит методы, каждый из которых характеризует этап инициализации сервера 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{class_server_ad5ec9462b520e59f7ea831e157ee5e59}\label{class_server_ad5ec9462b520e59f7ea831e157ee5e59}} 
+\index{Server@{Server}!Server@{Server}}
+\index{Server@{Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}}
+{\footnotesize\ttfamily Server\+::\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_server_a8d86edf1df9f12df07dc6e949d70f77f}\label{class_server_a8d86edf1df9f12df07dc6e949d70f77f}} 
+\index{Server@{Server}!bindSocket@{bindSocket}}
+\index{bindSocket@{bindSocket}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{bindSocket()}{bindSocket()}}
+{\footnotesize\ttfamily void Server\+::bind\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод, привязывающий сокет с ipv4 адрессу и порту 
+
+\mbox{\Hypertarget{class_server_ad291092d15d89eefefff2d7c1dc26a69}\label{class_server_ad291092d15d89eefefff2d7c1dc26a69}} 
+\index{Server@{Server}!createDescriptor@{createDescriptor}}
+\index{createDescriptor@{createDescriptor}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{createDescriptor()}{createDescriptor()}}
+{\footnotesize\ttfamily void Server\+::create\+Descriptor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод, создающий файловый дескриптор для асинхронного подклчения к серверу клиентов в неограниченном количестве 
+
+\mbox{\Hypertarget{class_server_afa110e18047a3345bca72ed32ca3ce95}\label{class_server_afa110e18047a3345bca72ed32ca3ce95}} 
+\index{Server@{Server}!createSocket@{createSocket}}
+\index{createSocket@{createSocket}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{createSocket()}{createSocket()}}
+{\footnotesize\ttfamily void Server\+::create\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод, инициализирующий сокет и проверяющий его работоспособность 
+
+\mbox{\Hypertarget{class_server_a35b6466176520e4d7e90ce1ba43e9562}\label{class_server_a35b6466176520e4d7e90ce1ba43e9562}} 
+\index{Server@{Server}!initializeWinSock@{initializeWinSock}}
+\index{initializeWinSock@{initializeWinSock}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{initializeWinSock()}{initializeWinSock()}}
+{\footnotesize\ttfamily void Server\+::initialize\+Win\+Sock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Инициализирует библиотеку WINSOC 
+
+\mbox{\Hypertarget{class_server_a294b0b73c0796d4be5ee4f62d7d2bb9b}\label{class_server_a294b0b73c0796d4be5ee4f62d7d2bb9b}} 
+\index{Server@{Server}!listenSocket@{listenSocket}}
+\index{listenSocket@{listenSocket}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{listenSocket()}{listenSocket()}}
+{\footnotesize\ttfamily void Server\+::listen\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод, запускающий сокет на прослушивание, т.\+е. переводящий его в рабочее состояние 
+
+\mbox{\Hypertarget{class_server_abb27d30b40a94326e3fd629d3b30b7d5}\label{class_server_abb27d30b40a94326e3fd629d3b30b7d5}} 
+\index{Server@{Server}!run@{run}}
+\index{run@{run}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Server\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Основной метод сервера, в котором происходит подключение новых клиентов, чтение и рассылка сообщений между всеми клиентами 
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+Chat\+Server/\mbox{\hyperlink{_server_8h}{Server.\+h}}\item 
+Chat\+Server/\mbox{\hyperlink{_server_8cpp}{Server.\+cpp}}\end{DoxyCompactItemize}
