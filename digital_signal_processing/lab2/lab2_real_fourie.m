@@ -3,7 +3,7 @@ clear, clc, close all;
 dots_num = 1024;    % кол-во точек
 N = 0:1:dots_num;   % интервал точек
 T = pi;   % диапазон изменения функции f(i) равен +/-T
-kp = 1.5;   % количество периодов гармонической функции
+kp = 2;   % количество периодов гармонической функции
 
 fourie_parts_arr = [8, 16, 32, 64, 128, 256]; % разные количества членов ряда Фурье
 STD_percent_arr = []; % массив для создания графика SKO_percent=f(fourie_parts)
@@ -17,7 +17,7 @@ for fourie_parts = fourie_parts_arr % fourie_parts - текущие количество членов р
     % ---- Вычисление ряда фурье ----
     for i=1:dots_num + 1
         idx(i) = 2 * T * (i-1 - dots_num/2) / dots_num;
-        f(i) = abs(sin(kp * idx(i)));
+        f(i) = abs(sin(kp * idx(i))) + 10;
     end
 
     Sa0 = sum(f) / dots_num;
