@@ -1,0 +1,16 @@
+The target system is: Generic -  - arm
+The host system is: Windows - 6.2 - AMD64
+Determining if files stdatomic.h exist passed with the following output:
+Change Dir: G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/libsrc/libmetal_v2_0/build_libmetal/CMakeFiles/CMakeTmp
+
+Run Build Command:"F:/Programms/XILINX/SDK/2019.1/gnuwin/bin/make.exe" "cmTC_5b258/fast"
+F:/Programms/XILINX/SDK/2019.1/gnuwin/bin/make.exe -f CMakeFiles/cmTC_5b258.dir/build.make CMakeFiles/cmTC_5b258.dir/build
+make.exe[1]: Entering directory 'G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/libsrc/libmetal_v2_0/build_libmetal/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5b258.dir/CheckIncludeFiles.c.obj
+F:/Programms/XILINX/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe   -O2 -c -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra -DUNDEFINE_FILE_OPS -IG:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/include -c   -o CMakeFiles/cmTC_5b258.dir/CheckIncludeFiles.c.obj   -c G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/libsrc/libmetal_v2_0/build_libmetal/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_5b258
+F:/Programms/XILINX/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe  -O2 -c -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra -DUNDEFINE_FILE_OPS -IG:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/include -c    "CMakeFiles/cmTC_5b258.dir/CheckIncludeFiles.c.obj"   -o cmTC_5b258  
+arm-none-eabi-gcc.exe: warning: CMakeFiles/cmTC_5b258.dir/CheckIncludeFiles.c.obj: linker input file unused because linking not done
+make.exe[1]: Leaving directory 'G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/libsrc/libmetal_v2_0/build_libmetal/CMakeFiles/CMakeTmp'
+
+

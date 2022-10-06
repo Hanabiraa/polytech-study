@@ -1,0 +1,1 @@
+G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/LAB1_bsp/ps7_cortexa9_0/libsrc/openamp_v1_5/build_openamp/lib/CMakeFiles/open_amp-static.dir

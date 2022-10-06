@@ -1,0 +1,121 @@
+#include "platform.h"
+#include "xil_types.h"
+#include "xgpio.h"
+#include "xtmrctr.h"
+#include "xparameters.h"
+#include "xgpiops.h"
+#include "xil_io.h"
+#include "xil_exception.h"
+#include "xscugic.h"
+static XGpioPs psGpioInstancePtr;
+extern XGpioPs_Config XGpioPs_ConfigTable[XPAR_XGPIOPS_NUM_INSTANCES];
+static int iPinNumber = 10;
+XScuGic InterruptController; /* Instance of the Interrupt Controller */
+static XScuGic_Config *GicConfig;/* The configuration parameters of the
+controller */
+static int InterruptFlag;
+//void print(char *str);
+extern char inbyte(void);
+void Timer_InterruptHandler(void *data, u8 TmrCtrNumber)
+{
+print("\r\n");
+print("\r\n");
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n");
+print(" Inside Timer ISR \n \r ");
+XTmrCtr_Stop(data,TmrCtrNumber);
+// PS GPIO Writting
+print("LED 'DS23' Turned ON \r\n");
+XGpioPs_WritePin(&psGpioInstancePtr,iPinNumber,1);
+XTmrCtr_Reset(data,TmrCtrNumber);
+print(" Timer ISR Exit\n \n \r");
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n");
+print("\r\n");
+print("\r\n");
+InterruptFlag = 1;
+}
+int SetUpInterruptSystem(XScuGic *XScuGicInstancePtr)
+{
+/*
+* Connect the interrupt controller interrupt handler to the hardware
+* interrupt handling logic in the ARM processor.
+*/
+Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+(Xil_ExceptionHandler) XScuGic_InterruptHandler,
+XScuGicInstancePtr);
+/*
+* Enable interrupts in the ARM
+*/
+Xil_ExceptionEnable();
+return XST_SUCCESS;
+}
+int ScuGicInterrupt_Init(u16 DeviceId,XTmrCtr *TimerInstancePtr)
+{
+int Status;
+/*
+* Initialize the interrupt controller driver so that it is ready to
+* use.
+* */
+GicConfig = XScuGic_LookupConfig(DeviceId);
+if (NULL == GicConfig) {
+return XST_FAILURE;
+}
+Status = XScuGic_CfgInitialize(&InterruptController, GicConfig,
+GicConfig->CpuBaseAddress);
+if (Status != XST_SUCCESS) {
+return XST_FAILURE;
+}
+/*
+* Setup the Interrupt System
+* */
+Status = SetUpInterruptSystem(&InterruptController);
+if (Status != XST_SUCCESS) {
+return XST_FAILURE;
+}
+/*
+* Connect a device driver handler that will be called when an
+* interrupt for the device occurs, the device driver handler performs
+* the specific interrupt processing for the device
+*/
+Status = XScuGic_Connect(&InterruptController,
+XPAR_FABRIC_AXI_TIMER_0_INTERRUPT_INTR,
+(Xil_ExceptionHandler)XTmrCtr_InterruptHandler,
+(void *)TimerInstancePtr);
+if (Status != XST_SUCCESS) {
+return XST_FAILURE;
+}
+/*
+* Enable the interrupt for the device and then cause (simulate) an
+* interrupt so the handlers will be called
+*/
+XScuGic_Enable(&InterruptController, XPAR_FABRIC_AXI_TIMER_0_INTERRUPT_INTR);
+return XST_SUCCESS;
+}
+int main()
+{
+static XGpio GPIOInstance_Ptr;
+XGpioPs_Config*GpioConfigPtr;
+XTmrCtr TimerInstancePtr;
+int xStatus;
+u32 Readstatus=0,OldReadStatus=0;
+//u32 EffectiveAdress = 0xE000A000;
+int iPinNumberEMIO = 54;
+u32 uPinDirectionEMIO = 0x0;
+// Input Pin
+// Pin direction
+u32 uPinDirection = 0x1;
+int exit_flag,choice,internal_choice;
+init_platform();
+/* data = *(u32 *)(0x42800004);
+print("OK \n");
+data = *(u32 *)(0x41200004);
+print("OK-1 \n");
+*/
+print("##### Application Starts #####\n\r");
+print("\r\n");
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//Step-1 :AXI GPIO Initialization
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xStatus = XGpio_Initialize(&GPIOInstance_Ptr,XPAR_AXI_GPIO_0_DEVICE_ID);
+if(XST_SUCCESS != xStatus)
+print("GPIO INIT FAILED\n\r");
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

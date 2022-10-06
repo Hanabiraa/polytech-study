@@ -1,0 +1,13 @@
+22:35:59 INFO  : Registering command handlers for SDK TCF services
+22:36:00 INFO  : Launching XSCT server: xsct.bat -interactive G:\polytech-study\microprocessor_systems\lab2\lab2_PS_PL\lab2_PS_PL.sdk\temp_xsdb_launch_script.tcl
+22:36:02 INFO  : XSCT server has started successfully.
+22:36:02 INFO  : Successfully done setting XSCT server connection channel  
+22:36:02 INFO  : Successfully done setting SDK workspace  
+22:36:02 INFO  : Processing command line option -hwspec G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/PS_system_wrapper.hdf.
+19:05:48 INFO  : Registering command handlers for SDK TCF services
+19:05:49 INFO  : Launching XSCT server: xsct.bat -interactive G:\polytech-study\microprocessor_systems\lab2\lab2_PS_PL\lab2_PS_PL.sdk\temp_xsdb_launch_script.tcl
+19:05:51 INFO  : XSCT server has started successfully.
+19:05:51 INFO  : Successfully done setting XSCT server connection channel  
+19:05:51 INFO  : Successfully done setting SDK workspace  
+19:05:51 INFO  : Processing command line option -hwspec G:/polytech-study/microprocessor_systems/lab2/lab2_PS_PL/lab2_PS_PL.sdk/PS_system_wrapper.hdf.
+19:05:51 INFO  : Checking for hwspec changes in the project PS_system_wrapper_hw_platform_0.
