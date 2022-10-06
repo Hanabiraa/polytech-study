@@ -1,0 +1,113 @@
+\hypertarget{class_client}{}\doxysection{Класс Client}
+\label{class_client}\index{Client@{Client}}
+
+
+Класс, определяющий клиент, который будет подключаться к серверу  
+
+
+
+
+{\ttfamily \#include $<$Client.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_client_ae51af7aa6b8f591496a8f6a4a87a14bf}{Client}} ()
+\begin{DoxyCompactList}\small\item\em Метод, инициализирующий сокет \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_client_a8b408953b673e22a480652faee5ad1bd}{connect\+To\+Server}} (std\+::string, int)
+\begin{DoxyCompactList}\small\item\em Метод, через который идет подключение к серверу \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_client_a93162d7d919e9f5b89b83fc386815bb5}{get\+Msg}} ()
+\begin{DoxyCompactList}\small\item\em метод, принимающий сообщение от сервера посредством прослушивание сокета \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_client_ab2f4fcf16891885499d092d2e89c4468}{send\+Msg}} (std\+::string)
+\begin{DoxyCompactList}\small\item\em метод, отправляющий серверу сообщение \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_client_a01573c25ce1f72687e18e77e63070915}{close\+Client}} ()
+\begin{DoxyCompactList}\small\item\em метод, закрывающий подключение к серверу \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс, определяющий клиент, который будет подключаться к серверу 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{class_client_ae51af7aa6b8f591496a8f6a4a87a14bf}\label{class_client_ae51af7aa6b8f591496a8f6a4a87a14bf}} 
+\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}}
+{\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Метод, инициализирующий сокет 
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_client_a01573c25ce1f72687e18e77e63070915}\label{class_client_a01573c25ce1f72687e18e77e63070915}} 
+\index{Client@{Client}!closeClient@{closeClient}}
+\index{closeClient@{closeClient}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{closeClient()}{closeClient()}}
+{\footnotesize\ttfamily bool Client\+::close\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+метод, закрывающий подключение к серверу 
+
+\begin{DoxyReturn}{Возвращает}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_client_a8b408953b673e22a480652faee5ad1bd}\label{class_client_a8b408953b673e22a480652faee5ad1bd}} 
+\index{Client@{Client}!connectToServer@{connectToServer}}
+\index{connectToServer@{connectToServer}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{connectToServer()}{connectToServer()}}
+{\footnotesize\ttfamily bool Client\+::connect\+To\+Server (\begin{DoxyParamCaption}\item[{std\+::string}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Метод, через который идет подключение к серверу 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ip\+\_\+addr} & ipv4 адресс сервера\\
+\hline
+{\em port\+\_\+num} & port сервера\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+возвращает булевское значение, при успешном подключениии true
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_client_a93162d7d919e9f5b89b83fc386815bb5}\label{class_client_a93162d7d919e9f5b89b83fc386815bb5}} 
+\index{Client@{Client}!getMsg@{getMsg}}
+\index{getMsg@{getMsg}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{getMsg()}{getMsg()}}
+{\footnotesize\ttfamily std\+::string Client\+::get\+Msg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+метод, принимающий сообщение от сервера посредством прослушивание сокета 
+
+\begin{DoxyReturn}{Возвращает}
+сообщение от сервера
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_client_ab2f4fcf16891885499d092d2e89c4468}\label{class_client_ab2f4fcf16891885499d092d2e89c4468}} 
+\index{Client@{Client}!sendMsg@{sendMsg}}
+\index{sendMsg@{sendMsg}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{sendMsg()}{sendMsg()}}
+{\footnotesize\ttfamily bool Client\+::send\+Msg (\begin{DoxyParamCaption}\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+
+
+метод, отправляющий серверу сообщение 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em msg} & Сообщение\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+булевское значение, означающее успех или нет
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+Chat\+Client/\mbox{\hyperlink{_client_8h}{Client.\+h}}\item 
+Chat\+Client/\mbox{\hyperlink{_client_8cpp}{Client.\+cpp}}\end{DoxyCompactItemize}

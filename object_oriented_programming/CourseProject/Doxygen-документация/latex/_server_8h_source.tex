@@ -1,0 +1,38 @@
+\hypertarget{_server_8h_source}{}\doxysection{Server.\+h}
+\label{_server_8h_source}\index{ChatServer/Server.h@{ChatServer/Server.h}}
+\mbox{\hyperlink{_server_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <winsock2.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ws2tcpip.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{8 \textcolor{comment}{/*}}
+\DoxyCodeLine{9 \textcolor{comment}{* way of telling the VC++ compiler to link with library ws2\_32.lib so on VC++}}
+\DoxyCodeLine{10 \textcolor{comment}{* it does this, and the code will work but unfortunately}}
+\DoxyCodeLine{11 \textcolor{comment}{* since Orwell Dev -\/ Cpp does not have this capability you must perform this task}}
+\DoxyCodeLine{12 \textcolor{comment}{* manually by linking Ws2\_32.lib to the project}}
+\DoxyCodeLine{13 \textcolor{comment}{*/}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#pragma comment (lib, "{}ws2\_32.lib"{}})}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_server}{Server}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_server_ad5ec9462b520e59f7ea831e157ee5e59}{Server}}();}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_a35b6466176520e4d7e90ce1ba43e9562}{initializeWinSock}}();}
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_afa110e18047a3345bca72ed32ca3ce95}{createSocket}}();}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_a8d86edf1df9f12df07dc6e949d70f77f}{bindSocket}}();}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_a294b0b73c0796d4be5ee4f62d7d2bb9b}{listenSocket}}();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_ad291092d15d89eefefff2d7c1dc26a69}{createDescriptor}}();}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_server_abb27d30b40a94326e3fd629d3b30b7d5}{run}}();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{private}:}
+\DoxyCodeLine{30     WSADATA wsData;}
+\DoxyCodeLine{31     WORD ver;}
+\DoxyCodeLine{32     SOCKET listening;}
+\DoxyCodeLine{33     sockaddr\_in hint;}
+\DoxyCodeLine{34     fd\_set master;}
+\DoxyCodeLine{35 \};}
+
+\end{DoxyCode}

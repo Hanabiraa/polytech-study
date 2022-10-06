@@ -1,0 +1,178 @@
+\hypertarget{class_c_chat_client_dlg}{}\doxysection{Класс CChat\+Client\+Dlg}
+\label{class_c_chat_client_dlg}\index{CChatClientDlg@{CChatClientDlg}}
+
+
+{\ttfamily \#include $<$Chat\+Client\+Dlg.\+h$>$}
+
+Граф наследования\+:CChat\+Client\+Dlg\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_chat_client_dlg}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_chat_client_dlg_ae4a06e6c9acdcefb7b881c7d226cac4b}{CChat\+Client\+Dlg}} (CWnd $\ast$p\+Parent=nullptr)
+\item 
+UINT \mbox{\hyperlink{class_c_chat_client_dlg_ad0d2d78bb11db4b1b57a54e94ab47d3b}{Thread\+Func}} ()
+\item 
+afx\+\_\+msg void \mbox{\hyperlink{class_c_chat_client_dlg_acb8e8373732f477cf966534d0d9afb14}{On\+Destroy}} ()
+\item 
+afx\+\_\+msg void \mbox{\hyperlink{class_c_chat_client_dlg_a2248bbe50585efefa070cddedff4c5c1}{On\+Timer}} (UINT\+\_\+\+PTR n\+IDEvent)
+\item 
+afx\+\_\+msg void \mbox{\hyperlink{class_c_chat_client_dlg_aac23a48edada6cddacfa60dfe0f69c1b}{On\+Bn\+Clicked\+Sendbtn}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+static UINT \+\_\+\+\_\+cdecl \mbox{\hyperlink{class_c_chat_client_dlg_ab81182b424388137dd7d9c55d70cc36a}{Static\+Thread\+Func}} (LPVOID p\+Param)
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_client}{Client}} \mbox{\hyperlink{class_c_chat_client_dlg_a488b4b45547ca6d3807c24bdf59a1944}{client}}
+\item 
+bool \mbox{\hyperlink{class_c_chat_client_dlg_a9932cd09d0ec0b8a4706e9eea4bc0c59}{success\+Connect}}
+\item 
+\mbox{\hyperlink{class_connect_dlg}{Connect\+Dlg}} \mbox{\hyperlink{class_c_chat_client_dlg_ad8f557eca250fb3427958bf7e5b8588e}{connect\+\_\+modal\+\_\+frame}}
+\item 
+CList\+Box \mbox{\hyperlink{class_c_chat_client_dlg_ada15df76e379b24604d9d26ce334b492}{m\+\_\+\+Chat}}
+\item 
+CString \mbox{\hyperlink{class_c_chat_client_dlg_ac528926fbc125f077c242b4fc480479c}{m\+\_\+\+Msg}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Защищенные члены}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_c_chat_client_dlg_ace229869326aabc158ea1ab7166c790c}{Do\+Data\+Exchange}} (CData\+Exchange $\ast$p\+DX)
+\item 
+virtual BOOL \mbox{\hyperlink{class_c_chat_client_dlg_a12a8b977d2fcb34ebdbd51807c54d220}{On\+Init\+Dialog}} ()
+\item 
+afx\+\_\+msg void \mbox{\hyperlink{class_c_chat_client_dlg_a19053670611219616371466b7ece935e}{On\+Sys\+Command}} (UINT n\+ID, LPARAM l\+Param)
+\item 
+afx\+\_\+msg void \mbox{\hyperlink{class_c_chat_client_dlg_a706ac8372963f2a5cd7dbbd1b8bfdf00}{On\+Paint}} ()
+\item 
+afx\+\_\+msg HCURSOR \mbox{\hyperlink{class_c_chat_client_dlg_ae055cf8cac63aae12f77e0eab596f052}{On\+Query\+Drag\+Icon}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Защищенные данные}
+\begin{DoxyCompactItemize}
+\item 
+HICON \mbox{\hyperlink{class_c_chat_client_dlg_a02449bd9d2d97ad73138ee238c784c65}{m\+\_\+h\+Icon}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{class_c_chat_client_dlg_ae4a06e6c9acdcefb7b881c7d226cac4b}\label{class_c_chat_client_dlg_ae4a06e6c9acdcefb7b881c7d226cac4b}} 
+\index{CChatClientDlg@{CChatClientDlg}!CChatClientDlg@{CChatClientDlg}}
+\index{CChatClientDlg@{CChatClientDlg}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{CChatClientDlg()}{CChatClientDlg()}}
+{\footnotesize\ttfamily CChat\+Client\+Dlg\+::\+CChat\+Client\+Dlg (\begin{DoxyParamCaption}\item[{CWnd $\ast$}]{p\+Parent = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_c_chat_client_dlg_ace229869326aabc158ea1ab7166c790c}\label{class_c_chat_client_dlg_ace229869326aabc158ea1ab7166c790c}} 
+\index{CChatClientDlg@{CChatClientDlg}!DoDataExchange@{DoDataExchange}}
+\index{DoDataExchange@{DoDataExchange}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{DoDataExchange()}{DoDataExchange()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+Do\+Data\+Exchange (\begin{DoxyParamCaption}\item[{CData\+Exchange $\ast$}]{p\+DX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_aac23a48edada6cddacfa60dfe0f69c1b}\label{class_c_chat_client_dlg_aac23a48edada6cddacfa60dfe0f69c1b}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnBnClickedSendbtn@{OnBnClickedSendbtn}}
+\index{OnBnClickedSendbtn@{OnBnClickedSendbtn}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnBnClickedSendbtn()}{OnBnClickedSendbtn()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+On\+Bn\+Clicked\+Sendbtn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_acb8e8373732f477cf966534d0d9afb14}\label{class_c_chat_client_dlg_acb8e8373732f477cf966534d0d9afb14}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnDestroy@{OnDestroy}}
+\index{OnDestroy@{OnDestroy}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnDestroy()}{OnDestroy()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+On\+Destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a12a8b977d2fcb34ebdbd51807c54d220}\label{class_c_chat_client_dlg_a12a8b977d2fcb34ebdbd51807c54d220}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnInitDialog@{OnInitDialog}}
+\index{OnInitDialog@{OnInitDialog}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnInitDialog()}{OnInitDialog()}}
+{\footnotesize\ttfamily BOOL CChat\+Client\+Dlg\+::\+On\+Init\+Dialog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a706ac8372963f2a5cd7dbbd1b8bfdf00}\label{class_c_chat_client_dlg_a706ac8372963f2a5cd7dbbd1b8bfdf00}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnPaint@{OnPaint}}
+\index{OnPaint@{OnPaint}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnPaint()}{OnPaint()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+On\+Paint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ae055cf8cac63aae12f77e0eab596f052}\label{class_c_chat_client_dlg_ae055cf8cac63aae12f77e0eab596f052}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnQueryDragIcon@{OnQueryDragIcon}}
+\index{OnQueryDragIcon@{OnQueryDragIcon}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnQueryDragIcon()}{OnQueryDragIcon()}}
+{\footnotesize\ttfamily HCURSOR CChat\+Client\+Dlg\+::\+On\+Query\+Drag\+Icon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a19053670611219616371466b7ece935e}\label{class_c_chat_client_dlg_a19053670611219616371466b7ece935e}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnSysCommand@{OnSysCommand}}
+\index{OnSysCommand@{OnSysCommand}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnSysCommand()}{OnSysCommand()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+On\+Sys\+Command (\begin{DoxyParamCaption}\item[{UINT}]{n\+ID,  }\item[{LPARAM}]{l\+Param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a2248bbe50585efefa070cddedff4c5c1}\label{class_c_chat_client_dlg_a2248bbe50585efefa070cddedff4c5c1}} 
+\index{CChatClientDlg@{CChatClientDlg}!OnTimer@{OnTimer}}
+\index{OnTimer@{OnTimer}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{OnTimer()}{OnTimer()}}
+{\footnotesize\ttfamily void CChat\+Client\+Dlg\+::\+On\+Timer (\begin{DoxyParamCaption}\item[{UINT\+\_\+\+PTR}]{n\+IDEvent }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ab81182b424388137dd7d9c55d70cc36a}\label{class_c_chat_client_dlg_ab81182b424388137dd7d9c55d70cc36a}} 
+\index{CChatClientDlg@{CChatClientDlg}!StaticThreadFunc@{StaticThreadFunc}}
+\index{StaticThreadFunc@{StaticThreadFunc}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{StaticThreadFunc()}{StaticThreadFunc()}}
+{\footnotesize\ttfamily UINT \+\_\+\+\_\+cdecl CChat\+Client\+Dlg\+::\+Static\+Thread\+Func (\begin{DoxyParamCaption}\item[{LPVOID}]{p\+Param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ad0d2d78bb11db4b1b57a54e94ab47d3b}\label{class_c_chat_client_dlg_ad0d2d78bb11db4b1b57a54e94ab47d3b}} 
+\index{CChatClientDlg@{CChatClientDlg}!ThreadFunc@{ThreadFunc}}
+\index{ThreadFunc@{ThreadFunc}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{ThreadFunc()}{ThreadFunc()}}
+{\footnotesize\ttfamily UINT CChat\+Client\+Dlg\+::\+Thread\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Данные класса}
+\mbox{\Hypertarget{class_c_chat_client_dlg_a488b4b45547ca6d3807c24bdf59a1944}\label{class_c_chat_client_dlg_a488b4b45547ca6d3807c24bdf59a1944}} 
+\index{CChatClientDlg@{CChatClientDlg}!client@{client}}
+\index{client@{client}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_client}{Client}} CChat\+Client\+Dlg\+::client}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ad8f557eca250fb3427958bf7e5b8588e}\label{class_c_chat_client_dlg_ad8f557eca250fb3427958bf7e5b8588e}} 
+\index{CChatClientDlg@{CChatClientDlg}!connect\_modal\_frame@{connect\_modal\_frame}}
+\index{connect\_modal\_frame@{connect\_modal\_frame}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{connect\_modal\_frame}{connect\_modal\_frame}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_connect_dlg}{Connect\+Dlg}} CChat\+Client\+Dlg\+::connect\+\_\+modal\+\_\+frame}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ada15df76e379b24604d9d26ce334b492}\label{class_c_chat_client_dlg_ada15df76e379b24604d9d26ce334b492}} 
+\index{CChatClientDlg@{CChatClientDlg}!m\_Chat@{m\_Chat}}
+\index{m\_Chat@{m\_Chat}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{m\_Chat}{m\_Chat}}
+{\footnotesize\ttfamily CList\+Box CChat\+Client\+Dlg\+::m\+\_\+\+Chat}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a02449bd9d2d97ad73138ee238c784c65}\label{class_c_chat_client_dlg_a02449bd9d2d97ad73138ee238c784c65}} 
+\index{CChatClientDlg@{CChatClientDlg}!m\_hIcon@{m\_hIcon}}
+\index{m\_hIcon@{m\_hIcon}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{m\_hIcon}{m\_hIcon}}
+{\footnotesize\ttfamily HICON CChat\+Client\+Dlg\+::m\+\_\+h\+Icon\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_ac528926fbc125f077c242b4fc480479c}\label{class_c_chat_client_dlg_ac528926fbc125f077c242b4fc480479c}} 
+\index{CChatClientDlg@{CChatClientDlg}!m\_Msg@{m\_Msg}}
+\index{m\_Msg@{m\_Msg}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{m\_Msg}{m\_Msg}}
+{\footnotesize\ttfamily CString CChat\+Client\+Dlg\+::m\+\_\+\+Msg}
+
+\mbox{\Hypertarget{class_c_chat_client_dlg_a9932cd09d0ec0b8a4706e9eea4bc0c59}\label{class_c_chat_client_dlg_a9932cd09d0ec0b8a4706e9eea4bc0c59}} 
+\index{CChatClientDlg@{CChatClientDlg}!successConnect@{successConnect}}
+\index{successConnect@{successConnect}!CChatClientDlg@{CChatClientDlg}}
+\doxysubsubsection{\texorpdfstring{successConnect}{successConnect}}
+{\footnotesize\ttfamily bool CChat\+Client\+Dlg\+::success\+Connect}
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+Chat\+Client/\mbox{\hyperlink{_chat_client_dlg_8h}{Chat\+Client\+Dlg.\+h}}\item 
+Chat\+Client/\mbox{\hyperlink{_chat_client_dlg_8cpp}{Chat\+Client\+Dlg.\+cpp}}\end{DoxyCompactItemize}

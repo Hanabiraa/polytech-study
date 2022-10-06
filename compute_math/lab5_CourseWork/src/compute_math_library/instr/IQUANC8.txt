@@ -1,0 +1,132 @@
+
+       PAЗДEЛ:     BЫЧИCЛEHИE OПPEДEЛEHHOГO ИHTEГPAЛA
+
+       ПPOГPAMMA:  QUANC8
+
+       HAЗHAЧEHИE: ПPOГPAMMA QUANC8 ПPEДHAЗHAЧEHA ДЛЯ
+                   BЫЧИCЛEHИЯ OПPEДEЛEHHOГO ИHTEГPAЛA
+                   C ПOMOЩЬЮ ФOPMУЛЫ HЬЮTOHA-KOTECA
+                   8 ПOPЯДKA.
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+     SUBROUTINE QUANC8(FUN,A,B,ABSERR,RELERR,RESULT,
+    *                  ERREST,NOFUN,FLAG)
+C
+     EXTERNAL FUN
+     INTEGER NOFUN
+     REAL FUN,A,B,ABSERR,RELERR,RESULT,ERREST,FLAG
+
+C  BXOДHЫE ПAPAMETPЫ
+C
+C    FUN    -ИMЯ BHEШHEЙ ФУHKЦИИ,PEAЛИЗУЮЩEЙ
+C            BЫЧИCЛEHИE ПOДИHTEГPAЛЬHOЙ ФУHKЦИИ
+C
+C    A      -HИЖHИЙ  ПPEДEЛ ИHTEГPИPOBAHИЯ
+C
+C    B      -BEPXHИЙ ПPEДEЛ ИHTEГPИPOBAHИЯ (B MOЖET
+C            БЫTЬ MEHЬШE, ЧEM  A)
+C
+C    RELERR -OTHOCИTEЛЬHAЯ ЖEЛAEMAЯ ПOГPEШHOCTЬ
+C
+C    ABSERR -AБCOЛЮTHAЯ ЖEЛAEMAЯ  ПOГPEШHOCTЬ
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C    RESULT -ПPИБЛИЖEHHOE ЗHAЧEHИE ИHTEГPAЛA
+C
+C    ERREST -OЦEHKA BEЛИЧИHЫ ДEЙCTBИTEЛЬHOЙ OШИБKИ
+C
+C    NOFUN  -ЧИCЛO ЗHAЧEHИЙ ФУHKЦИИ,ИCПOЛЬЗOBAHHЫX
+C            ПPИ BЫЧИCЛEHИИ ИHTEГPAЛA.
+C
+C    FLAG   -ИHДИKATOP HAДEЖHOCTИ. ECЛИ FLAG PABEH HУЛЮ,
+C            TO RESULT УДOBЛETBOPЯET ЗAДAHHOЙ ГPAHИЦE
+C            ПOГPEШHOCTИ.ECЛИ FLAG=XXX.YYY,TO  XXX-ЧИCЛO
+C            ИHTEPBAЛOB ДЛЯ KOTOPЫX HE БЫЛO CXOДИMOCTИ,
+C            A 0.YYY-ДOЛЯ OCHOBHOГO ИHTEPBAЛA,OCTABШAЯCЯ
+C            ДЛЯ OБPAБOTKИ B TOT MOMEHT,KOГДA ПOДПPOГPAMMA
+C            ПPИБЛИЗИЛACЬ K ПPEДEЛЬHOMУ ЧИCЛУ ДЛЯ NOFUN.
+C
+
+2. ДЛЯ TOГO, ЧTOБЫ BЫЧИCЛИTЬ ИHTEГPAЛ OT ФУHKЦИИ F(X)
+   HA ПPOMEЖУTKE (A,B) C OTHOCИTEЛЬHOЙ TOЧHOCTЬЮ RELERR
+   (AБCOЛЮTHOЙ TOЧHOCTЬЮ ABSERR) HEOБXOДИMO:
+
+   1. HAПИCATЬ ПOДПPOГPAMMУ-ФУHKЦИЮ F(X)
+
+        REAL FUNCTION F(X)
+        REAL X,F
+C       F=
+        RETURN
+        END
+
+      BЫЧИCЛЯЮЩУЮ ПOДИHTEГPAЛЬHУЮ ФУHKЦИЮ B TOЧKE X
+
+   2. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE,
+      ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   3. OБ'ЯBИTЬ F B OПEPATOPE EXTERNAL B BЫЗЫBAЮЩEЙ ПPOГPAMME
+
+   4. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+        A      -HИЖHИЙ  ПPEДEЛ ИHTEГPИPOBAHИЯ
+        B      -BEPXHИЙ ПPEДEЛ ИHTEГPИPOBAHИЯ( B MOЖET
+                БЫTЬ MEHЬШE, ЧEM  A)
+        RELERR -OTHOCИTEЛЬHУЮ ЖEЛAEMУЮ ПOГPEШHOCTЬ
+        ABSERR -AБCOЛЮTHУЮ ЖEЛAEMУЮ  ПOГPEШHOCTЬ
+
+   5. BЫЗBATЬ ПOДПPOГPAMMУ QUANC8 OПEPATOPOM
+
+      CALL QUANC8(FUN,A,B,ABSERR,RELERR,RESULT,
+     *            ERREST,NOFUN,FLAG)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+C     B ПPИMEPE BЫЧИCЛЯETCЯ ИHTEГPAЛ OT ФУHKЦИИ
+C     SIN(X)/X ПO X OT 0 ДO 2
+
+      REAL FUNCTION FUN(X)
+      REAL X
+      IF(X .EQ. 0.0) FUN=1.
+      IF(X .NE. 0.0) FUN=SIN(X)/X
+      RETURN
+      END
+C
+      EXTERNAL FUN
+      INTEGER NOFUN
+      REAL FUN,A,B,RELERR,ABSERR,RESULT,ERREST,FLAG
+      DATA A/0./,B/2.0/,RELERR/1.E-06/,ABSERR/0.0/
+C
+      CALL QUANC8(FUN,A,B,ABSERR,RELERR,RESULT,
+     *            ERREST,NOFUN,FLAG)
+C
+      PRINT 1,RESULT,ERREST,NOFUN,FLAG
+      STOP
+    1 FORMAT(10X,'RESULT=',E14.7,3X,'ERREST=',E12.5/
+     *    11X,'NOFUN=',I8,11X,'FLAG=',F10.3)
+      END
+
+C  B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+          RESULT= 0.1605412E+01   ERREST= 0.14319E-05
+           NOFUN=      33           FLAG=     0.0
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. AHAЛOГ ПOДПPOГPAMMЫ QUANC8, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DQUANC. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DQUANC TA ЖE,
+      ЧTO И У QUANC8, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      FUN, A, B, ABSERR, RELEERR, RESULT, ERREST, FLAG
+      ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.94 - 125.
+
+

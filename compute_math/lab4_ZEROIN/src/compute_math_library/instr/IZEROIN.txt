@@ -1,0 +1,109 @@
+
+     PAЗДEЛ:     HEЛИHEЙHЫE УPABHEHИЯ
+
+     ПPOГPAMMA:  ZEROIN
+
+     HAЗHAЧEHИE: ПOДПPOГPAMMA-ФУHKЦИЯ ZEROIN BЫЧИCЛЯET
+                 HУЛЬ ФУHKЦИИ F(X) B ИHTEPBAЛE A,B
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      REAL FUNCTION ZEROIN(AX,BX,F,TOL)
+C
+      EXTERNAL F
+      REAL AX,BX,F,TOL
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     AX     ЛEBЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C
+C     BX     ПPABЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C
+C     F      ПOДПPOГPAMMA-ФУHKЦИЯ, KOTOPAЯ BЫЧИCЛЯET F(X)
+C            ДЛЯ ЛЮБOГO X B ИHTEPBAЛE AX BX
+C
+C     TOL    ЖEЛAEMAЯ ДЛИHA ИHTEPBAЛA HEOПPEДEЛEHHOCTИ
+C            KOHEЧHOГO PEЗУЛЬTATA
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C     ZEROIN AБCЦИCCA, AППPOKCИMИPУЮЩAЯ HУЛЬ ФУHKЦИИ F B
+C            ИHTEPBAЛE AX, BX
+C
+C  ЗAMEЧAHИЯ
+C
+C        БEЗ ПPOBEPKИ ПPEДПOЛAГAETCЯ, ЧTO F(AX) И F(BX)
+C     ИMEЮT ПPOTИBOПOЛOЖHЫE ЗHAKИ.
+C        ZEROIN BЫЧИCЛЯET HУЛЬ F(X) B ЗAДAHHOM ИHTEPBAЛE
+C     AX, BX B ПPEДEЛAX ДOПУCKA HA OШИБKУ  4*MACHEPS*ABS(X)
+C     + TOL, ГДE MACHEPS-OTHOCИTEЛЬHAЯ MAШИHHAЯ TOЧHOCTЬ.
+C
+
+2. ДЛЯ TOГO ЧTOБЫ HAЙTИ HУЛЬ ФУHKЦИИ F(X) HA
+   ИHTEPBAЛE AX,BX HEOБXOДИMO:
+
+   1. HAПИCATЬ ПOДПPOГPAMMУ-ФУHKЦИЮ F(X)
+
+        REAL FUNCTION F(X)
+        REAL X,F
+C       F=
+        RETURN
+        END
+
+      BЫЧИCЛЯЮЩУЮ ФУHKЦИЮ F(X) B TOЧKE X
+
+   2. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE,
+      ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   3. OБ'ЯBИTЬ F B OПEPATOPE EXTERNAL B BЫЗЫBAЮЩEЙ ПPOГPAMME
+
+   4. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+C     AX     ЛEBЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C     BX     ПPABЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C     TOL    ЖEЛAEMУЮ ДЛИHУ ИHTEPBAЛA HEOПPEДEЛEHHOCTИ
+C            KOHEЧHOГO PEЗУЛЬTATA
+
+   5. OБPATИTЬCЯ K ПOДПPOГPAMME-ФУHKЦИИ ZEROIN
+
+         Z=ZEROIN(AX,BX,F,TOL)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+      REAL FUNCTION F(X)
+      REAL X
+      F=X*(X*X-2.0)-5.0
+      RETURN
+      END
+C
+      EXTERNAL F
+      REAL F,A,B,Z,TOL,ZEROIN
+      A=2.0
+      B=3.0
+      TOL=1.0E-7
+      Z=ZEROIN(A,B,F,TOL)
+      PRINT 1,Z
+    1 FORMAT('   Z=',F10.7)
+      STOP
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+      Z= 2.0945511
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. AHAЛOГ ПOДПPOГPAMMЫ ZEROIN, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DZEROI. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DZEROI TA ЖE,
+      ЧTO И У ZEROIN, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      AX, BX, F, TOL  ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.172 - 194.
+

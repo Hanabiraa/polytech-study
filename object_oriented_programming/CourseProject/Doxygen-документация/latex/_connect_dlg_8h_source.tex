@@ -1,0 +1,34 @@
+\hypertarget{_connect_dlg_8h_source}{}\doxysection{Connect\+Dlg.\+h}
+\label{_connect_dlg_8h_source}\index{ChatClient/ConnectDlg.h@{ChatClient/ConnectDlg.h}}
+\mbox{\hyperlink{_connect_dlg_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}afxdialogex.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{comment}{// ConnectDlg dialog}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_connect_dlg}{ConnectDlg}} : \textcolor{keyword}{public} CDialogEx}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     DECLARE\_DYNAMIC(\mbox{\hyperlink{class_connect_dlg}{ConnectDlg}})}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_connect_dlg_ab07cee1a4cc23ff8dabb9921420ba614}{ConnectDlg}}(CWnd* pParent = \textcolor{keyword}{nullptr});   \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{13     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_connect_dlg_a125225dc7e3d94c30e280a586de6d9b3}{\string~ConnectDlg}}();}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifdef AFX\_DESIGN\_TIME}}
+\DoxyCodeLine{17     \textcolor{keyword}{enum} \{ IDD = \mbox{\hyperlink{resource_8h_a614379e03f84cfe9515e3d88173c3b9f}{IDD\_CONNECT\_CHAT}} \};}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{21     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_connect_dlg_a99262dcf2fff00805982560b7a3578fd}{DoDataExchange}}(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25     CString \mbox{\hyperlink{class_connect_dlg_a784d66e70b862b7cd24d5820eadd44fe}{m\_ipv4\_input}};}
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_connect_dlg_ab6a6b7984d7b0d8ef91907524348aa3c}{m\_port\_input}};}
+\DoxyCodeLine{27     afx\_msg \textcolor{keywordtype}{void} \mbox{\hyperlink{class_connect_dlg_acf017fcb287d73e90132dec971509b53}{OnBnClickedButton1}}();}
+\DoxyCodeLine{28 \};}
+
+\end{DoxyCode}

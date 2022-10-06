@@ -1,0 +1,55 @@
+\hypertarget{framework_8h_source}{}\doxysection{framework.\+h}
+\label{framework_8h_source}\index{ChatClient/framework.h@{ChatClient/framework.h}}
+\mbox{\hyperlink{framework_8h}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef VC\_EXTRALEAN}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define VC\_EXTRALEAN            }\textcolor{comment}{// Exclude rarely-\/used stuff from Windows headers}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{targetver_8h}{targetver.h}}"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define \_ATL\_CSTRING\_EXPLICIT\_CONSTRUCTORS      }\textcolor{comment}{// some CString constructors will be explicit}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{// turns off MFC's hiding of some common and often safely ignored warning messages}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define \_AFX\_ALL\_WARNINGS}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <afxwin.h>}         \textcolor{comment}{// MFC core and standard components}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <afxext.h>}         \textcolor{comment}{// MFC extensions}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <afxdisp.h>}        \textcolor{comment}{// MFC Automation classes}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef \_AFX\_NO\_OLE\_SUPPORT}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <afxdtctl.h>}           \textcolor{comment}{// MFC support for Internet Explorer 4 Common Controls}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef \_AFX\_NO\_AFXCMN\_SUPPORT}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <afxcmn.h>}             \textcolor{comment}{// MFC support for Windows Common Controls}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_AFX\_NO\_AFXCMN\_SUPPORT}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <afxcontrolbars.h>}     \textcolor{comment}{// MFC support for ribbons and control bars}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef \_UNICODE}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#if defined \_M\_IX86}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#pragma comment(linker,"{}/manifestdependency:\(\backslash\)"{}type='win32' name='Microsoft.Windows.Common-\/Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"{}"{}})}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#elif defined \_M\_X64}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#pragma comment(linker,"{}/manifestdependency:\(\backslash\)"{}type='win32' name='Microsoft.Windows.Common-\/Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"{}"{}})}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#pragma comment(linker,"{}/manifestdependency:\(\backslash\)"{}type='win32' name='Microsoft.Windows.Common-\/Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"{}"{}})}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+
+\end{DoxyCode}

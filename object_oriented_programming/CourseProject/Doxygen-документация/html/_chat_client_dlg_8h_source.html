@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Async server-client chat: Исходный файл ChatClient/ChatClientDlg.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Async server-client chat<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_20350cd8265b57bca9d3afd6e3f37d45.html">ChatClient</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ChatClientDlg.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_chat_client_dlg_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// ChatClientDlg.h : header file</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_client_8h.html">Client.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_connect_dlg_8h.html">ConnectDlg.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// CChatClientDlg dialog</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="class_c_chat_client_dlg.html">CChatClientDlg</a> : <span class="keyword">public</span> CDialogEx</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// Construction</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_function" href="class_c_chat_client_dlg.html#ae4a06e6c9acdcefb7b881c7d226cac4b">CChatClientDlg</a>(CWnd* pParent = <span class="keyword">nullptr</span>);    <span class="comment">// standard constructor</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#a488b4b45547ca6d3807c24bdf59a1944">   14</a></span>    <a class="code hl_class" href="class_client.html">Client</a> <a class="code hl_variable" href="class_c_chat_client_dlg.html#a488b4b45547ca6d3807c24bdf59a1944">client</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#a9932cd09d0ec0b8a4706e9eea4bc0c59">   15</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_c_chat_client_dlg.html#a9932cd09d0ec0b8a4706e9eea4bc0c59">successConnect</a>; <span class="comment">// connect to server via ip and port number</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#ad8f557eca250fb3427958bf7e5b8588e">   16</a></span>    <a class="code hl_class" href="class_connect_dlg.html">ConnectDlg</a> <a class="code hl_variable" href="class_c_chat_client_dlg.html#ad8f557eca250fb3427958bf7e5b8588e">connect_modal_frame</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static</span> UINT __cdecl <a class="code hl_function" href="class_c_chat_client_dlg.html#ab81182b424388137dd7d9c55d70cc36a">StaticThreadFunc</a>(LPVOID pParam);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    UINT <a class="code hl_function" href="class_c_chat_client_dlg.html#ad0d2d78bb11db4b1b57a54e94ab47d3b">ThreadFunc</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// Dialog Data</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef AFX_DESIGN_TIME</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">enum</span> { IDD = <a class="code hl_define" href="resource_8h.html#a47548f39b1f1d2cd823fc738cfac4c7b">IDD_CHATCLIENT_DIALOG</a> };</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#ace229869326aabc158ea1ab7166c790c">DoDataExchange</a>(CDataExchange* pDX);    <span class="comment">// DDX/DDV support</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// Implementation</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#a02449bd9d2d97ad73138ee238c784c65">   32</a></span>    HICON <a class="code hl_variable" href="class_c_chat_client_dlg.html#a02449bd9d2d97ad73138ee238c784c65">m_hIcon</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// Generated message map functions</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">virtual</span> BOOL <a class="code hl_function" href="class_c_chat_client_dlg.html#a12a8b977d2fcb34ebdbd51807c54d220">OnInitDialog</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    afx_msg <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#a19053670611219616371466b7ece935e">OnSysCommand</a>(UINT nID, LPARAM lParam);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    afx_msg <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#a706ac8372963f2a5cd7dbbd1b8bfdf00">OnPaint</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    afx_msg HCURSOR <a class="code hl_function" href="class_c_chat_client_dlg.html#ae055cf8cac63aae12f77e0eab596f052">OnQueryDragIcon</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    DECLARE_MESSAGE_MAP()</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>public:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// Client message, which need to be send to server</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">//  CString clientMsg;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    afx_msg <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#acb8e8373732f477cf966534d0d9afb14">OnDestroy</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    afx_msg <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#a2248bbe50585efefa070cddedff4c5c1">OnTimer</a>(UINT_PTR nIDEvent);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// for messages from server</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#ada15df76e379b24604d9d26ce334b492">   46</a></span>    CListBox <a class="code hl_variable" href="class_c_chat_client_dlg.html#ada15df76e379b24604d9d26ce334b492">m_Chat</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_c_chat_client_dlg.html#ac528926fbc125f077c242b4fc480479c">   47</a></span>    CString <a class="code hl_variable" href="class_c_chat_client_dlg.html#ac528926fbc125f077c242b4fc480479c">m_Msg</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    afx_msg <span class="keywordtype">void</span> <a class="code hl_function" href="class_c_chat_client_dlg.html#aac23a48edada6cddacfa60dfe0f69c1b">OnBnClickedSendbtn</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="ttc" id="a_client_8h_html"><div class="ttname"><a href="_client_8h.html">Client.h</a></div></div>
+<div class="ttc" id="a_connect_dlg_8h_html"><div class="ttname"><a href="_connect_dlg_8h.html">ConnectDlg.h</a></div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html"><div class="ttname"><a href="class_c_chat_client_dlg.html">CChatClientDlg</a></div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:10</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a02449bd9d2d97ad73138ee238c784c65"><div class="ttname"><a href="class_c_chat_client_dlg.html#a02449bd9d2d97ad73138ee238c784c65">CChatClientDlg::m_hIcon</a></div><div class="ttdeci">HICON m_hIcon</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:32</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a12a8b977d2fcb34ebdbd51807c54d220"><div class="ttname"><a href="class_c_chat_client_dlg.html#a12a8b977d2fcb34ebdbd51807c54d220">CChatClientDlg::OnInitDialog</a></div><div class="ttdeci">virtual BOOL OnInitDialog()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:82</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a19053670611219616371466b7ece935e"><div class="ttname"><a href="class_c_chat_client_dlg.html#a19053670611219616371466b7ece935e">CChatClientDlg::OnSysCommand</a></div><div class="ttdeci">afx_msg void OnSysCommand(UINT nID, LPARAM lParam)</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:146</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a2248bbe50585efefa070cddedff4c5c1"><div class="ttname"><a href="class_c_chat_client_dlg.html#a2248bbe50585efefa070cddedff4c5c1">CChatClientDlg::OnTimer</a></div><div class="ttdeci">afx_msg void OnTimer(UINT_PTR nIDEvent)</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:204</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a488b4b45547ca6d3807c24bdf59a1944"><div class="ttname"><a href="class_c_chat_client_dlg.html#a488b4b45547ca6d3807c24bdf59a1944">CChatClientDlg::client</a></div><div class="ttdeci">Client client</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:14</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a706ac8372963f2a5cd7dbbd1b8bfdf00"><div class="ttname"><a href="class_c_chat_client_dlg.html#a706ac8372963f2a5cd7dbbd1b8bfdf00">CChatClientDlg::OnPaint</a></div><div class="ttdeci">afx_msg void OnPaint()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:163</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_a9932cd09d0ec0b8a4706e9eea4bc0c59"><div class="ttname"><a href="class_c_chat_client_dlg.html#a9932cd09d0ec0b8a4706e9eea4bc0c59">CChatClientDlg::successConnect</a></div><div class="ttdeci">bool successConnect</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:15</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_aac23a48edada6cddacfa60dfe0f69c1b"><div class="ttname"><a href="class_c_chat_client_dlg.html#aac23a48edada6cddacfa60dfe0f69c1b">CChatClientDlg::OnBnClickedSendbtn</a></div><div class="ttdeci">afx_msg void OnBnClickedSendbtn()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:238</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ab81182b424388137dd7d9c55d70cc36a"><div class="ttname"><a href="class_c_chat_client_dlg.html#ab81182b424388137dd7d9c55d70cc36a">CChatClientDlg::StaticThreadFunc</a></div><div class="ttdeci">static UINT __cdecl StaticThreadFunc(LPVOID pParam)</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:219</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ac528926fbc125f077c242b4fc480479c"><div class="ttname"><a href="class_c_chat_client_dlg.html#ac528926fbc125f077c242b4fc480479c">CChatClientDlg::m_Msg</a></div><div class="ttdeci">CString m_Msg</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:47</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_acb8e8373732f477cf966534d0d9afb14"><div class="ttname"><a href="class_c_chat_client_dlg.html#acb8e8373732f477cf966534d0d9afb14">CChatClientDlg::OnDestroy</a></div><div class="ttdeci">afx_msg void OnDestroy()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:195</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ace229869326aabc158ea1ab7166c790c"><div class="ttname"><a href="class_c_chat_client_dlg.html#ace229869326aabc158ea1ab7166c790c">CChatClientDlg::DoDataExchange</a></div><div class="ttdeci">virtual void DoDataExchange(CDataExchange *pDX)</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:61</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ad0d2d78bb11db4b1b57a54e94ab47d3b"><div class="ttname"><a href="class_c_chat_client_dlg.html#ad0d2d78bb11db4b1b57a54e94ab47d3b">CChatClientDlg::ThreadFunc</a></div><div class="ttdeci">UINT ThreadFunc()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:227</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ad8f557eca250fb3427958bf7e5b8588e"><div class="ttname"><a href="class_c_chat_client_dlg.html#ad8f557eca250fb3427958bf7e5b8588e">CChatClientDlg::connect_modal_frame</a></div><div class="ttdeci">ConnectDlg connect_modal_frame</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:16</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ada15df76e379b24604d9d26ce334b492"><div class="ttname"><a href="class_c_chat_client_dlg.html#ada15df76e379b24604d9d26ce334b492">CChatClientDlg::m_Chat</a></div><div class="ttdeci">CListBox m_Chat</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.h:46</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ae055cf8cac63aae12f77e0eab596f052"><div class="ttname"><a href="class_c_chat_client_dlg.html#ae055cf8cac63aae12f77e0eab596f052">CChatClientDlg::OnQueryDragIcon</a></div><div class="ttdeci">afx_msg HCURSOR OnQueryDragIcon()</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:190</div></div>
+<div class="ttc" id="aclass_c_chat_client_dlg_html_ae4a06e6c9acdcefb7b881c7d226cac4b"><div class="ttname"><a href="class_c_chat_client_dlg.html#ae4a06e6c9acdcefb7b881c7d226cac4b">CChatClientDlg::CChatClientDlg</a></div><div class="ttdeci">CChatClientDlg(CWnd *pParent=nullptr)</div><div class="ttdef"><b>Definition:</b> ChatClientDlg.cpp:54</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Класс, определяющий клиент, который будет подключаться к серверу</div><div class="ttdef"><b>Definition:</b> Client.h:20</div></div>
+<div class="ttc" id="aclass_connect_dlg_html"><div class="ttname"><a href="class_connect_dlg.html">ConnectDlg</a></div><div class="ttdef"><b>Definition:</b> ConnectDlg.h:8</div></div>
+<div class="ttc" id="aresource_8h_html_a47548f39b1f1d2cd823fc738cfac4c7b"><div class="ttname"><a href="resource_8h.html#a47548f39b1f1d2cd823fc738cfac4c7b">IDD_CHATCLIENT_DIALOG</a></div><div class="ttdeci">#define IDD_CHATCLIENT_DIALOG</div><div class="ttdef"><b>Definition:</b> resource.h:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>

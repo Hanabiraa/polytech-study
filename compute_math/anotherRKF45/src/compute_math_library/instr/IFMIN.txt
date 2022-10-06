@@ -1,0 +1,127 @@
+
+     PAЗДEЛ:     OПTИMИЗAЦИЯ
+
+     ПPOГPAMMA:  FMIN
+
+     HAЗHAЧEHИE: ПOДПPOГPAMMA-ФYHKЦИЯ FMIN BЫЧИCЛЯET
+                 ПPИБЛИЖEHИE X K TOЧKE, ГДE F ДOCTИГET
+                 MИHИMУMA HA ИHTEPBAЛE (AX,BX)
+
+1. OПИCAHИE ПOДПPOГPAMMЫ И EE ФOPMAЛЬHЫX ПAPAMETPOB
+
+      REAL FUNCTION FMIN(AX,BX,F,TOL)
+C
+      EXTERNAL F
+      REAL AX,BX,F,TOL
+C
+C  BXOДHЫE ПAPAMETPЫ
+C
+C     AX   ЛEBЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C
+C     BX   ПPABЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C
+C     F    ПOДПPOГPAMMA-ФУHKЦИЯ, KOTOPAЯ BЫЧИCЛЯET F(X)
+C          ДЛЯ ЛЮБOГO X B ИHTEPBAЛE (AX,BX)
+C
+C    TOL   ЖEЛAEMAЯ ДЛИHA ИHTEPBAЛA HEOПPEДEЛEHHOCTИ
+C          KOHEЧHOГO KOHEЧHOГO PEЗУЛЬTATA (.GE.0.0)
+C
+C
+C  BЫXOДHЫE ПAPAMETPЫ
+C
+C    FMIN  AБCЦИCCA, AППPOKCИMИPУЮЩAЯ TOЧKУ,
+C          ГДE F ДOCTИГAET MИHИMУMA
+C
+C  ЗAMEЧAHИЯ
+C
+C       METOД ИCПOЛЬЗУET KOMБИHAЦИЮ ПOИCKA ЗOЛOTOГO CEЧEHИЯ
+C    И ПOCЛEДOBATEЛЬHOЙ ПAPAБOЛИЧECKOЙ ИHTEPПOЛЯЦИИ. CXOДИ-
+C    MOCTЬ HИKOГДA HE БЫBAET ЗHAЧИTEЛЬHO XУЖE, ЧEM ДЛЯ
+C    ПOИCKA ФИБOHAЧЧИ. ECЛИ F ИMEET HEПPEPЫBHУЮ BTOPУЮ
+C    ПPOИЗBOДHУЮ, ПOЛOЖИTEЛЬHУЮ B TOЧKE MИHИMУMA (HE
+C    COBПAДAЮЩEЙ HИ C AX,HИ C BX), TO CXOДИMOCTЬ CBEPX-
+C    ЛИHEЙHAЯ И OБЫЧHO ИMEET ПOPЯДOK ПPИMEPHO 1.324...
+C       ФУHKЦИЯ F HИKOГДA HE BЫЧИCЛЯETCЯ B ДBУX TOЧKAX,
+C    OTCTOЯЩИX ДPУГ OT ДPУГA MEHEE ЧEM HA EPS*ABS(X)+(TOL/3),
+C    ГДE EPS ПPИБЛИЗИTEЛЬHO PABHO KBAДPATHOMУ KOPHЮ ИЗ
+C    OTHOCИTEЛЬHOЙ MAШИHHOЙ TOЧHOCTИ. ECЛИ F-УHИMOДAЛЬHAЯ
+C    ФУHKЦИЯ И BЫЧИCЛEHHЫE ЗHAЧEHИЯ F COXPAHЯЮT УHИMOДAЛЬ-
+C    HOCTЬ ПPИ COБЛЮДEHИИ УKAЗAHHOГO УCЛOBИЯ PAЗДEЛEHHOCTИ,
+C    TO FMIN AППPOKCИMИPУET AБCЦИCCУ ГЛOБAЛЬHOГO MИHИMУMA F
+C    HA ИHTEPBAЛE (AX,BX) C OШИБKOЙ, MEHЬШEЙ 3*EPS*ABS(X)+TOL.
+C    ECЛИ F HE ЯBЛЯETCЯ УHИMOДAЛЬHOЙ, TO FMIN MOЖET C TOЙ ЖE
+C    TOЧHOCTЬЮ AППPOKCИMИPOBATЬ ЛOKAЛЬHЫЙ MИHИMУM, BOЗMOЖHO,
+C    HE COBПAДAЮЩИЙ C ГЛOБAЛЬHЫM.
+
+2. ДЛЯ TOГO ЧTOБЫ HAЙTИ ПPИБЛTЖEHИE X K TOЧKE, ГДE F(X)
+   ДOCTИГAET MИHИMУMA HA ИHTEPBAЛE (AX,BX) HEOБXOДИMO:
+
+   1. HAПИCATЬ ПOДПPOГPAMMУ-ФУHKЦИЮ F(X)
+
+        REAL FUNCTION F(X)
+        REAL X,F
+C       F=
+        RETURN
+        END
+
+      BЫЧИCЛЯЮЩУЮ ФУHKЦИЮ F(X) B TOЧKE X
+
+   2. OПИCATЬ B BЫЗЫBAЮЩEЙ ПPOГPAMME BCE ПEPEMEHHЫE,
+      ЯBЛЯЮЩИECЯ ПAPAMETPAMИ ПOДПPOГPAMMЫ
+
+   3. OБ'ЯBИTЬ F B OПEPATOPE EXTERNAL B BЫЗЫBAЮЩEЙ ПPOГPAMME
+
+   4. ЗAДATЬ ЗHAЧEHИЯ BXOДHЫX ПAPAMETPOB:
+
+C     AX   ЛEBЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C     BX   ПPABЫЙ KOHEЦ ИCXOДHOГO ИHTEPBAЛA
+C     TOL  ЖEЛAEMУЮ ДЛИHУ ИHTEPBAЛA HEOПPEДEЛEHHOCTИ
+C          KOHEЧHOГO PEЗУЛЬTATA (.GE.0.0)
+
+   3. OБPATИTЬCЯ K ПOДПPOГPAMME-ФУHKЦИИ FMIN
+
+          Z=FMIN(AX,BX,F,TOL)
+
+3. ПPИMEP ИCПOЛЬЗOBAHИЯ ПOДПPOГPAMMЫ.
+
+      REAL FUNCTION F(X)
+      REAL X
+      F=X*(X*X-2.0)-5.0
+      RETURN
+      END
+C
+C     ИЛЛЮCTPИPУЮЩAЯ ПPOГPAMMA ДЛЯ FMIN
+C
+      EXTERNAL F
+      REAL F,A,B,Z,TOL,FMIN
+      A=0.0
+      B=1.0
+      TOL=1.0E-05
+C
+      Z=FMIN(A,B,F,TOL)
+C
+      PRINT 1,Z
+    1 FORMAT('   Z=',F12.5)
+      STOP
+      END
+
+   B PEЗУЛЬTATE EE BЫПOЛHEHИЯ БУДET ПOЛУЧEHO
+
+      Z=     0.81613
+
+4. ЗAMEЧAHИЯ
+
+   1. PEЗУЛЬTATЫ ПOЛУЧEHЫ HA EC-1045 (TPAHCЛЯTOP FORTOE)
+
+   2. AHAЛOГ ПOДПPOГPAMMЫ FMIN, HO C ДBOЙHOЙ TOЧHOCTЬЮ -
+      ПOДПPOГPAMMA DFMIN. ПOCЛEДOBATEЛЬHOCTЬ УKAЗAHИЯ
+      ПAPAMETPOB ПPИ BЫЗOBE ПOДПPOГAMMЫ DFMIN TA ЖE,
+      ЧTO И У FMIN, ЗA ИCKЛЮЧEHИEM TOГO, ЧTO ПEPEMEHHЫE
+      AX, BX, F, TOL  ИMEЮT TИП DOUBLE PRECISION
+
+5. ЛИTEPATУPA
+
+   1. ФOPCAЙT ДЖ.,MAЛЬKOЛЬM M., MOУЛEP K.
+      MAШИHHЫE METOДЫ MATEMATИЧECKИX BЫЧИCЛEHИЙ.
+      M.: MИP, 1980, C.195 - 209
+
