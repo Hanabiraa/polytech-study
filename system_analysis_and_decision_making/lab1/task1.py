@@ -67,4 +67,4 @@ e = [
 print('\tМатрица значений:')
 for el, idx in e:
     print(f'\t{el:.2f}')
-print(f'\tОптимальная стратегия: X{max(e, key=lambda x: x[0])[1]},\n\tзначение MM: {max(e, key=lambda x: x[0])[0]:.2f}')
+print(f'\tОптимальная стратегия: X{max(e, key=lambda x: x[0])[1]},\n\tзначение HW: {max(e, key=lambda x: x[0])[0]:.2f}')
