@@ -1,7 +1,5 @@
 
 function varargout = lab1(varargin)
-acc_arrays = zeros(100, 10000);
-curr_acc_num = 0;
 % LAB1 MATLAB code for lab1.fig
 %      LAB1, by itself, creates a new LAB1 or raises the existing
 %      singleton*.
@@ -78,9 +76,8 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in aStart.
 function aStart_Callback(hObject, eventdata, handles)
-global curr_acc_num;
-global acc_arrays;
 
+% -- считывание всех полей
 acc_num = str2num(get(handles.num_of_acc, 'string'));
 acc_flag = get(handles.acc_flag, 'Value');
 
@@ -91,53 +88,46 @@ noise_type = get(handles.noise_type, 'Value');
 sko = str2double(get(handles.sko, 'string'));
 periods = str2num(get(handles.num_periods, 'string'));
 
-noise = size(points);
-switch noise_type
-    case 1
-        for i=1:points
-            noise(i) = 0;
-        end
-    case 2
-        noise = randn(points);
-    case 3
-        noise = wgn(points, 1, 0);
-end
-
-y = size(points);
-for i=1:points %��������� ���������� ������� � �����
-    switch sig_type
-        case 1            
-            y(i) = sigamp * (sin((pi*i*periods)/points)) + noise(i) * sko;
-        case 2
-            y(i) = sigamp * (sawtooth((pi*i*periods)/points)) + noise(i) * sko;
-        case 3
-            y(i) = sigamp * (sawtooth((pi*i*periods)/points, 1/2)) + noise(i) * sko;
-        case 4
-            y(i) = sigamp * (square((pi*i*periods)/points)) + noise(i) * sko;
-    end
-end
-
 if acc_flag == 0
-    x=1:points;
-    plot(x,y);
-else
-    if curr_acc_num > acc_num
-        curr_acc_num = 1;
-        acc_arrays(:, :) = 0;
-    end 
+    acc_num = 1;
+end
 
+
+y = zeros(points); % -- узлы функции
+for k=1:acc_num
+    noise = zeros(points); % -- создание шума при каждой итерации
+    switch noise_type
+        case 1
+            for i=1:points
+                noise(i) = 0;
+            end
+        case 2
+            noise = randn(points);
+        case 3
+            noise = wgn(points, 1, 0);
+    end
     
     for i=1:points
-        acc_arrays(curr_acc_num, i) = y(i);
+        switch sig_type
+            case 1            
+                y(i) = y(i) + (sigamp * (sin((pi*i*periods)/points)) + noise(i) * sko);
+            case 2
+                y(i) = y(i) + (sigamp * (sawtooth((pi*i*periods)/points)) + noise(i) * sko);
+            case 3
+                y(i) = y(i) + (sigamp * (sawtooth((pi*i*periods)/points, 1/2)) + noise(i) * sko);
+            case 4
+                y(i) = y(i) + (sigamp * (square((pi*i*periods)/points)) + noise(i) * sko);
+        end
     end
-    
-    x = 1:points;
-    y = sum(acc_arrays) / curr_acc_num;
-    plot(x,y(1:points));
-    
-    set(handles.acc_edit, 'String', curr_acc_num);
-    curr_acc_num = curr_acc_num + 1;
 end
+
+for i=1:points % -- усреднение, в том случае, если аккумуляция отключена, деление происходит на 1
+    y(i) = y(i) / acc_num;
+end
+
+x=1:points;
+plot(x(1:points),y(1:points));
+
 % hObject    handle to aStart (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
