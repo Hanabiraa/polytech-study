@@ -60,7 +60,20 @@ LIMIT 10;
 --               |                      |          | test_log_inh=rd/sushi |                   |
 -- (11 rows)
 
-
+-- SELECT	r (“read”)	    LARGE OBJECT, SEQUENCE, TABLE (and table-like objects), table column
+-- INSERT	a (“append”)	TABLE, table column
+-- UPDATE	w (“write”)	    LARGE OBJECT, SEQUENCE, TABLE, table column
+-- DELETE	d	            TABLE
+-- TRUNCATE	D	            TABLE
+-- REFERENCES	x	        TABLE, table column
+-- TRIGGER	t	            TABLE
+-- CREATE	C	            DATABASE, SCHEMA, TABLESPACE
+-- CONNECT	c	            DATABASE
+-- TEMPORARY	T	        DATABASE
+-- EXECUTE	X	            FUNCTION, PROCEDURE
+-- USAGE	U	            DOMAIN, FOREIGN DATA WRAPPER, FOREIGN SERVER, LANGUAGE, SCHEMA, SEQUENCE, TYPE
+-- SET	s	                PARAMETER
+-- ALTER SYSTEM	A	        PARAMETER
 
 -- задание 2
 CREATE OR REPLACE PROCEDURE delete_items_before_timestamp(tmstp timestamp)
