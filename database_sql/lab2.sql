@@ -2,7 +2,11 @@
 -- -- createuser и dropuser - это синтакс. сахар для CREATE ROLE и DROP ROLE
 SELECT rolname FROM pg_roles;
 
+-- TODO: транзакции
+
 -- задание 1
+-- TODO: добавить VIEW и VIEW на основе нескольких таблиц, также добавить к этой VIEW (комплексной) право на insert.
+-- нужно определить instead of insert для VIEW (либо триггер либо переопределение правило вставки)
 
 -- проверка, какие роли доступны для текущего юзера
 SELECT * FROM pg_roles
@@ -76,6 +80,8 @@ LIMIT 10;
 -- ALTER SYSTEM	A	        PARAMETER
 
 -- задание 2
+
+-- -- TODO: 1 - с исключением и циклами, вторая с курсорами
 CREATE OR REPLACE PROCEDURE delete_items_before_timestamp(tmstp timestamp)
 LANGUAGE sql
 AS $$
