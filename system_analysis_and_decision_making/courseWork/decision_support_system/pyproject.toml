@@ -10,6 +10,7 @@ packages = [{include = "decision_support_system"}]
 python = "^3.10"
 numpy = "^1.24.1"
 matplotlib = "^3.6.2"
+pandas = "^1.5.2"
 
 [tool.poetry.scripts]
 run = "decision_support_system.main:main"
