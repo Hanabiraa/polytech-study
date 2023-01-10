@@ -1,13 +1,26 @@
 from dataclasses import dataclass
-from typing import List
-
-import numpy as np
-import pandas as pd
+from typing import List, Any
+from itertools import chain
+from prettytable import PrettyTable
 
 
 @dataclass
-class RawData:
+class RawDataframeModel:
+    """
+    Модель данных для сырых, необработанных данных
+    """
+    matrix_col_names: List[str]
     matrix_row_names: List[str]
-    matrix: pd.DataFrame
-    choice_function: np.ndarray
-    weight_coefficients: np.ndarray
+    matrix: List[List[Any]]
+    choice_function: List[bool]
+    weight_coefficients: List[float]
+
+    def __str__(self) -> str:
+        table = PrettyTable()
+        table.field_names = list(
+            chain(["предпочтения", *self.matrix_col_names, "функция выбора", "весовые коэффициенты"]))
+        table.align["предпочтения"] = "r"
+        for matrix_row_name, matrix_row, choice, weight in zip(self.matrix_row_names, self.matrix, self.choice_function,
+                                                               self.weight_coefficients):
+            table.add_row(list(chain([matrix_row_name, *matrix_row, choice, weight])))
+        return str(table)
