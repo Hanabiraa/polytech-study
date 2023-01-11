@@ -1,9 +1,7 @@
 from typing import List, Any
 from ..models.raw_data import RawDataframeModel
-import numpy as np
-import pandas as pd
 import csv
-
+import numpy as np
 
 class Reader:
     """
@@ -45,16 +43,26 @@ class Reader:
 
     @staticmethod
     def __read_matrix(path: str) -> List[List[Any]]:
-        df = pd.read_csv(
-            filepath_or_buffer=path,
-            header=0
-        ).to_numpy().tolist()
-        return df
+        with open(path) as f:
+            csv_iter = csv.reader(f)
+            next(csv_iter)
+            return [
+                list(map(float, row))
+                for row in csv_iter
+            ]
 
     @staticmethod
     def __read_choice_function(path: str) -> List[bool]:
-        return np.genfromtxt(path, delimiter=',').astype(bool).tolist()
+        with open(path) as f:
+            return [
+                False if row[0] == "0" else True
+                for row in csv.reader(f)
+            ]
 
     @staticmethod
     def __read_weight_coefficients(path: str) -> List[float]:
-        return np.genfromtxt(path, delimiter=',').tolist()
+        with open(path) as f:
+            return [
+                float(row[0])
+                for row in csv.reader(f)
+            ]

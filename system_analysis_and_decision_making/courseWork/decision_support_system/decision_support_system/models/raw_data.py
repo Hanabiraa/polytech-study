@@ -22,5 +22,11 @@ class RawDataframeModel:
         table.align["предпочтения"] = "r"
         for matrix_row_name, matrix_row, choice, weight in zip(self.matrix_row_names, self.matrix, self.choice_function,
                                                                self.weight_coefficients):
-            table.add_row(list(chain([matrix_row_name, *matrix_row, choice, weight])))
+            table.add_row(list(chain(
+                [
+                    matrix_row_name,
+                    *matrix_row,
+                    "Большее преобладает" if choice else "Меньшее преобладает",
+                    weight
+                ])))
         return str(table)
