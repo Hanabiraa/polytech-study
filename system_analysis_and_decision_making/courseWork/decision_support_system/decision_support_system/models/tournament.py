@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, List, Any
+
 from prettytable import PrettyTable
-from itertools import chain
 
 
 @dataclass
@@ -16,7 +16,7 @@ class TournamentModel:
 
     def __str__(self):
         table = PrettyTable()
-        table.field_names = [f"Турнирный механизм для {self.preference}", "Баллы"]
+        table.field_names = [f"Турнирный механизм", "Баллы"]
         for variant, weight in zip(self.variant_names, self.tournament_matrix):
             table.add_row([
                 variant,
@@ -41,3 +41,30 @@ class TournamentModels:
         for model in self.tournament_by_preference.values():
             tables.append(str(model))
         return "\n".join(tables)
+
+
+@dataclass
+class TournamentMechanismResultsModel:
+    """
+        модель результатов для каждого из варианта по турнирному механизму
+    """
+    tournament_by_variant: Dict[str, List[Any]]
+
+    def __str__(self):
+        table = PrettyTable()
+        table.field_names = [
+            "Механизм турнирный. Вариант",
+            "Баллы",
+            "Место"
+        ]
+        for variant in sorted(
+                self.tournament_by_variant.keys(),
+                key= lambda variant: self.tournament_by_variant[variant][1],
+                reverse = False
+        ):
+            table.add_row([
+                variant,
+                round(self.tournament_by_variant[variant][0], 2),
+                *self.tournament_by_variant[variant][1:],
+            ])
+        return str(table)

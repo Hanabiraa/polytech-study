@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from typing import List, Any
 from itertools import chain
+from typing import List, Any
+
 from prettytable import PrettyTable
 
 

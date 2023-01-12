@@ -1,8 +1,8 @@
-from decision_support_system.models import BinaryRelationModels, KMaxModels, KMaxModel, KMaxMechanismModel
 from decision_support_system.core.mechanisms.k_max_optimal_mechanism import calculate_k_max_optimal_options
+from decision_support_system.models import BinaryRelationModels, KMaxModels, KMaxModel, KMaxMechanismResultsModel
 
 
-def calculate_k_max_options(df: BinaryRelationModels) -> KMaxModels:
+async def calculate_k_max_options(df: BinaryRelationModels) -> KMaxModels:
     """
     Расчет вариантов k-max механизма и последующий расчет k-max оптимальных вариантов
     """
@@ -33,11 +33,12 @@ def calculate_k_max_options(df: BinaryRelationModels) -> KMaxModels:
         )
         k_max_models.k_max_matrix_by_preference[preference] = k_max_model
 
-    return calculate_k_max_optimal_options(k_max_models)
+    df = await calculate_k_max_optimal_options(k_max_models)
+    return df
 
 
-def calculate_k_max_rating(df: KMaxModels) -> KMaxMechanismModel:
-    k_max_mechanism = KMaxMechanismModel({}, {})
+async def calculate_k_max_results_by_variant(df: KMaxModels) -> KMaxMechanismResultsModel:
+    k_max_mechanism = KMaxMechanismResultsModel({}, {})
     for variant in df.variant_names:
         """
         0 индекс в списке - количество баллов с учетом всего
@@ -69,23 +70,28 @@ def calculate_k_max_rating(df: KMaxModels) -> KMaxMechanismModel:
         if idx == 0:
             k_max_mechanism.rating_and_place_by_variant[variant[0]][1] = place
             place += 1
-        else:
+            continue
+
+        if sorted_variants[idx - 1][1][0] != variant[1][0]:
             k_max_mechanism.rating_and_place_by_variant[variant[0]][1] = place
-            if sorted_variants[idx - 1][1][0] != variant[1][1]:
-                place += 1
+            place += 1
+        else:
+            k_max_mechanism.rating_and_place_by_variant[variant[0]][1] = place - 1
 
     # подсчет места для k_max с оптимальным
     sorted_variants = sorted(k_max_mechanism.rating_and_place_by_variant_with_optimal.items(),
-                                 key=lambda x: x[1][0],
-                                 reverse=True
-                                 )
+                             key=lambda x: x[1][0],
+                             reverse=True
+                             )
     place = 1
     for idx, variant in enumerate(sorted_variants):
         if idx == 0:
             k_max_mechanism.rating_and_place_by_variant_with_optimal[variant[0]][1] = place
             place += 1
-        else:
+            continue
+        if sorted_variants[idx - 1][1][0] != variant[1][0]:
             k_max_mechanism.rating_and_place_by_variant_with_optimal[variant[0]][1] = place
-            if sorted_variants[idx - 1][1][0] != variant[1][1]:
-                place += 1
+            place += 1
+        else:
+            k_max_mechanism.rating_and_place_by_variant_with_optimal[variant[0]][1] = place - 1
     return k_max_mechanism

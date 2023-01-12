@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, List, Any
+
 from prettytable import PrettyTable
-from itertools import chain
 
 
 @dataclass

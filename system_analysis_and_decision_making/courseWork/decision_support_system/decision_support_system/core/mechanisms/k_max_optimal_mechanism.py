@@ -1,9 +1,9 @@
-import numpy as np
 from copy import deepcopy
+
 from decision_support_system.models import KMaxModels
 
 
-def calculate_k_max_optimal_options(df: KMaxModels) -> KMaxModels:
+async def calculate_k_max_optimal_options(df: KMaxModels) -> KMaxModels:
     """
     проверка оптимальности k-max вариантов
     :param df:
@@ -21,19 +21,19 @@ def calculate_k_max_optimal_options(df: KMaxModels) -> KMaxModels:
                     case 1:
                         if (
                                 model.k_max_matrix[i][j] == (df.variants_count - 1) and
-                                model.k_max_matrix[i][j] > model.k_max_matrix[i][j+2]
+                                model.k_max_matrix[i][j] > model.k_max_matrix[i][j + 2]
                         ):
                             optimal_check_vector[i] = 2
                     case 2:
                         if (
                                 model.k_max_matrix[i][j] == df.variants_count and
-                                model.k_max_matrix[i][j] > model.k_max_matrix[i][j+1]):
+                                model.k_max_matrix[i][j] > model.k_max_matrix[i][j + 1]):
                             optimal_check_vector[i] = 3
                     case 3:
                         if (
                                 (model.k_max_matrix[i][j] == (df.variants_count - 1)) and
-                                (model.k_max_matrix[i][j] == model.k_max_matrix[i][j-1]) and
-                                (model.k_max_matrix[i][j] == model.k_max_matrix[i][j-2])
+                                (model.k_max_matrix[i][j] == model.k_max_matrix[i][j - 1]) and
+                                (model.k_max_matrix[i][j] == model.k_max_matrix[i][j - 2])
                         ):
                             optimal_check_vector[i] = 4
                     case _:

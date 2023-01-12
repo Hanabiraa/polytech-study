@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Dict, List, Any
+
 from prettytable import PrettyTable
 
 
@@ -16,7 +17,7 @@ class KMaxModel:
 
     def __str__(self):
         table = PrettyTable()
-        table.field_names = [self.preference, "HR0 + ER + NK", "HR0 + NK", "HR0 + ER", "HR0", "оптимальность"]
+        table.field_names = ["K-max механизм", "HR0 + ER + NK", "HR0 + NK", "HR0 + ER", "HR0", "оптимальность"]
 
         for variant_name, row, optimal_check in zip(self.variant_names, self.k_max_matrix, self.k_max_optimal_check):
             optimal_check_str = "-"
@@ -54,9 +55,9 @@ class KMaxModels:
 
 
 @dataclass
-class KMaxMechanismModel:
+class KMaxMechanismResultsModel:
     """
-    модель данных для k-max механизма для итоговых результатов с учетом
+    модель результатов для каждого из варианта по механизму k-max с учетом
     весовых коэффициентов и оптимальности
     """
     rating_and_place_by_variant: Dict[str, List[Any]]
@@ -71,10 +72,16 @@ class KMaxMechanismModel:
             "Баллы с учетом оптимальности",
             "Место с учетом"
         ]
-        for variant in self.rating_and_place_by_variant.keys():
+        for variant in sorted(
+                self.rating_and_place_by_variant.keys(),
+                key=lambda variant: self.rating_and_place_by_variant_with_optimal[variant][1],
+                reverse=False
+        ):
             table.add_row([
                 variant,
-                *self.rating_and_place_by_variant[variant],
-                *self.rating_and_place_by_variant_with_optimal[variant]
+                round(self.rating_and_place_by_variant[variant][0], 2),
+                *self.rating_and_place_by_variant[variant][1:],
+                round(self.rating_and_place_by_variant_with_optimal[variant][0], 2),
+                *self.rating_and_place_by_variant_with_optimal[variant][1:],
             ])
         return str(table)
