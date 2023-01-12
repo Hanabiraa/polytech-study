@@ -1,7 +1,6 @@
 from typing import List, Any
 from ..models.raw_data import RawDataframeModel
 import csv
-import numpy as np
 
 class Reader:
     """

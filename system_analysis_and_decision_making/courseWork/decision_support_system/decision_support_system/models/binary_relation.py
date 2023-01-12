@@ -13,6 +13,7 @@ class BinaryRelationModel:
     binary_relation_matrix: List[List[Any]]
     variant_names: List[str]
     variants_count: int
+    weight_coefficient: float
 
     def __str__(self):
         table = PrettyTable()
@@ -35,6 +36,6 @@ class BinaryRelationModels:
 
     def __str__(self):
         tables = []
-        for val in self.binary_relation_by_preference.values():
-            tables.append(str(val))
+        for model in self.binary_relation_by_preference.values():
+            tables.append(str(model))
         return "\n".join(tables)

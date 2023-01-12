@@ -14,7 +14,7 @@ def calculate_binary_relations(df: RawDataframeModel) -> BinaryRelationModels:
         df.matrix_row_names,
         preferences_count
     )
-    for row_idx, row in enumerate(df.matrix):
+    for row_idx, row, weight_coefficient in zip(range(len(df.matrix)), df.matrix, df.weight_coefficients):
         binary_relation = [[0 for _ in range(variants_count)] for _ in range(variants_count)]  # 2d list
         for i in range(variants_count):
             for j in range(variants_count):
@@ -29,6 +29,7 @@ def calculate_binary_relations(df: RawDataframeModel) -> BinaryRelationModels:
             binary_relation,
             df.matrix_col_names,
             variants_count,
+            weight_coefficient
         )
         binary_relation_models.binary_relation_by_preference[binary_relation_model.preference] = binary_relation_model
     return binary_relation_models

@@ -12,6 +12,7 @@ class KMaxModel:
     k_max_matrix: List[List[Any]]
     k_max_optimal_check: List[int]
     variant_names: List[str]
+    weight_coefficient: float
 
     def __str__(self):
         table = PrettyTable()
@@ -42,10 +43,38 @@ class KMaxModels:
     модель данных для k-max моделей по каждому предпочтению
     """
     k_max_matrix_by_preference: Dict[str, KMaxModel]
+    variant_names: List[str]
     variants_count: int
 
     def __str__(self):
         tables = []
-        for val in self.k_max_matrix_by_preference.values():
-            tables.append(str(val))
+        for model in self.k_max_matrix_by_preference.values():
+            tables.append(str(model))
         return "\n".join(tables)
+
+
+@dataclass
+class KMaxMechanismModel:
+    """
+    модель данных для k-max механизма для итоговых результатов с учетом
+    весовых коэффициентов и оптимальности
+    """
+    rating_and_place_by_variant: Dict[str, List[Any]]
+    rating_and_place_by_variant_with_optimal: Dict[str, List[Any]]
+
+    def __str__(self):
+        table = PrettyTable()
+        table.field_names = [
+            "Механизм K-max. Вариант",
+            "Баллы без учета оптимальности",
+            "Место без учета",
+            "Баллы с учетом оптимальности",
+            "Место с учетом"
+        ]
+        for variant in self.rating_and_place_by_variant.keys():
+            table.add_row([
+                variant,
+                *self.rating_and_place_by_variant[variant],
+                *self.rating_and_place_by_variant_with_optimal[variant]
+            ])
+        return str(table)

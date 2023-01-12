@@ -1,6 +1,4 @@
-import numpy as np
-
-from decision_support_system.models import BinaryRelationModels, KMaxModels, KMaxModel
+from decision_support_system.models import BinaryRelationModels, KMaxModels, KMaxModel, KMaxMechanismModel
 from decision_support_system.core.mechanisms.k_max_optimal_mechanism import calculate_k_max_optimal_options
 
 
@@ -8,7 +6,7 @@ def calculate_k_max_options(df: BinaryRelationModels) -> KMaxModels:
     """
     Расчет вариантов k-max механизма и последующий расчет k-max оптимальных вариантов
     """
-    k_max_models = KMaxModels({}, df.variants_count)
+    k_max_models = KMaxModels({}, df.variant_names, df.variants_count)
     for preference, model in df.binary_relation_by_preference.items():
         variant_vector = [[0 for _ in range(4)] for _ in range(model.variants_count)]
         for i in range(model.variants_count):
@@ -26,6 +24,68 @@ def calculate_k_max_options(df: BinaryRelationModels) -> KMaxModels:
             variant_vector[i][1] = HR0 + NK
             variant_vector[i][2] = HR0 + ER
             variant_vector[i][3] = HR0
-        k_max_model = KMaxModel(preference, variant_vector, [], df.variant_names)
+        k_max_model = KMaxModel(
+            preference,
+            variant_vector,
+            [],
+            df.variant_names,
+            model.weight_coefficient
+        )
         k_max_models.k_max_matrix_by_preference[preference] = k_max_model
+
     return calculate_k_max_optimal_options(k_max_models)
+
+
+def calculate_k_max_rating(df: KMaxModels) -> KMaxMechanismModel:
+    k_max_mechanism = KMaxMechanismModel({}, {})
+    for variant in df.variant_names:
+        """
+        0 индекс в списке - количество баллов с учетом всего
+        1 индекс в списке - место в общем зачете
+        """
+        k_max_mechanism.rating_and_place_by_variant[variant] = [0, -1]
+        k_max_mechanism.rating_and_place_by_variant_with_optimal[variant] = [0, -1]
+
+    for preference, model in df.k_max_matrix_by_preference.items():
+        for (variant_name, variant_values, k_max_optimal_check) in zip(model.variant_names,
+                                                                       model.k_max_matrix,
+                                                                       model.k_max_optimal_check):
+            k_max_mechanism.rating_and_place_by_variant[variant_name][0] += sum(
+                map(lambda x: x * model.weight_coefficient, variant_values)
+            )
+
+            if k_max_optimal_check in [1, 2, 3, 4]:
+                k_max_mechanism.rating_and_place_by_variant_with_optimal[variant_name][0] += sum(
+                    map(lambda x: x * model.weight_coefficient, variant_values)
+                )
+
+    # подсчет места для k_max без оптимального
+    sorted_variants = sorted(k_max_mechanism.rating_and_place_by_variant.items(),
+                             key=lambda x: x[1][0],
+                             reverse=True
+                             )
+    place = 1
+    for idx, variant in enumerate(sorted_variants):
+        if idx == 0:
+            k_max_mechanism.rating_and_place_by_variant[variant[0]][1] = place
+            place += 1
+        else:
+            k_max_mechanism.rating_and_place_by_variant[variant[0]][1] = place
+            if sorted_variants[idx - 1][1][0] != variant[1][1]:
+                place += 1
+
+    # подсчет места для k_max с оптимальным
+    sorted_variants = sorted(k_max_mechanism.rating_and_place_by_variant_with_optimal.items(),
+                                 key=lambda x: x[1][0],
+                                 reverse=True
+                                 )
+    place = 1
+    for idx, variant in enumerate(sorted_variants):
+        if idx == 0:
+            k_max_mechanism.rating_and_place_by_variant_with_optimal[variant[0]][1] = place
+            place += 1
+        else:
+            k_max_mechanism.rating_and_place_by_variant_with_optimal[variant[0]][1] = place
+            if sorted_variants[idx - 1][1][0] != variant[1][1]:
+                place += 1
+    return k_max_mechanism
