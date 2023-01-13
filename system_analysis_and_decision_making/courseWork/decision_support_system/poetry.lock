@@ -22,8 +22,8 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.11"
-content-hash = "adc9839170c45dc132b6e28fa58425608672d6b44e4ab1acc3efbc59fcde46b2"
+python-versions = "^3.10"
+content-hash = "a935925ef55842f56a2e23dabd21f78e738c0c432b0de99d0138eef6818df802"
 
 [metadata.files]
 prettytable = [

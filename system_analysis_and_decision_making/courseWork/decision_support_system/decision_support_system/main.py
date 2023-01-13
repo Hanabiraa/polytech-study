@@ -20,18 +20,37 @@ from decision_support_system.core.mechanisms import (
 
 async def runner():
     files_reader = Reader()
+
+    # MAIN TEST DATA
+    # df = files_reader(
+    #     matrix_row_names_path="./decision_support_system/input_data/test_data/preference_names_for_matrix_rows.csv",
+    #     matrix_path="./decision_support_system/input_data/test_data/matrix.csv",
+    #     choice_function_path="./decision_support_system/input_data/test_data/choice_function.csv",
+    #     weight_coefficients_path="./decision_support_system/input_data/test_data/weight_coefficients.csv"
+    # )
+
+    # ORIGINAL RESEARCH DATA
     df = files_reader(
-        matrix_row_names_path="./decision_support_system/input_data/test_data/feature_names_for_matrix_rows.csv",
-        matrix_path="./decision_support_system/input_data/test_data/matrix.csv",
-        choice_function_path="./decision_support_system/input_data/test_data/choice_function.csv",
-        weight_coefficients_path="./decision_support_system/input_data/test_data/weight_coefficients.csv"
+        matrix_row_names_path="./decision_support_system/input_data/my_data_for_course_work/preference_names_for_matrix_rows.csv",
+        matrix_path="./decision_support_system/input_data/my_data_for_course_work/matrix.csv",
+        choice_function_path="./decision_support_system/input_data/my_data_for_course_work/choice_function.csv",
+        weight_coefficients_path="./decision_support_system/input_data/my_data_for_course_work/weight_coefficients.csv"
     )
 
+    # MODIFIED RESEARCH DATA: EQUAL WEIGHT COEFFICIENTS
     # df = files_reader(
-    #     matrix_row_names_path="./decision_support_system/input_data/my_data_for_course_work/feature_names_for_matrix_rows.csv",
-    #     matrix_path="./decision_support_system/input_data/my_data_for_course_work/matrix.csv",
-    #     choice_function_path="./decision_support_system/input_data/my_data_for_course_work/choice_function.csv",
-    #     weight_coefficients_path="./decision_support_system/input_data/my_data_for_course_work/weight_coefficients.csv"
+    #     matrix_row_names_path="./decision_support_system/input_data/research/without_coef/preference_names_for_matrix_rows.csv",
+    #     matrix_path="./decision_support_system/input_data/research/without_coef/matrix.csv",
+    #     choice_function_path="./decision_support_system/input_data/research/without_coef/choice_function.csv",
+    #     weight_coefficients_path="./decision_support_system/input_data/research/without_coef/weight_coefficients.csv"
+    # )
+
+    # MODIFIED RESEARCH DATA: DELETE MOST VALUED PREFERENCES AND LEADERS FROM ORIGINAL RESEARCH
+    # df = files_reader(
+    #     matrix_row_names_path="./decision_support_system/input_data/research/without_leaders/preference_names_for_matrix_rows.csv",
+    #     matrix_path="./decision_support_system/input_data/research/without_leaders/matrix.csv",
+    #     choice_function_path="./decision_support_system/input_data/research/without_leaders/choice_function.csv",
+    #     weight_coefficients_path="./decision_support_system/input_data/research/without_leaders/weight_coefficients.csv"
     # )
 
     df_binary = calculate_binary_relations(df)

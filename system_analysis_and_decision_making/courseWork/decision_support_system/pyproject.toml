@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "decision_support_system"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 prettytable = "^3.6.0"
 
 [tool.poetry.scripts]
