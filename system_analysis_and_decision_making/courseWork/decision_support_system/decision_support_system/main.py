@@ -22,20 +22,20 @@ async def runner():
     files_reader = Reader()
 
     # MAIN TEST DATA
-    # df = files_reader(
-    #     matrix_row_names_path="./decision_support_system/input_data/test_data/preference_names_for_matrix_rows.csv",
-    #     matrix_path="./decision_support_system/input_data/test_data/matrix.csv",
-    #     choice_function_path="./decision_support_system/input_data/test_data/choice_function.csv",
-    #     weight_coefficients_path="./decision_support_system/input_data/test_data/weight_coefficients.csv"
-    # )
+    df = files_reader(
+        matrix_row_names_path="./decision_support_system/input_data/test_data/preference_names_for_matrix_rows.csv",
+        matrix_path="./decision_support_system/input_data/test_data/matrix.csv",
+        choice_function_path="./decision_support_system/input_data/test_data/choice_function.csv",
+        weight_coefficients_path="./decision_support_system/input_data/test_data/weight_coefficients.csv"
+    )
 
     # ORIGINAL RESEARCH DATA
-    df = files_reader(
-        matrix_row_names_path="./decision_support_system/input_data/my_data_for_course_work/preference_names_for_matrix_rows.csv",
-        matrix_path="./decision_support_system/input_data/my_data_for_course_work/matrix.csv",
-        choice_function_path="./decision_support_system/input_data/my_data_for_course_work/choice_function.csv",
-        weight_coefficients_path="./decision_support_system/input_data/my_data_for_course_work/weight_coefficients.csv"
-    )
+    # df = files_reader(
+    #     matrix_row_names_path="./decision_support_system/input_data/my_data_for_course_work/preference_names_for_matrix_rows.csv",
+    #     matrix_path="./decision_support_system/input_data/my_data_for_course_work/matrix.csv",
+    #     choice_function_path="./decision_support_system/input_data/my_data_for_course_work/choice_function.csv",
+    #     weight_coefficients_path="./decision_support_system/input_data/my_data_for_course_work/weight_coefficients.csv"
+    # )
 
     # MODIFIED RESEARCH DATA: EQUAL WEIGHT COEFFICIENTS
     # df = files_reader(
