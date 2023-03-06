@@ -4,6 +4,7 @@ import core.DiscreteTable;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+// покопаться в junit5 для дельты для сравнения
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
@@ -12,11 +13,14 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+
+// чем заменить рефлексию -- открыть нужные поля в классе
+// (если в пакете - то package private) (указать в анотации - visible for testing)
 public class TestDiscreteTableClass {
     DiscreteTable table;
     @BeforeEach
     public void setUp() {
-        String str = "a a a a ba ba bbb bbb";
+        String str = "a,    a a a ba,.,., ba, bbb... bbb";
         this.table = new DiscreteTable(str);
     }
 

@@ -2,6 +2,7 @@ package core;
 
 import java.util.*;
 
+// разнести архитектуру: на модель и на реализацию
 public class DiscreteTable {
     private final Map<Integer, Integer> statTable;
     private final Map<Integer, Double> discreteTable;
@@ -12,18 +13,19 @@ public class DiscreteTable {
     }
 
     public List<String> getTable() {
+        // vector - устаревший класс, заменить на array list
         List<String> table = new Vector<String>();
 
-        String table_header = "Word len (Xi) |";
-        String table_row = "Rand Val (Pi) |";
+        StringBuilder table_header = new StringBuilder("Word len (Xi) |");
+        StringBuilder table_row = new StringBuilder("Rand Val (Pi) |");
 
         for (Map.Entry<Integer, Double> entry : this.discreteTable.entrySet()) {
-            table_header += String.format("\t  %s  \t|", entry.getKey());
-            table_row += String.format("\t%.2f\t|", entry.getValue());
+            table_header.append(String.format("\t  %s  \t|", entry.getKey()));
+            table_row.append(String.format("\t%.2f\t|", entry.getValue()));
         }
 
-        table.add(table_header);
-        table.add(table_row);
+        table.add(table_header.toString());
+        table.add(table_row.toString());
         table.add(String.format("Math Expectation: %.2f", this.calculateMathExpectation()));
         table.add(String.format("Dispersion: %.2f", this.calculateDispersion()));
         return table;
@@ -32,13 +34,8 @@ public class DiscreteTable {
     private Map<Integer, Integer> calculateStatisticTable(String row) {
         Map<Integer, Integer> table = new HashMap<Integer, Integer>();
 
-        for (String token : row.split("\\s+")) {
-            Integer token_len = token.length();
-            if (table.containsKey(token_len)) {
-                table.merge(token_len, 1, Integer::sum);
-            } else {
-                table.put(token_len, 1);
-            }
+        for (String token : row.split("[ .,]+")) {
+            table.merge(token.length(), 1, Integer::sum);
         }
         return table;
     }

@@ -2,6 +2,8 @@ import java.util.Map;
 import java.util.Scanner;
 import core.*;
 
+// get 18 баллов
+
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
