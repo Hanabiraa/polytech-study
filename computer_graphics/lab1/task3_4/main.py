@@ -4,8 +4,12 @@ from OpenGL.GLUT import *  # noqa
 
 from config.settings import settings  # noqa
 from core import display  # noqa
-from core import reshape  # noqa
 from core import keys_handler  # noqa
+from core import reshape  # noqa
+from core import timer # noqa
+"""
+необходима анимация всего, а не статика ИСПРАВИТЬ
+"""
 
 
 def main():
@@ -15,12 +19,11 @@ def main():
     # отрисовка
     glutDisplayFunc(display.display)
 
-    # триггер при изменении окна
-    #glutReshapeFunc(reshape.reshape)
-
     # триггер при нажатии на клавиши
-    #glutSpecialFunc(keys_handler.keys_handler)
+    glutKeyboardFunc(keys_handler.keyboard_handler)
 
+    # анимация
+    glutTimerFunc(500, timer.timer_func, 0)
     # Запускаем основной цикл
     glutMainLoop()
 

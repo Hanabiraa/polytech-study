@@ -2,11 +2,12 @@ from OpenGL.GL import *  # noqa
 from OpenGL.GLU import *  # noqa
 from OpenGL.GLUT import *  # noqa
 
+from .figure_settings import cylinder_settings as s
+
 
 def cylinder():
-    angle = 45
-    glRotatef(angle, 1, 1, 0)
+    glRotatef(s.angle, 1, 1, 0)
 
-    glutWireCylinder(0.15, 0.5, 10, 10)
+    glutWireCylinder(s.radius, s.height, s.slices, s.stacks)
 
-    glRotatef(-angle, 1, 1, 0)
+    glRotatef(-s.angle, 1, 1, 0)
