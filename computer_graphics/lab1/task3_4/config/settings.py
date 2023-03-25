@@ -7,6 +7,9 @@ _WINDOW_Y_SIZE = 700
 
 
 def settings():
+    """
+    Глобальные настройки opengl
+    """
     global _WINDOW_X_SIZE
     global _WINDOW_Y_SIZE
 

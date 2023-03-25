@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
-
+"""
+Настройки фигур
+"""
 @dataclass
 class TetrahedronSettings:
     x = -0.1

@@ -6,7 +6,7 @@ from core.keys_handler import keyboard_handler
 from core.core_settings import timer_settings
 from figures.figure_settings import tetrahedron_settings
 
-
+# анимации
 def timer_func(val):
     """
     void glutTimerFunc(unsigned int msecs,
@@ -19,6 +19,7 @@ def timer_func(val):
     There is no support for canceling a registered callback. Instead, ignore a callback based on its value parameter when it is triggered.
     """
 
+    # если превышено максимально время - сброс анимации, а также ее остановка (повторная возможна на пробел)
     if timer_settings.timer_cur > timer_settings.timer_max:
         # stop animate, return to init position
         keyboard_handler(b" ", None, None)

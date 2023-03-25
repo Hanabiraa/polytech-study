@@ -7,7 +7,7 @@ from figures.tetrahedron import tetrahedron
 from .display_figure import display_figure
 
 
-# отрисовка фигуры
+# отрисовка сцены (всех фигур)
 def display():
     glClear(GL_COLOR_BUFFER_BIT)  # очистка экрана
     glPushMatrix()  # Сохраняем текущее положение "камеры"
