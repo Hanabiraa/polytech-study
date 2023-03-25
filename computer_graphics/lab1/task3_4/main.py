@@ -6,11 +6,7 @@ from config.settings import settings  # noqa
 from core import display  # noqa
 from core import keys_handler  # noqa
 from core import reshape  # noqa
-from core import timer # noqa
-"""
-необходима анимация всего, а не статика ИСПРАВИТЬ
-"""
-
+from core import timer  # noqa
 
 def main():
     # настройка opengl
