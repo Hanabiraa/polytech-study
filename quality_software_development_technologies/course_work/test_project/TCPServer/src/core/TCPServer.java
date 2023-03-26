@@ -21,13 +21,15 @@ public class TCPServer {
     }
 
     public void Listening() {
-        try {
-            client = ss.accept();
-            logger.info("Client connect: " + client.getInetAddress() + ":" + client.getLocalPort());
-            this.ListenClientMessages();
-        } catch (IOException i) {
-            logger.warning("Client connection failed");
-            logger.warning(i.toString());
+        while (true) {
+            try {
+                client = ss.accept();
+                logger.info("Client connect: " + client.getInetAddress() + ":" + client.getLocalPort());
+                this.ListenClientMessages();
+            } catch (IOException i) {
+                logger.warning("Client connection failed");
+                logger.warning(i.toString());
+            }
         }
     }
 
@@ -46,6 +48,7 @@ public class TCPServer {
                 clientWriter.newLine();
                 clientWriter.flush();
             }
+            client.close();
             logger.info("Client disconnect");
         } catch (IOException i) {
             logger.warning(i.toString());

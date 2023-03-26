@@ -10,36 +10,50 @@ public class TCPClient {
 
     Socket server = null;
 
+    BufferedReader consoleReader = null;
+    BufferedWriter consoleWriter = null;
+
+    BufferedReader serverReader = null;
+    BufferedWriter serverWriter = null;
+
     public TCPClient(String address, int port) {
         try {
             server = new Socket(address, port);
             logger.info("connect to server");
+
+            consoleReader = new BufferedReader(new InputStreamReader(System.in));
+            consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+            logger.info("setup console reader/writer");
+
+
+            serverReader = new BufferedReader(new InputStreamReader(server.getInputStream()));
+            serverWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
+            logger.info("setup socket reader/writer");
         } catch (IOException i) {
             logger.warning("failed connect to server with: " + address + ":" + port);
+            logger.warning(i.toString());
         }
     }
 
     public void StartCommunication() {
-        try (
-                BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-                BufferedWriter consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out))
-        ) {
+        try {
             StringBuilder greeting = new StringBuilder();
             greeting.append("commands:\n");
             greeting.append("1)send_message\n");
             greeting.append("2)close\n");
-            greeting.append("command>");
             consoleWriter.write(greeting.toString());
             consoleWriter.flush();
 
 
             boolean RUN_LOOP = true;
             while (RUN_LOOP) {
+                consoleWriter.write("command>");
+                consoleWriter.flush();
                 switch (consoleReader.readLine()) {
                     case "send_message" -> {
-                        synchronized (this) {
-                            this.sendMessage();
-                        }
+                        consoleWriter.write("client>");
+                        consoleWriter.flush();
+                        this.sendMessage(consoleReader.readLine());
                     }
                     case "close" -> {
                         RUN_LOOP = false;
@@ -57,14 +71,9 @@ public class TCPClient {
         }
     }
 
-    private void sendMessage() {
-        try (
-                BufferedReader serverReader = new BufferedReader(new InputStreamReader(server.getInputStream()));
-                BufferedWriter serverWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
-                BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        ) {
-            System.out.printf("%s", "client>");
-            serverWriter.write(console.readLine());
+    private void sendMessage(String msg) {
+        try {
+            serverWriter.write(msg);
             serverWriter.newLine();
             serverWriter.flush();
 
@@ -76,9 +85,7 @@ public class TCPClient {
     }
 
     private void disconnect() {
-        try (
-                BufferedWriter serverWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
-        ) {
+        try {
             serverWriter.write("close");
             serverWriter.newLine();
             serverWriter.flush();
