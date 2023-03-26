@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: TCPServer
+    build:
+      context: .
+      dockerfile: compose/TCPServer/Dockerfile
+    networks:
+      - external_network
+
+  client:
+    container_name: TCPClient
+    build:
+      context: .
+      dockerfile: compose/TCPClient/Dockerfile
+    networks:
+      - external_network
+
+networks:
+  external_network:
+    driver: bridge
