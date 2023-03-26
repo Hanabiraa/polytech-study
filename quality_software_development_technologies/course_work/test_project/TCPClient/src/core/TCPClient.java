@@ -1,98 +1,91 @@
 package core;
 
-import java.net.*;
 import java.io.*;
-import java.security.SecureRandom;
-import java.nio.charset.Charset;
+import java.net.Socket;
+import java.util.logging.Logger;
+
 
 public class TCPClient {
-    // initialize socket and input output streams
-    private Socket socket = null;
-    private DataInputStream input = null;
-    private DataOutputStream out = null;
+    Logger logger = Logger.getLogger(TCPClient.class.getName());
 
-    private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
-    private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
-    private static final String NUMBER = "0123456789";
+    Socket server = null;
 
-    private static final String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
-    private static SecureRandom random = new SecureRandom();
-
-    // constructor to put ip address and port
     public TCPClient(String address, int port) {
-
-
-        // establish a connection
         try {
-            socket = new Socket(address, port);
-            System.out.println("Connected");
-
-
-        } catch (UnknownHostException u) {
-            System.out.println(u);
+            server = new Socket(address, port);
+            logger.info("connect to server");
         } catch (IOException i) {
-            System.out.println(i);
-        }
-
-        // string to read message from input
-        String line = "";
-        int linecount = 0;
-
-        // keep reading until "Over" is input
-        while (linecount++ != 300) {
-
-
-            try {
-                String name = generateRandomString(8);
-
-                InputStream is = new ByteArrayInputStream(name.getBytes(Charset.forName("UTF-8")));
-                // takes input from terminal
-                input = new DataInputStream(is);
-
-                // sends output to the socket
-                out = new DataOutputStream(socket.getOutputStream());
-            } catch (UnknownHostException u) {
-                System.out.println(u);
-            } catch (IOException i) {
-                System.out.println(i);
-            }
-
-            try {
-                line = input.readLine();
-                out.writeUTF(line);
-            } catch (IOException i) {
-                System.out.println(i);
-            }
-        }
-
-        // close the connection
-        try {
-            input.close();
-            out.close();
-            socket.close();
-        } catch (IOException i) {
-            System.out.println(i);
+            logger.warning("failed connect to server with: " + address + ":" + port);
         }
     }
 
-    public static String generateRandomString(int length) {
-        if (length < 1) throw new IllegalArgumentException();
+    public void StartCommunication() {
+        try (
+                BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+                BufferedWriter consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out))
+        ) {
+            StringBuilder greeting = new StringBuilder();
+            greeting.append("commands:\n");
+            greeting.append("1)send_message\n");
+            greeting.append("2)close\n");
+            greeting.append("command>");
+            consoleWriter.write(greeting.toString());
+            consoleWriter.flush();
 
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
 
-            // 0-62 (exclusive), random returns 0-61
-            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
-            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
-
-            // debug
-            System.out.format("%d\t:\t%c%n", rndCharAt, rndChar);
-
-            sb.append(rndChar);
-
+            boolean RUN_LOOP = true;
+            while (RUN_LOOP) {
+                switch (consoleReader.readLine()) {
+                    case "send_message" -> {
+                        synchronized (this) {
+                            this.sendMessage();
+                        }
+                    }
+                    case "close" -> {
+                        RUN_LOOP = false;
+                        this.disconnect();
+                    }
+                    default -> {
+                        consoleWriter.write("Bad command, Try again");
+                        consoleWriter.newLine();
+                        consoleWriter.flush();
+                    }
+                }
+            }
+        } catch (IOException i) {
+            logger.warning(i.toString());
         }
+    }
 
-        return sb.toString();
+    private void sendMessage() {
+        try (
+                BufferedReader serverReader = new BufferedReader(new InputStreamReader(server.getInputStream()));
+                BufferedWriter serverWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
+                BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        ) {
+            System.out.printf("%s", "client>");
+            serverWriter.write(console.readLine());
+            serverWriter.newLine();
+            serverWriter.flush();
 
+            String fromServer = serverReader.readLine();
+            System.out.printf("%s%s\n", "server>", fromServer);
+        } catch (IOException i) {
+            logger.warning(i.toString());
+        }
+    }
+
+    private void disconnect() {
+        try (
+                BufferedWriter serverWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
+        ) {
+            serverWriter.write("close");
+            serverWriter.newLine();
+            serverWriter.flush();
+            server.close();
+            logger.info("disconnect from server");
+        } catch (IOException i) {
+            logger.warning(i.toString());
+        }
     }
 }

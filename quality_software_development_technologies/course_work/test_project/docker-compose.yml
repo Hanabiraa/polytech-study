@@ -3,17 +3,11 @@ version: '3.8'
 services:
   server:
     container_name: TCPServer
+    ports:
+      - "5678:5678"
     build:
       context: .
       dockerfile: compose/TCPServer/Dockerfile
-    networks:
-      - external_network
-
-  client:
-    container_name: TCPClient
-    build:
-      context: .
-      dockerfile: compose/TCPClient/Dockerfile
     networks:
       - external_network
 

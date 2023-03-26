@@ -3,57 +3,52 @@ package core;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Logger;
 
 public class TCPServer {
-    //initialize socket and input stream
-    private Socket socket = null;
-    private ServerSocket server = null;
-    private DataInputStream in = null;
-    private File file;
-    private FileWriter fileWriter;
+    Logger logger = Logger.getLogger(TCPServer.class.getName());
 
-    // constructor with port
+    ServerSocket ss;
+    Socket client;
+
     public TCPServer(int port) {
-        // starts server and waits for a connection
         try {
-            server = new ServerSocket(port);
-            System.out.println("Server started");
-
-            System.out.println("Waiting for a client ...");
-
-            socket = server.accept();
-            System.out.println("Client accepted");
-
-            // takes input from the client socket
-            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-
-            String line = "";
-            int linecount = 0;
-
-            file = new File("outfile.txt");
-            fileWriter = new FileWriter(file);
-
-
-            // reads message from client until "Over" is sent
-            while (linecount++ != 300) {
-                try {
-                    line = in.readUTF();
-                    System.out.println(line);
-                    fileWriter.write(line);
-
-
-                } catch (IOException i) {
-                    System.out.println(i);
-                }
-            }
-            System.out.println("Closing connection");
-            fileWriter.flush();
-            fileWriter.close();
-            // close connection
-            socket.close();
-            in.close();
+            ss = new ServerSocket(port);
+            logger.info("Server listen on port: " + ss.getLocalPort());
         } catch (IOException i) {
-            System.out.println(i);
+            logger.warning(i.toString());
+        }
+    }
+
+    public void Listening() {
+        try {
+            client = ss.accept();
+            logger.info("Client connect: " + client.getInetAddress() + ":" + client.getLocalPort());
+            this.ListenClientMessages();
+        } catch (IOException i) {
+            logger.warning("Client connection failed");
+            logger.warning(i.toString());
+        }
+    }
+
+    private void ListenClientMessages() {
+        try (
+                BufferedReader clientReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                BufferedWriter clientWriter = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
+        ) {
+            String line;
+            while (!"close".equals(line = clientReader.readLine())) {
+                if (line == null) {
+                    continue;
+                }
+                System.out.println("Client sent: " + line);
+                clientWriter.write("message get");
+                clientWriter.newLine();
+                clientWriter.flush();
+            }
+            logger.info("Client disconnect");
+        } catch (IOException i) {
+            logger.warning(i.toString());
         }
     }
 }
