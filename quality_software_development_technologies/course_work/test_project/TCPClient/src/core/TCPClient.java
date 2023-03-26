@@ -78,7 +78,9 @@ public class TCPClient {
             serverWriter.flush();
 
             String fromServer = serverReader.readLine();
-            System.out.printf("%s%s\n", "server>", fromServer);
+            consoleWriter.write(fromServer);
+            consoleWriter.newLine();
+            consoleWriter.flush();
         } catch (IOException i) {
             logger.warning(i.toString());
         }

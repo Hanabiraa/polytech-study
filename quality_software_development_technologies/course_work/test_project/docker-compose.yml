@@ -8,9 +8,13 @@ services:
     build:
       context: .
       dockerfile: compose/TCPServer/Dockerfile
+    volumes:
+      - cloud:/tmp/cloud
     networks:
       - external_network
 
+volumes:
+  cloud:
 networks:
   external_network:
     driver: bridge

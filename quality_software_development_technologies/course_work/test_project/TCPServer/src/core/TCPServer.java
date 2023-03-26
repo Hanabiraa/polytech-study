@@ -3,6 +3,7 @@ package core;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class TCPServer {
@@ -43,9 +44,13 @@ public class TCPServer {
                 if (line == null) {
                     continue;
                 }
-                System.out.println("Client sent: " + line);
-                clientWriter.write("message get");
-                clientWriter.newLine();
+                logger.info("Client sent: " + line);
+
+                UnixTreeCommand tree = new UnixTreeCommand();
+                for (String tree_line : tree.getTree()) {
+                    clientWriter.write(tree_line);
+                    clientWriter.newLine();
+                }
                 clientWriter.flush();
             }
             client.close();
