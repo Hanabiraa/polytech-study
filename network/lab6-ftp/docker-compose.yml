@@ -1,0 +1,21 @@
+version: "3.0"
+
+services:
+  ftpd-server:
+    image: stilliard/pure-ftpd:hardened
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - './ftp/data:/home/sushi/'
+      - './ftp/pass:/etc/pure-ftpd/passwd'
+      - 'virtual-users:/etc/pure-ftpd/passwd'
+    environment:
+      PUBLICHOST: "0.0.0.0"
+      FTP_USER_NAME: "sushi"
+      FTP_USER_PASS: "1111"
+      FTP_USER_HOME: "/home/sushi"
+    restart: always
+
+volumes:
+  virtual-users:
