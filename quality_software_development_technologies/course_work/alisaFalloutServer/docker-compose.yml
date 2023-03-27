@@ -1,0 +1,17 @@
+version: '3.8'
+
+# Порты отсутствуют, т.к. все в docker network и видит друг друга. Наружу доступ отсутствует
+services:
+  server:
+    container_name: AlisaTCPServer
+    build:
+      context: .
+      dockerfile: compose/TCPServer/Dockerfile
+    ports:
+      - "5678:5678"
+    networks:
+      - external_network
+
+networks:
+  external_network:
+    driver: bridge
