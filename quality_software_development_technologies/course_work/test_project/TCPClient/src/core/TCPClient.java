@@ -21,6 +21,7 @@ public class TCPClient {
             server = new Socket(address, port);
             logger.info("connect to server");
 
+            // мб юзать object stream
             consoleReader = new BufferedReader(new InputStreamReader(System.in));
             consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out));
             logger.info("setup console reader/writer");

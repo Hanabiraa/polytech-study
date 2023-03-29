@@ -41,11 +41,7 @@ public class TCPServer {
                 BufferedWriter clientWriter = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
         ) {
             String line;
-            while (!"close".equals(line = clientReader.readLine())) {
-                // client died by SIGKILL
-                if (line == null) {
-                    break;
-                }
+            while (!"close".equals(line = clientReader.readLine()) && line != null) {
                 logger.info("Client sent: " + line);
 
                 String[] tokens = line.split("[ .,]+");
