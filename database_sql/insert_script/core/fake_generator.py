@@ -64,6 +64,6 @@ def make_item_transportation():
     for item_id in range(1, 1_000_001):
         for _ in range(10):
             data.append(
-                [item_id, random.randint(1, 4)]
+                [random.randint(1, 4), item_id]
             )
     return data
