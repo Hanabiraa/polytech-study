@@ -25,6 +25,14 @@ transp_event_type = [
     "human"
 ]
 
+def get_retail_center_type_count():
+    global retail_center_type
+    return len(retail_center_type)
+
+def get_transp_event_type_count():
+    global transp_event_type
+    return len(transp_event_type)
+
 
 def make_retail_centers():
     global retail_center_type
