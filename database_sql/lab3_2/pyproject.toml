@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "insert-script"
+version = "0.1.0"
+description = ""
+authors = ["Vitaly Kopylov <workflow.elec@gmail.com>"]
+readme = "README.md"
+packages = [{include = "insert_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+psycopg2-binary = "^2.9.5"
+faker = "^18.3.1"
+sqlalchemy = "^2.0.7"
+asyncio = "^3.4.3"
+aiopg = "^1.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
