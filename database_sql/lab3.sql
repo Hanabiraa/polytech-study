@@ -300,8 +300,8 @@ WHERE t1.transportationEventSeqNumber = 1 and t3.weight BETWEEN 1 and 5 and t3.d
 
 
 -- создание 3 индексов для запроса
-CREATE INDEX fk_idx ON itemTransportation(transportationEventSeqNumber);
-CREATE INDEX complex_idx ON shippedItem(dimension, weight);
+CREATE INDEX fk_idx ON itemTransportation(transportationEventSeqNumber); -- TODO: сделать хэш
+CREATE INDEX complex_idx ON shippedItem(dimension, weight); -- гибридные индексы - сложно, для того, чтобы понять - перебирать все подряд и explain analyze
 CREATE INDEX date_idx ON shippedItem(finalDeliveryDate);
 
 -- также 2 индекса для секционированной таблицы
@@ -469,7 +469,7 @@ SELECT itemNum, to_tsvector(destination)
 FROM shippedItem;
 
 -- создание индекса для векторной таблицы
-CREATE INDEX fullsearch_idx ON shippeditemvector USING gin (dest_vector);
+CREATE INDEX fullsearch_idx ON shippeditemvector USING gin (dest_vector); -- gist - топ для геолокации
 
 -- обновленный запрос
 EXPLAIN ANALYSE
