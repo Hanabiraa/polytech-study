@@ -2,16 +2,25 @@ import json
 import re
 
 
+def format_actor_name(name):
+    parts = name.split(', ')
+    if len(parts) == 2:
+        last_name, first_name = parts
+        return f'{first_name.strip()} {last_name.strip()}'
+    return name
+
+
 def parse_role(line):
     # все части роли
-    match = re.match(
-        r'^(.*?) \((\d{4}|\?\?\?\?)\)(.*?)\[(.*?)\](.*?)$', line.strip()
-    )
+    match = re.match(r'^[^,]+,\s+[^(\t]+(\t+)(.*?)\s+\((\d{4}|\?\?\?\?)\)(.*?)\[(.*?)\](.*?)$', line)
+    match2 = re.match(r'^[\t\s]+(.*?)\s+\((\d{4}|\?\?\?\?)\)(.*?)\[(.*?)\](.*?)$', line)
 
-    if not match:
+    if match:
+        _, title, year, types, character, credit = match.groups()
+    elif match2:
+        title, year, types, character, credit = match2.groups()
+    else:
         return None
-
-    title, year, types, character, credit = match.groups()
 
     role = {
         'title': title.strip('"'),
@@ -32,46 +41,33 @@ def parse_role(line):
     return role
 
 
-def process_file(file_path):
+def process_file(file_path, limit=None):
     actors_data = {}  # информация об актерах
     with open(file_path, 'r', encoding='ISO-8859-1') as file:
         line = file.readline()
+        actor_count = 0
 
-        while line:
-            # Ищем разделитель актеров
-            if not line.strip() or line.startswith('\t\t'):
-                line = file.readline()
-                continue
+        name = None
+        roles = []
 
-            # Извлекаем имя актера
-            name = line.split('\t')[0].strip().replace(',', '')
-            roles = []
-
-            # Обрабатываем роли актера
-            while line and not line.startswith('\t\t'):
+        while line and (limit is None or actor_count < limit):
+            if not line.startswith('\t'):
+                name = line.split('\t')[0].strip()
+                name = format_actor_name(name)
                 role = parse_role(line)
                 if role:
                     roles.append(role)
                 line = file.readline()
+                while line.startswith('\t'):
+                    role = parse_role(line)
+                    line = file.readline()
+                    if role:
+                        roles.append(role)
 
-            # Добавьте запись актера
-            actors_data[name] = json.dumps(roles)
+            if name and roles:
+                actors_data[name] = json.dumps(roles)
+                actor_count += 1
+                name = None
+                roles = []
 
     return actors_data
-
-# def load_data_to_postgresql(actors_data):
-#     for actor_data in actors_data:
-#         actor_name = actor_data['actor_name']
-#         roles_name = json.dumps(actor_data['roles_name'])
-#         if actor_name and roles_name:
-#             # Подготовка запроса на вставку записи актера в таблицу
-#             insert_plan = plpy.prepare(
-#                 "INSERT INTO actors (actor_name, roles_name) VALUES ($1, $2)",
-#                 ["text", "jsonb"],
-#             )
-#             # Выполнение запроса с переданными параметрами
-#             plpy.execute(insert_plan, [actor_name, roles_name])
-#
-# file_path = '/Users/allamosina/Desktop/actors.list.txt'
-# actors_data = process_file(file_path)
-# load_data_to_postgresql(actors_data)

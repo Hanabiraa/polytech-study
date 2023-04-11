@@ -23,11 +23,11 @@ def run_insert(params):
     start_timer = time.time()
     file_path = '/storage/documents/actors.list.txt'
     actor_data = process_file(file_path)
-    print(f"insert centers in {(time.time() - start_timer) / 60} mins")
+    print(f"parse file in {(time.time() - start_timer) / 60} mins")
 
     start_timer = time.time()
     insert(pool=pool, data=actor_data)
-    print(f"insert centers in {(time.time() - start_timer) / 60} mins")
+    print(f"insert data in {(time.time() - start_timer) / 60} mins")
 
 
 def insert(pool, data):
