@@ -15,6 +15,7 @@ services:
       FTP_USER_NAME: "sushi"
       FTP_USER_PASS: "1111"
       FTP_USER_HOME: "/home/sushi"
+    command: "pure-ftpd -E"
     restart: always
 
 volumes:
