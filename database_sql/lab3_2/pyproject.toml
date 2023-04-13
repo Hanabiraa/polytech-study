@@ -13,6 +13,7 @@ faker = "^18.3.1"
 sqlalchemy = "^2.0.7"
 asyncio = "^3.4.3"
 aiopg = "^1.4.0"
+matplotlib = "^3.7.1"
 
 
 [build-system]

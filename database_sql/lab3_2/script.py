@@ -7,6 +7,7 @@ from core.parse import (
     process_file
 )
 from core.test_connection import test_connect
+from stat_script import stat
 
 actor_data = None
 
@@ -66,7 +67,11 @@ def main():
         options="-c search_path=lab3",
     )
     test_connect(params)
-    run_insert(params)
+
+    # это вставка
+    #run_insert(params)
+    stat(params)
+    # это статистика тостов
 
 
 if __name__ == "__main__":
