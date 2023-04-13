@@ -42,8 +42,7 @@ SELECT DISTINCT t1.id AS ID, jsonb_array_length(t1.RolesName) AS SIZE
 FROM IMDBtest AS t1,
      jsonb_array_elements(t1.RolesName) as t2
 WHERE t1.RolesName != '[]'
-ORDER BY jsonb_array_length(t1.RolesName) = 2
-    FETCH FIRST 1 ROWS ONLY;
+ORDER BY jsonb_array_length(t1.RolesName) ASC;
 
 -- изменение года на +1 для всех ролей для актера с 1 записью в бд (id 3444057)
 SELECT *
@@ -55,8 +54,8 @@ UPDATE IMDBtest
 SET RolesName = json_build_array((SELECT jsonb_set(t2, '{year}', to_jsonb(((t2 ->> 'year')::int + 1)::text))
                  FROM IMDBtest AS t1,
                       jsonb_array_elements(t1.RolesName) as t2
-                 WHERE t1.id = 3444057))
-WHERE id = 3444057;
+                 WHERE t1.id = 2849035))
+WHERE id = 2849035;
 
 
 -- Update on imdbtest  (cost=12.38..20.39 rows=0 width=0)
@@ -86,3 +85,21 @@ WHERE id = 3444057;
 
 ROLLBACK;
 COMMIT;
+
+-- вытаскивание размера json array
+SELECT t1.id, jsonb_array_length(t1.RolesName) AS SIZE, pg_column_size(t1.RolesName)
+FROM IMDBtest AS t1
+WHERE t1.RolesName != '[]';
+
+-- время доступа к ключу
+EXPLAIN (ANALYSE, TIMING, FORMAT JSON)
+SELECT jsonb_array_elements(t1.RolesName) ->> 'year' AS YEAR
+FROM imdbtest AS t1
+WHERE t1.id = 3444057
+LIMIT 1;
+
+-- сортировка по jsonpath (поиск всех ролей всех актеров в 2015 году)
+SELECT t1.id, t2
+FROM IMDBtest AS t1, jsonb_array_elements(t1.RolesName) as t2
+WHERE t2 @? '$.year >= 2015'
+ORDER BY t2 ->> 'year' DESC ;
