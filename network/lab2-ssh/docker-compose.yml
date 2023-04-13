@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  ssh:
+      image: "linuxserver/openssh-server"
+      ports:
+        - "22:2222"
+      volumes:
+        - "./super-ssh.pub:/pubkey:ro"
+      environment:
+        PUID: ${ID}       
+        PGID: ${ID}       
+        TZ: ${TZ}       
+        PUBLIC_KEY_FILE: "/pubkey"      
+        SUDO_ACCESS: "false" 
+        PASSWORD_ACCESS: "false"
+        USER_NAME: "sushi212"
+      restart: "always"
